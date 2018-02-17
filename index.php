@@ -24,7 +24,7 @@
         <footer class="footer">
             <div class="container">
                 <p>&copy; <a href="https://jahidulpabelislam.000webhostapp.com/">Jahidul Pabel Islam</a> 2018</p>
-                <p>Team <a href="https://www.instagram.com/myriad.official/">#Myriad</a> / Team <a href="https://www.jkmt.co.uk/">#JKMT</a></p>
+                <p>Team <a href="https://www.instagram.com/myriad.official/" class="myriad-text">#Myriad</a> / Team <a href="https://www.jkmt.co.uk/">#JKMT</a></p>
             </div>
         </footer>
 
