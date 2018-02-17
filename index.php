@@ -32,6 +32,7 @@
             <script src="/assets/js/third-party/jquery-3.2.1.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/popper.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
+            <script src="assets/js/third-party/angular.min.js" type="application/javascript"></script>
         <?php else: ?>
             <!-- Complied JavaScript File of all JavaScript Files -->
             <script src="/assets/js/main.min.js" type="application/javascript"></script>

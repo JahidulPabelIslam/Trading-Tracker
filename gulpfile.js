@@ -11,7 +11,8 @@ var scripts = {
     main: [
         "assets/js/third-party/jquery-3.2.1.min.js",
         "assets/js/third-party/popper.min.js",
-        "assets/js/third-party/bootstrap.min.js"
+        "assets/js/third-party/bootstrap.min.js",
+        "assets/js/third-party/angular.min.js"
     ]
 };
 var scriptNames = Object.keys(scripts);
