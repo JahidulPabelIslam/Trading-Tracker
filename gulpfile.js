@@ -12,7 +12,8 @@ var scripts = {
         "assets/js/third-party/jquery-3.2.1.min.js",
         "assets/js/third-party/popper.min.js",
         "assets/js/third-party/bootstrap.min.js",
-        "assets/js/third-party/angular.min.js"
+        "assets/js/third-party/angular.min.js",
+        "assets/js/trading-tracker/app.js"
     ]
 };
 var scriptNames = Object.keys(scripts);

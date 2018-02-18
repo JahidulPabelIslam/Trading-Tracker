@@ -12,12 +12,12 @@
             <link href="assets/css/main.min.css" rel="stylesheet" title="style" media="all" type="text/css">
         <?php endif; ?>
     </head>
-    <body>
+    <body ng-app="TradingTrackerApp">
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Trading Tracker</a>
         </nav>
 
-        <main role="main" class="container">
+        <main role="main" class="container" ng-controller="ctrl">
 
         </main>
 
@@ -32,7 +32,8 @@
             <script src="/assets/js/third-party/jquery-3.2.1.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/popper.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
-            <script src="assets/js/third-party/angular.min.js" type="application/javascript"></script>
+            <script src="/assets/js/third-party/angular.min.js" type="application/javascript"></script>
+            <script src="/assets/js/trading-tracker/app.js" type="application/javascript"></script>
         <?php else: ?>
             <!-- Complied JavaScript File of all JavaScript Files -->
             <script src="/assets/js/main.min.js" type="application/javascript"></script>
