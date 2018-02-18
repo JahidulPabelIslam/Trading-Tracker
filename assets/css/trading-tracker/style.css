@@ -9,6 +9,10 @@
 .navbar-brand.navbar-brand:hover {
   color: #e6c200; }
 
+.addTradeToggle {
+  margin-top: 10px;
+  text-align: right; }
+
 .footer {
   text-align: center;
   background-color: #f5f5f5;

@@ -1,5 +1,8 @@
 var app = angular.module("TradingTrackerApp", []);
-app.controller("ctrl", function ($scope) {
+app.controller("ctrl", function ($scope, $filter) {
+    $scope.newtrade = [];
+    $scope.types = ["Sell", "Buy"];
+
     $scope.trades = [
         {
             "name": "EUR/USD",
@@ -11,4 +14,11 @@ app.controller("ctrl", function ($scope) {
             "pips": 0
         }
     ];
+
+    $scope.addTrade = function() {
+        $scope.newtrade.date = $filter('date')($scope.newtrade.date, "dd/MM/yyyy");
+        $scope.trades.push($scope.newtrade);
+        $("#addTrade").modal("hide");
+        $scope.newtrade = [];
+    };
 });
