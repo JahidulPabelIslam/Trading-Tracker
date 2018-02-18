@@ -31,8 +31,8 @@
                             <th scope="col">Date</th>
                             <th scope="col">Lot</th>
                             <th scope="col">Type</th>
-                            <th scope="col">Start Price</th>
-                            <th scope="col">Finish Price</th>
+                            <th scope="col">Entry Price</th>
+                            <th scope="col">Exit Price</th>
                             <th scope="col">Total Pips</th>
                         </tr>
                     </thead>
@@ -44,8 +44,8 @@
                             <td>{{trade.date}}</td>
                             <td>{{trade.lot}}</td>
                             <td>{{trade.type}}</td>
-                            <td>{{trade.startprice}}</td>
-                            <td>{{trade.endprice}}</td>
+                            <td>{{trade.entryprice}}</td>
+                            <td>{{trade.exitprice}}</td>
                             <td>{{trade.pips}}</td>
                         </tr>
                     </tbody>
@@ -91,13 +91,13 @@
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="startpriceInput" class="col-md-6">Start Price</label>
-                                    <input ng-model="newtrade.startprice" type="text" id="startpriceInput" class="form-control col-md-6" placeholder="1.1234" required>
+                                    <label for="entrypriceInput" class="col-md-6">Entry Price</label>
+                                    <input ng-model="newtrade.entryprice" type="text" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="endpriceInput" class="col-md-6">End Price</label>
-                                    <input ng-model="newtrade.endprice" type="text" id="endpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
+                                    <label for="exitpriceInput" class="col-md-6">Exit Price</label>
+                                    <input ng-model="newtrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
                                 </div>
                             </div>
                             <div class="modal-footer">

@@ -9,8 +9,8 @@ app.controller("ctrl", function ($scope, $filter) {
             "date": "18/02/2018",
             "lot": 0.01,
             "type": "Buy",
-            "startprice": 0.1,
-            "endprice": 0.1,
+            "entryprice": 0.1,
+            "exitprice": 0.1,
             "pips": 0
         }
     ];
