@@ -18,7 +18,30 @@
         </nav>
 
         <main role="main" class="container" ng-controller="ctrl">
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Pair</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Lot</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Start Price</th>
+                        <th scope="col">Finish Price</th>
+                        <th scope="col">Total Pips</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="trade in trades | filter : searchtxt">
+                        <td>{{trade.name}}</td>
+                        <td>{{trade.date}}</td>
+                        <td>{{trade.lot}}</td>
+                        <td>{{trade.type}}</td>
+                        <td>{{trade.startprice}}</td>
+                        <td>{{trade.endprice}}</td>
+                        <td>{{trade.pips}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </main>
 
         <footer class="footer">
