@@ -36,6 +36,7 @@
                             <th scope="col">Entry Price</th>
                             <th scope="col">Exit Price</th>
                             <th scope="col">Total Pips</th>
+                            <th scope="col">-</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,7 @@
                             <td>{{trade.entryprice}}</td>
                             <td>{{trade.exitprice}}</td>
                             <td>{{trade.pips}}</td>
+                            <td><button type="button" class="btn btn-danger">x</button><button type="button" class="btn btn-primary">Edit</button></td>
                         </tr>
                     </tbody>
                 </table>
