@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta charset="UTF-8">
         <title>Trading Tracker</title>
 
@@ -24,7 +26,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTrade">Add a Trade</button>
                 </div>
 
-                <table class="table">
+                <table class="table table-responsive">
                     <thead>
                         <tr>
                             <th scope="col">Pair</th>
