@@ -26,34 +26,36 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTrade">Add a Trade</button>
                 </div>
 
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th scope="col">Pair</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Lot</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Entry Price</th>
-                            <th scope="col">Exit Price</th>
-                            <th scope="col">Total Pips</th>
-                            <th scope="col">-</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    <tbody>
-                        <tr ng-repeat="trade in trades | filter : searchtxt">
-                            <td>{{trade.name}}</td>
-                            <td>{{trade.date}}</td>
-                            <td>{{trade.lot}}</td>
-                            <td>{{trade.type}}</td>
-                            <td>{{trade.entryprice}}</td>
-                            <td>{{trade.exitprice}}</td>
-                            <td>{{trade.pips}}</td>
-                            <td><button type="button" class="btn btn-danger">x</button><button type="button" class="btn btn-primary">Edit</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pair</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Lot</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Entry Price</th>
+                                <th scope="col">Exit Price</th>
+                                <th scope="col">Total Pips</th>
+                                <th scope="col">-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody>
+                            <tr ng-repeat="trade in trades | filter : searchtxt">
+                                <td>{{trade.name}}</td>
+                                <td>{{trade.date}}</td>
+                                <td>{{trade.lot}}</td>
+                                <td>{{trade.type}}</td>
+                                <td>{{trade.entryprice}}</td>
+                                <td>{{trade.exitprice}}</td>
+                                <td>{{trade.pips}}</td>
+                                <td><button type="button" class="btn btn-danger">x</button><button type="button" class="btn btn-primary">Edit</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </main>
 
             <footer class="footer">
