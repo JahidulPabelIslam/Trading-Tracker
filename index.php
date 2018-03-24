@@ -13,6 +13,8 @@
             <!-- Complied CSS File of all CSS Files -->
             <link href="assets/css/main.min.css" rel="stylesheet" title="style" media="all" type="text/css">
         <?php endif; ?>
+
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
@@ -42,19 +44,40 @@
                     <table class="table table-striped table--trades">
                         <thead>
                             <tr>
-                                <th scope="col">Pair</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Entry Price</th>
-                                <th scope="col">Exit Price</th>
-                                <th scope="col">Pips</th>
-                                <th scope="col">Lot</th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'name'">
+                                    Pair
+                                    <span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'date'">
+                                    Date
+                                    <span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'type'">
+                                    Type
+                                    <span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'entryprice'">
+                                    Entry Price
+                                    <span ng-show="sortType == 'entryprice'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'exitprice'">
+                                    Exit Price
+                                    <span ng-show="sortType == 'exitprice'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'pips'">
+                                    Pips
+                                    <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
+                                <th scope="col" class="sort-by" ng-click="sortType = 'lot'">
+                                    Lot
+                                    <span ng-show="sortType == 'lot'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+                                </th>
                                 <th scope="col" class="no-padding">-</th>
                                 <th scope="col" class="no-padding"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades | filter : searchfilters track by $index">
+                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters track by $index ">
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>

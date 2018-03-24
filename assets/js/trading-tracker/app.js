@@ -69,6 +69,9 @@ app.controller("ctrl", function ($scope) {
         $scope.saveTrades();
     };
 
+    $scope.sortType = 'date';
+    $scope.sortReverse = true;
+
     $scope.selectedTrade = {};
     $scope.searchfilters = {
         "name": "",
