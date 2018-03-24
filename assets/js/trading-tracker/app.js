@@ -47,9 +47,9 @@ app.controller("ctrl", function ($scope, $filter) {
         var name = $scope.selectedTrade.name.toLowerCase();
 
         if (name.includes("jpy") || name.includes("xau")) {
-            $scope.selectedTrade.pips = pips / 0.01;
+            $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.01);
         } else {
-            $scope.selectedTrade.pips = pips / 0.0001;
+            $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.0001);
         }
 
         if ($scope.selectedTrade.index != undefined)
