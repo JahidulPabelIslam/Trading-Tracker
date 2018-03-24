@@ -1,18 +1,18 @@
 var app = angular.module("TradingTrackerApp", []);
 
-app.controller("ctrl", function ($scope, $filter) {
+app.controller("ctrl", function ($scope) {
     $scope.getTrades = function() {
         var trades = JSON.parse(localStorage.getItem('tradingtrackertrades'));
 
         if (trades == null) {
-            trades = []
+            trades = [];
         }
 
         return trades;
     };
 
     $scope.newTrade = function() {
-        $scope.selectedTrade = [];
+        $scope.selectedTrade = {};
     };
 
     $scope.saveTrades = function() {
@@ -20,14 +20,16 @@ app.controller("ctrl", function ($scope, $filter) {
         window.tt.stickyFooter.expandSection();
     };
 
-    $scope.deleteTrade = function(index) {
+    $scope.deleteTrade = function(trade) {
+        var index = $scope.trades.indexOf(trade);
         $scope.trades.splice(index, 1);
         $scope.saveTrades();
     };
 
-    $scope.selectTrade = function(index) {
-        $scope.selectedTrade = $scope.trades[index];
+    $scope.selectTrade = function(trade) {
+        $scope.selectedTrade = trade;
         $scope.selectedTrade.date = new Date($scope.selectedTrade.date);
+        var index = $scope.trades.indexOf(trade);
         $scope.selectedTrade.index = index;
         $("#addTrade").modal("show");
     };
@@ -68,6 +70,10 @@ app.controller("ctrl", function ($scope, $filter) {
     };
 
     $scope.selectedTrade = {};
+    $scope.searchfilters = {
+        "name": "",
+        "type": ""
+    };
     $scope.types = ["Sell", "Buy"];
 
     $scope.trades = $scope.getTrades();

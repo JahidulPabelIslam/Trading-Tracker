@@ -26,6 +26,18 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
                 </div>
 
+                <div class="form-group row col-12">
+                    <div class="col-md-4">
+                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="searchfilters.type">
+                            <option value="" selected>Select Trade Type</option>
+                            <option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-striped table--trades">
                         <thead>
@@ -42,7 +54,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades track by $index">
+                            <tr ng-repeat="trade in trades | filter : searchfilters track by $index">
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>
@@ -51,10 +63,10 @@
                                 <td data-title="Pips">{{trade.pips}}</td>
                                 <td data-title="Lot">{{trade.lot}}</td>
                                 <td class="no-padding no-title">
-                                    <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade($index)">Edit</button>
+                                    <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade(trade)">Edit</button>
                                 </td>
                                 <td class="no-padding no-title delete-trade-container">
-                                    <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade($index)">x</button>
+                                    <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
                                 </td>
                             </tr>
                         </tbody>
