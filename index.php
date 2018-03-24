@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table--trades">
+                    <table class="table table-striped table--trades">
                         <thead>
                             <tr>
                                 <th scope="col">Pair</th>
@@ -37,8 +37,8 @@
                                 <th scope="col">Exit Price</th>
                                 <th scope="col">Pips</th>
                                 <th scope="col">Lot</th>
-                                <th scope="col">-</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="no-padding">-</th>
+                                <th scope="col" class="no-padding"></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -9,11 +9,15 @@
 .navbar-brand.navbar-brand:hover {
   color: #e6c200; }
 
-.table--trades td {
+.table--trades thead th, .table--trades tbody td {
   vertical-align: middle; }
 
+.table--trades thead {
+  background: #343a40;
+  color: white; }
+
 .addTradeToggle {
-  margin-top: 10px;
+  padding-top: 10px;
   text-align: right; }
 
 .btn {
