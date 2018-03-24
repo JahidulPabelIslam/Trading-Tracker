@@ -78,32 +78,32 @@
                             <div class="modal-body">
                                 <div class="form-group row col-12">
                                     <label for="pairInput" class="col-md-6">Pair Name</label>
-                                    <input ng-model="newtrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EUR/USD" required>
+                                    <input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EUR/USD" required>
                                 </div>
 
                                 <div class="form-group row col-12">
                                     <label for="dateInput" class="col-6">Date Traded</label>
-                                    <input ng-model="newtrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required>
+                                    <input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required>
                                 </div>
 
                                 <div class="form-group row col-12">
                                     <label for="lotInput" class="col-md-6">Lot Size</label>
-                                    <input ng-model="newtrade.lot" type="text"  id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
+                                    <input ng-model="selectedTrade.lot" type="text"  id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
                                 </div>
 
                                 <div class="form-group row col-12">
                                     <label for="typeInput" class="col-md-6">Trade Type</label>
-                                    <select ng-model="newtrade.type" ng-options="x for x in types" id="typeInput" class="form-control col-md-6" required></select>
+                                    <select ng-model="selectedTrade.type" ng-options="x for x in types" id="typeInput" class="form-control col-md-6" required></select>
                                 </div>
 
                                 <div class="form-group row col-12">
                                     <label for="entrypriceInput" class="col-md-6">Entry Price</label>
-                                    <input ng-model="newtrade.entryprice" type="text" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
+                                    <input ng-model="selectedTrade.entryprice" type="text" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
                                 </div>
 
                                 <div class="form-group row col-12">
                                     <label for="exitpriceInput" class="col-md-6">Exit Price</label>
-                                    <input ng-model="newtrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
+                                    <input ng-model="selectedTrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
