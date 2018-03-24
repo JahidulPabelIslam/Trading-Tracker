@@ -29,3 +29,34 @@
     font-weight: 700;
     border-radius: 50%;
 }
+
+@media only screen and (max-width: $tablet) {
+    .table--trades thead tr {
+        display: none;
+    }
+
+    .table--trades td {
+        display: block;
+        width: 100%;
+        padding: 4px 10px;
+    }
+
+    .table--trades td:before {
+        content: attr(data-title) ": ";
+        margin-right: 8px;
+        font-weight: bold;
+    }
+
+    .table--trades td.no-title:before {
+        content: none;
+    }
+
+    .table--trades td.no-title {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .delete-trade-container {
+        text-align: right;
+    }
+}

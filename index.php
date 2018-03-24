@@ -43,17 +43,17 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="trade in trades track by $index">
-                                <td>{{trade.name}}</td>
-                                <td>{{trade.date | date: "dd/MM/yyyy"}}</td>
-                                <td>{{trade.type}}</td>
-                                <td>{{trade.entryprice}}</td>
-                                <td>{{trade.exitprice}}</td>
-                                <td>{{trade.pips}}</td>
-                                <td>{{trade.lot}}</td>
-                                <td class="no-padding">
+                                <td data-title="Name">{{trade.name}}</td>
+                                <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
+                                <td data-title="Type">{{trade.type}}</td>
+                                <td data-title="Entry Price">{{trade.entryprice}}</td>
+                                <td data-title="Exit Price">{{trade.exitprice}}</td>
+                                <td data-title="Pips">{{trade.pips}}</td>
+                                <td data-title="Lot">{{trade.lot}}</td>
+                                <td class="no-padding no-title">
                                     <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade($index)">Edit</button>
                                 </td>
-                                <td class="no-padding">
+                                <td class="no-padding no-title delete-trade-container">
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade($index)">x</button>
                                 </td>
                             </tr>
