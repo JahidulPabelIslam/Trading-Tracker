@@ -21,8 +21,6 @@ app.controller("ctrl", function ($scope, $filter) {
     };
 
     $scope.addTrade = function() {
-        $scope.selectedTrade.date = $filter('date')($scope.selectedTrade.date, "dd/MM/yyyy");
-
         var entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
         var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
 

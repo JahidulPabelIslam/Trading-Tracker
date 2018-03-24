@@ -45,7 +45,7 @@
                         <tbody>
                             <tr ng-repeat="trade in trades track by $index">
                                 <td>{{trade.name}}</td>
-                                <td>{{trade.date}}</td>
+                                <td>{{trade.date | date:"dd/MM/yyyy"}}</td>
                                 <td>{{trade.lot}}</td>
                                 <td>{{trade.type}}</td>
                                 <td>{{trade.entryprice}}</td>
