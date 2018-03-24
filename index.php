@@ -125,6 +125,7 @@
             <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/angular.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/decimal.min.js" type="application/javascript"></script>
+            <script src="/assets/js/trading-tracker/stickyFooter.js" type="application/javascript"></script>
             <script src="/assets/js/trading-tracker/app.js" type="application/javascript"></script>
         <?php else: ?>
             <!-- Complied JavaScript File of all JavaScript Files -->

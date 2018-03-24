@@ -17,6 +17,7 @@ app.controller("ctrl", function ($scope, $filter) {
 
     $scope.saveTrades = function() {
         localStorage.setItem('tradingtrackertrades', JSON.stringify($scope.trades));
+        window.tt.stickyFooter.expandSection();
     };
 
     $scope.deleteTrade = function(index) {
