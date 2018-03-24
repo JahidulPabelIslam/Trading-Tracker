@@ -43,7 +43,7 @@
                         <tbody>
                         </tbody>
                         <tbody>
-                            <tr ng-repeat="trade in trades | filter : searchtxt">
+                            <tr ng-repeat="trade in trades track by $index">
                                 <td>{{trade.name}}</td>
                                 <td>{{trade.date}}</td>
                                 <td>{{trade.lot}}</td>
@@ -51,7 +51,7 @@
                                 <td>{{trade.entryprice}}</td>
                                 <td>{{trade.exitprice}}</td>
                                 <td>{{trade.pips}}</td>
-                                <td><button type="button" class="btn btn-danger">x</button><button type="button" class="btn btn-primary">Edit</button></td>
+                                <td><button type="button" class="btn btn-danger" ng-click="deleteTrade($index)">x</button><button type="button" class="btn btn-primary">Edit</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <?php if (isset($_GET["debug"])):?>
+        <?php if (isset($_GET["debug"])): ?>
             <script src="/assets/js/third-party/jquery-3.2.1.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/popper.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
