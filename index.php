@@ -51,7 +51,7 @@
                                 <td>{{trade.entryprice}}</td>
                                 <td>{{trade.exitprice}}</td>
                                 <td>{{trade.pips}}</td>
-                                <td><button type="button" class="btn btn-danger" ng-click="deleteTrade($index)">x</button><button type="button" class="btn btn-primary">Edit</button></td>
+                                <td><button type="button" class="btn btn-danger" ng-click="deleteTrade($index)">x</button><button type="button" class="btn btn-primary" ng-click="selectTrade($index)">Edit</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">Add</button>
+                                <button type="submit" class="btn btn-success">{{selectedTrade.index != undefined ? 'Update' : 'Add'}}</button>
                             </div>
                         </form>
                     </div>

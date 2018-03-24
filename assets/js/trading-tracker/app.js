@@ -20,6 +20,13 @@ app.controller("ctrl", function ($scope, $filter) {
         $scope.saveTrades();
     };
 
+    $scope.selectTrade = function(index) {
+        $scope.selectedTrade = $scope.trades[index];
+        $scope.selectedTrade.date = new Date($scope.selectedTrade.date);
+        $scope.selectedTrade.index = index;
+        $("#addTrade").modal("show");
+    };
+
     $scope.addTrade = function() {
         var entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
         var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
@@ -41,7 +48,15 @@ app.controller("ctrl", function ($scope, $filter) {
             $scope.selectedTrade.pips = pips / 0.0001;
         }
 
-        $scope.trades.push($scope.selectedTrade);
+        if ($scope.selectedTrade.index != undefined)
+        {
+            $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
+        }
+        else
+        {
+            $scope.trades.push($scope.selectedTrade);
+        }
+
         $("#addTrade").modal("hide");
         $scope.selectedTrade = [];
         $scope.saveTrades();
