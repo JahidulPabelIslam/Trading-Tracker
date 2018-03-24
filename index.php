@@ -23,11 +23,11 @@
             <main role="main" class="container">
 
                 <div class="form-group addTradeToggle">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table--trades">
                         <thead>
                             <tr>
                                 <th scope="col">Pair</th>
@@ -38,10 +38,9 @@
                                 <th scope="col">Exit Price</th>
                                 <th scope="col">Total Pips</th>
                                 <th scope="col">-</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
                         <tbody>
                             <tr ng-repeat="trade in trades track by $index">
                                 <td>{{trade.name}}</td>
@@ -51,7 +50,12 @@
                                 <td>{{trade.entryprice}}</td>
                                 <td>{{trade.exitprice}}</td>
                                 <td>{{trade.pips}}</td>
-                                <td><button type="button" class="btn btn-danger" ng-click="deleteTrade($index)">x</button><button type="button" class="btn btn-primary" ng-click="selectTrade($index)">Edit</button></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade($index)">Edit</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade($index)">x</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

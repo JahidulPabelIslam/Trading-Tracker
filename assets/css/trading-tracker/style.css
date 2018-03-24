@@ -9,9 +9,23 @@
 .navbar-brand.navbar-brand:hover {
   color: #e6c200; }
 
+.table--trades td {
+  vertical-align: middle; }
+
 .addTradeToggle {
   margin-top: 10px;
   text-align: right; }
+
+.btn {
+  margin: 0 6px; }
+
+.btn--edit-trade {
+  padding: 2px 6px; }
+
+.btn--delete-trade {
+  padding: 0 6px;
+  font-weight: 700;
+  border-radius: 50%; }
 
 .footer {
   text-align: center;
