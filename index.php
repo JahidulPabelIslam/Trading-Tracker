@@ -32,11 +32,11 @@
                             <tr>
                                 <th scope="col">Pair</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Lot</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Entry Price</th>
                                 <th scope="col">Exit Price</th>
-                                <th scope="col">Total Pips</th>
+                                <th scope="col">Pips</th>
+                                <th scope="col">Lot</th>
                                 <th scope="col">-</th>
                                 <th scope="col"></th>
                             </tr>
@@ -44,16 +44,16 @@
                         <tbody>
                             <tr ng-repeat="trade in trades track by $index">
                                 <td>{{trade.name}}</td>
-                                <td>{{trade.date | date:"dd/MM/yyyy"}}</td>
-                                <td>{{trade.lot}}</td>
+                                <td>{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td>{{trade.type}}</td>
                                 <td>{{trade.entryprice}}</td>
                                 <td>{{trade.exitprice}}</td>
                                 <td>{{trade.pips}}</td>
-                                <td>
+                                <td>{{trade.lot}}</td>
+                                <td class="no-padding">
                                     <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade($index)">Edit</button>
                                 </td>
-                                <td>
+                                <td class="no-padding">
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade($index)">x</button>
                                 </td>
                             </tr>
@@ -82,7 +82,7 @@
                             <div class="modal-body">
                                 <div class="form-group row col-12">
                                     <label for="pairInput" class="col-md-6">Pair Name</label>
-                                    <input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EUR/USD" required>
+                                    <input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required>
                                 </div>
 
                                 <div class="form-group row col-12">
