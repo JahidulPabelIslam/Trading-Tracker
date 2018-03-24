@@ -23,7 +23,7 @@
             <main role="main" class="container">
 
                 <div class="form-group addTradeToggle">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTrade">Add a Trade</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
                 </div>
 
                 <div class="table-responsive">

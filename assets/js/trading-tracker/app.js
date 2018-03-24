@@ -11,6 +11,10 @@ app.controller("ctrl", function ($scope, $filter) {
         return trades;
     };
 
+    $scope.newTrade = function() {
+        $scope.selectedTrade = [];
+    };
+
     $scope.saveTrades = function() {
         localStorage.setItem('tradingtrackertrades', JSON.stringify($scope.trades));
     };
@@ -58,7 +62,7 @@ app.controller("ctrl", function ($scope, $filter) {
         }
 
         $("#addTrade").modal("hide");
-        $scope.selectedTrade = [];
+        $scope.newTrade();
         $scope.saveTrades();
     };
 
