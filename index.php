@@ -92,6 +92,9 @@
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
                                 </td>
                             </tr>
+                            <tr ng-if="(trades | filter:searchfilters).length == 0" >
+                                <td colspan="9" style="text-align: center;">No Trades Found.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
