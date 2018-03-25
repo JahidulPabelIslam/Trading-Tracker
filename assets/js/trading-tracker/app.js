@@ -1,6 +1,18 @@
 var app = angular.module("TradingTrackerApp", []);
 
 app.controller("ctrl", function ($scope) {
+    $scope.dateFilter = function(element) {
+        if ($scope.dateInput == "" || !$scope.dateInput) {
+            return true
+        }
+        else {
+            var inputDate =  new Date($scope.dateInput).setHours(0,0,0,0);
+            var elemDate =  new Date(element.date).setHours(0,0,0,0);
+
+            return inputDate == elemDate;
+        }
+    };
+
     $scope.getTrades = function() {
         var trades = JSON.parse(localStorage.getItem('tradingtrackertrades'));
 
@@ -73,6 +85,7 @@ app.controller("ctrl", function ($scope) {
     $scope.sortReverse = true;
 
     $scope.selectedTrade = {};
+    $scope.dateInput = "";
     $scope.searchfilters = {
         "name": "",
         "type": ""

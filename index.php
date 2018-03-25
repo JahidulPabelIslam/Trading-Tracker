@@ -30,7 +30,10 @@
 
                 <div class="form-group row col-12">
                     <div class="col-md-4">
-                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name" class="form-control">
+                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
+                    </div>
+                    <div class="col-md-4">
+                        <input ng-model="dateInput" type="date" placeholder="Enter Date (yyyy-mm-dd)" class="form-control" value="">
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" ng-model="searchfilters.type">
@@ -77,7 +80,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters track by $index ">
+                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter track by $index ">
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>
