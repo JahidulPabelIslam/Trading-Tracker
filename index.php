@@ -29,17 +29,20 @@
                 </div>
 
                 <div class="form-group row col-12">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <input ng-model="dateInput" type="date" placeholder="Enter Date (yyyy-mm-dd)" class="form-control" value="">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <select class="form-control" ng-model="searchfilters.type">
                             <option value="" selected>Select Trade Type</option>
                             <option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
                         </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="limit" ng-options="x for x in limitOptions" id="limitOptionsInput" class="form-control"></select>
                     </div>
                 </div>
 
@@ -80,7 +83,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter track by $index ">
+                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter | limitTo: limit: page track by $index ">
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>
@@ -95,12 +98,37 @@
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
                                 </td>
                             </tr>
-                            <tr ng-if="(trades | filter:searchfilters).length == 0" >
+                            <tr ng-if="(trades | filter:searchfilters | filter :dateFilter).length == 0">
                                 <td colspan="9" style="text-align: center;">No Trades Found.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end" ng-show="(trades | filter:searchfilters | filter :dateFilter).length > 0">
+
+                        <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
+                            <p class="page-link">First</p>
+                        </li>
+
+                        <li ng-show="page != 0" class="page-item" ng-click="setPage(page - 1)">
+                            <p class="page-link">Previous</p>
+                        </li>
+
+                        <li ng-repeat="pageNum in getPages((trades | filter:searchfilters | filter :dateFilter).length)"  class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
+                            <p class="page-link" ng-click="setPage(pageNum)">{{pageNum + 1}}</p>
+                        </li>
+
+                        <li class="page-item" ng-show="page < (trades | filter : searchfilters | filter : dateFilter).length / limit - 1" ng-click="setPage(page + 1)">
+                            <p class="page-link">Next</p>
+                        </li>
+
+                        <li class="page-item" ng-show="page < ((trades | filter:searchfilters | filter :dateFilter).length / limit - 1)" ng-click="setPage((trades | filter:searchfilters | filter :dateFilter).length / limit - 1 | number:0)">
+                            <p class="page-link">Last</p>
+                        </li>
+                    </ul>
+                </nav>
             </main>
 
             <footer class="footer">

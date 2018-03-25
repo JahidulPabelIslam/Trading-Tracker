@@ -1,6 +1,21 @@
 var app = angular.module("TradingTrackerApp", []);
 
 app.controller("ctrl", function ($scope) {
+    $scope.setPage = function(page) {
+        $scope.page = page;
+    };
+
+    $scope.getPages = function(total) {
+        var last = Math.ceil(total / $scope.limit);
+        var pages = [];
+
+        for (var i = 0; i < last; i++) {
+            pages.push(i);
+        }
+
+        return pages;
+    };
+    
     $scope.dateFilter = function(element) {
         if ($scope.dateInput == "" || !$scope.dateInput) {
             return true
@@ -83,6 +98,10 @@ app.controller("ctrl", function ($scope) {
 
     $scope.sortType = 'date';
     $scope.sortReverse = true;
+
+    $scope.limitOptions = [5, 10, 15, 25, 50, 100];
+    $scope.limit = 10;
+    $scope.page = 0;
 
     $scope.selectedTrade = {};
     $scope.dateInput = "";
