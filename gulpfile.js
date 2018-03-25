@@ -14,8 +14,7 @@ var scripts = {
         "assets/js/third-party/bootstrap.min.js",
         "assets/js/third-party/angular.min.js",
         "assets/js/third-party/decimal.min.js",
-        "assets/js/trading-tracker/stickyFooter.js",
-        "assets/js/trading-tracker/app.js"
+        "assets/js/trading-tracker/stickyFooter.js"
     ]
 };
 var scriptNames = Object.keys(scripts);
