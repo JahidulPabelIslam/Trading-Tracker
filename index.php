@@ -28,7 +28,7 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
                 </div>
 
-                <div class="form-group row col-12">
+                <div class="form-group row">
                     <div class="col-md-3">
                         <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
                     </div>
