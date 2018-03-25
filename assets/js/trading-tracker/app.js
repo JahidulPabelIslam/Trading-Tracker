@@ -3,7 +3,7 @@
 
     var app = angular.module("TradingTrackerApp", []);
 
-    app.controller("ctrl", function ($scope) {
+    app.controller("ctrl", function ($scope, $filter) {
         $scope.setPage = function(page) {
             $scope.page = page;
         };
@@ -29,6 +29,31 @@
 
                 return inputDate == elemDate;
             }
+        };
+
+        $scope.getFilteredTrades = function() {
+            var trades = $filter('filter')($scope.trades, $scope.searchfilters);
+            trades = $filter('filter')(trades, $scope.dateFilter);
+            return trades;
+        };
+
+        $scope.getTotalPips = function() {
+            var trades = $scope.getFilteredTrades();
+            var pips = 0;
+
+            for (var i = 0; i < trades.length; i++)
+            {
+                var trade = trades[i];
+                pips = new Decimal(pips).add(trade.pips);
+            }
+
+            pips = parseFloat(pips);
+
+            return pips;
+        };
+
+        $scope.getPipsLeft = function() {
+            return parseFloat(new Decimal($scope.pipsTarget).minus($scope.getTotalPips()));
         };
 
         $scope.getTrades = function() {
@@ -115,5 +140,8 @@
         $scope.types = ["Sell", "Buy"];
 
         $scope.trades = $scope.getTrades();
+
+        $scope.totalPips = $scope.getTotalPips();
+        $scope.pipsTarget = 0;
     });
 })();

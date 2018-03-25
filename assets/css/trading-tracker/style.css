@@ -37,6 +37,10 @@
 .sort-by, .order-by {
   cursor: pointer; }
 
+.pips-count label {
+  font-weight: 700;
+  align-self: center; }
+
 @media only screen and (max-width: 768px) {
   .table--trades thead tr {
     display: none; }
