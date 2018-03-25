@@ -51,7 +51,7 @@
         font-weight: bold;
     }
 
-    .table--trades td.no-title:before {
+    .table--trades td.no-title:before, .table--trades .no-trades:before {
         content: none;
     }
 
@@ -62,5 +62,9 @@
 
     .delete-trade-container {
         text-align: right;
+    }
+
+    .no-trades {
+        width: 100%;
     }
 }

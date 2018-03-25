@@ -99,7 +99,7 @@
                                 </td>
                             </tr>
                             <tr ng-if="(trades | filter:searchfilters | filter :dateFilter).length == 0">
-                                <td colspan="9" style="text-align: center;">No Trades Found.</td>
+                                <td class="no-trades" colspan="9" style="text-align: center;">No Trades Found.</td>
                             </tr>
                         </tbody>
                     </table>

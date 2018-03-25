@@ -48,13 +48,15 @@
     content: attr(data-title) ": ";
     margin-right: 8px;
     font-weight: bold; }
-  .table--trades td.no-title:before {
+  .table--trades td.no-title:before, .table--trades .no-trades:before {
     content: none; }
   .table--trades td.no-title {
     display: inline-block;
     width: 50%; }
   .delete-trade-container {
-    text-align: right; } }
+    text-align: right; }
+  .no-trades {
+    width: 100%; } }
 
 .footer {
   text-align: center;
