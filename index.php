@@ -42,7 +42,7 @@
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select ng-model="limit" ng-options="x for x in limitOptions" id="limitOptionsInput" class="form-control"></select>
+                        <select ng-model="limit" ng-options="x for x in limitOptions" id="limitOptionsInput" class="form-control" ng-change="setPage(0)"></select>
                     </div>
                 </div>
 
