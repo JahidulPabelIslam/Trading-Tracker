@@ -25,7 +25,7 @@
             <main role="main" class="container">
 
                 <div class="form-group addTradeToggle">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade($index)">Add a Trade</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade()">Add a Trade</button>
                 </div>
 
                 <div class="form-group row">
@@ -206,7 +206,6 @@
         <?php if (isset($_GET["debug"])): ?>
             <script src="/assets/js/third-party/jquery-3.2.1.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/popper.min.js" type="application/javascript"></script>
-            <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/angular.min.js" type="application/javascript"></script>
             <script src="/assets/js/third-party/decimal.min.js" type="application/javascript"></script>
             <script src="/assets/js/trading-tracker/stickyFooter.js" type="application/javascript"></script>
@@ -215,6 +214,7 @@
             <script src="/assets/js/main.min.js" type="application/javascript"></script>
         <?php endif; ?>
 
+        <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
         <script src="/assets/js/trading-tracker/app.js" type="application/javascript"></script>
     </body>
 </html>
