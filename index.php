@@ -114,8 +114,8 @@
                     </table>
                 </div>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end" ng-show="getFilteredTrades().length > 0 && getPages().length > 1">
+                <nav aria-label="Page navigation example" ng-show="getFilteredTrades().length > 0 && getPages().length > 1">
+                    <ul class="pagination justify-content-end">
 
                         <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
                             <p class="page-link">First</p>
