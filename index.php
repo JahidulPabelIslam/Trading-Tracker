@@ -115,7 +115,7 @@
                 </div>
 
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end" ng-show="(trades | filter:searchfilters | filter :dateFilter).length > 0">
+                    <ul class="pagination justify-content-end" ng-show="getFilteredTrades().length > 0">
 
                         <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
                             <p class="page-link">First</p>
@@ -125,15 +125,15 @@
                             <p class="page-link">Previous</p>
                         </li>
 
-                        <li ng-repeat="pageNum in getPages((trades | filter:searchfilters | filter :dateFilter).length)"  class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
+                        <li ng-repeat="pageNum in getPages(getFilteredTrades().length)"  class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
                             <p class="page-link" ng-click="setPage(pageNum)">{{pageNum + 1}}</p>
                         </li>
 
-                        <li class="page-item" ng-show="page < (trades | filter : searchfilters | filter : dateFilter).length / limit - 1" ng-click="setPage(page + 1)">
+                        <li class="page-item" ng-show="page < getFilteredTrades().length / limit - 1" ng-click="setPage(page + 1)">
                             <p class="page-link">Next</p>
                         </li>
 
-                        <li class="page-item" ng-show="page < ((trades | filter:searchfilters | filter :dateFilter).length / limit - 1)" ng-click="setPage((trades | filter:searchfilters | filter :dateFilter).length / limit - 1 | number:0)">
+                        <li class="page-item" ng-show="page < (getFilteredTrades().length / limit - 1)" ng-click="setPage(getFilteredTrades().length / limit - 1 | number:0)">
                             <p class="page-link">Last</p>
                         </li>
                     </ul>
