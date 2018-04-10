@@ -8,7 +8,8 @@
             $scope.page = page;
         };
 
-        $scope.getPages = function(total) {
+        $scope.getPages = function() {
+            var total = $scope.getFilteredTrades().length;
             var last = Math.ceil(total / $scope.limit);
             var pages = [];
 

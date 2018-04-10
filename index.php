@@ -125,7 +125,7 @@
                             <p class="page-link">Previous</p>
                         </li>
 
-                        <li ng-repeat="pageNum in getPages(getFilteredTrades().length)"  class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
+                        <li ng-repeat="pageNum in getPages()"  class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
                             <p class="page-link" ng-click="setPage(pageNum)">{{pageNum + 1}}</p>
                         </li>
 
