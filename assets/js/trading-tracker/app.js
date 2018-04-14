@@ -23,8 +23,7 @@
         $scope.dateFilter = function(element) {
             if ($scope.dateInput == "" || !$scope.dateInput) {
                 return true
-            }
-            else {
+            } else {
                 var inputDate =  new Date($scope.dateInput).setHours(0,0,0,0);
                 var elemDate =  new Date(element.date).setHours(0,0,0,0);
 
@@ -42,8 +41,7 @@
             var trades = $scope.getFilteredTrades();
             var pips = 0;
 
-            for (var i = 0; i < trades.length; i++)
-            {
+            for (var i = 0; i < trades.length; i++) {
                 var trade = trades[i];
                 pips = new Decimal(pips).add(trade.pips);
             }
@@ -111,12 +109,9 @@
                 $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.0001);
             }
 
-            if ($scope.selectedTrade.index != undefined)
-            {
+            if ($scope.selectedTrade.index != undefined) {
                 $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
-            }
-            else
-            {
+            } else {
                 $scope.trades.push($scope.selectedTrade);
             }
 
