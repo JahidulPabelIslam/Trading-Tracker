@@ -45,6 +45,8 @@
 @media only screen and (max-width: 768px) {
   .table--trades thead tr {
     display: none; }
+  .trades__trade {
+    border: 1px solid #262626; }
   .table--trades td {
     display: block;
     width: 100%;
@@ -61,7 +63,9 @@
   .delete-trade-container {
     text-align: right; }
   .no-trades {
-    width: 100%; } }
+    width: 100%; }
+  .table--trades .no-padding {
+    padding: 4px 0; } }
 
 .footer {
   text-align: center;

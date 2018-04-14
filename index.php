@@ -92,7 +92,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter | limitTo: limit: page track by $index ">
+                            <tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter | limitTo: limit: page track by $index " class="trades__trade">
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>
