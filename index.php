@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-3">
                         <select class="form-control" ng-model="dateInput">
-                            <option value="" selected>Select Date (yyyy-mm-dd)</option>
+                            <option value="" selected>Select Date</option>
                             <option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x  | date:'dd/MM/yyyy' }}</option>
                         </select>
                     </div>
