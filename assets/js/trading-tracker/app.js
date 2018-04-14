@@ -12,7 +12,7 @@
 
             for (var i = 0; i < trades.length; i++) {
                 var trade = trades[i];
-                
+
                 options.push(trade.date);
             }
 
@@ -35,12 +35,12 @@
             return pages;
         };
 
-        $scope.dateFilter = function(element) {
+        $scope.dateFilter = function(trade) {
             if ($scope.dateInput == "" || !$scope.dateInput) {
                 return true
             } else {
                 var inputDate =  new Date($scope.dateInput).setHours(0,0,0,0);
-                var elemDate =  new Date(element.date).setHours(0,0,0,0);
+                var elemDate =  new Date(trade.date).setHours(0,0,0,0);
 
                 return inputDate == elemDate;
             }
