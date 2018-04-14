@@ -33,7 +33,10 @@
                         <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
                     </div>
                     <div class="col-md-3">
-                        <input ng-model="dateInput" type="date" placeholder="Enter Date (yyyy-mm-dd)" class="form-control" value="">
+                        <select class="form-control" ng-model="dateInput">
+                            <option value="" selected>Select Date (yyyy-mm-dd)</option>
+                            <option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x  | date:'dd/MM/yyyy' }}</option>
+                        </select>
                     </div>
                     <div class="col-md-3">
                         <select class="form-control" ng-model="searchfilters.type">

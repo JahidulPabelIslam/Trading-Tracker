@@ -4,6 +4,21 @@
     var app = angular.module("TradingTrackerApp", []);
 
     app.controller("ctrl", function ($scope, $filter) {
+
+        $scope.getDateOptions = function() {
+            var options = [];
+
+            var trades = $scope.getTrades();
+
+            for (var i = 0; i < trades.length; i++) {
+                var trade = trades[i];
+                
+                options.push(trade.date);
+            }
+
+            return options;
+        };
+
         $scope.setPage = function(page) {
             $scope.page = page;
         };
