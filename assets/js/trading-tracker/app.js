@@ -6,7 +6,7 @@
     app.controller("ctrl", function ($scope, $filter) {
 
         $scope.getDateOptions = function() {
-            var options = [];
+            var options = ["Today", "Yesterday", "This Week", "This Month", "This Year"];
 
             var trades = $scope.getTrades();
 
