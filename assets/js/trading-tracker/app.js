@@ -10,7 +10,8 @@
 
             var trades = $scope.getTrades();
 
-            for (var i = 0; i < trades.length; i++) {
+            for (var i = 0; i < trades.length; i++)
+            {
                 var trade = trades[i];
 
                 options.push(trade.date);
@@ -28,7 +29,8 @@
             var last = Math.ceil(total / $scope.limit);
             var pages = [];
 
-            for (var i = 0; i < last; i++) {
+            for (var i = 0; i < last; i++)
+            {
                 pages.push(i);
             }
 
@@ -36,23 +38,28 @@
         };
 
         $scope.dateFilter = function(trade) {
-            if ($scope.dateInput === "" || !$scope.dateInput) {
+            if ($scope.dateInput === "" || !$scope.dateInput)
+            {
                 return true
-            } else {
+            }
+            else
+            {
                 var tradeDate =  new Date(trade.date);
                 tradeDate.setHours(0, 0, 0, 0);
 
                 var matchDate = new Date();
                 matchDate.setHours(0, 0, 0, 0);
 
-                if ($scope.dateInput === "Today") {
+                if ($scope.dateInput === "Today")
+                {
                     // NOP
-
-                } else if ($scope.dateInput === "Yesterday") {
+                }
+                else if ($scope.dateInput === "Yesterday")
+                {
                     matchDate.setDate(matchDate.getDate() - 1);
-
-                } else if ($scope.dateInput === "This Week") {
-
+                }
+                else if ($scope.dateInput === "This Week")
+                {
                     //Store mapping of how many days to take away from today to get beginning of the week
                     var mapping = {
                         0: 6,
@@ -71,7 +78,9 @@
                     lastDay.setDate(firstDay.getDate() + 6);
 
                     return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
-                } else if ($scope.dateInput === "This Month") {
+                }
+                else if ($scope.dateInput === "This Month")
+                {
                     //Get beginning of the month
                     matchDate.setDate(1);
 
@@ -82,7 +91,8 @@
 
                     return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
                 }
-                else if ($scope.dateInput === "This Year") {
+                else if ($scope.dateInput === "This Year")
+                {
                     //Get beginning of the month
                     matchDate.setDate(1);
                     matchDate.setMonth(1);
@@ -93,11 +103,14 @@
                     lastDay.setDate(31);
 
                     return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
-                } else { // This leaves an actual date option left
+                }
+                // This leaves an actual date option left
+                else
+                {
                     matchDate = new Date($scope.dateInput);
                     matchDate.setHours(0, 0, 0, 0);
                 }
-                
+
                 return matchDate.getTime() === tradeDate.getTime();
             }
         };
@@ -112,7 +125,8 @@
             var trades = $scope.getFilteredTrades();
             var pips = 0;
 
-            for (var i = 0; i < trades.length; i++) {
+            for (var i = 0; i < trades.length; i++)
+            {
                 var trade = trades[i];
                 pips = new Decimal(pips).add(trade.pips);
             }
@@ -129,7 +143,8 @@
         $scope.getTrades = function() {
             var trades = JSON.parse(localStorage.getItem('tradingtrackertrades'));
 
-            if (trades == null) {
+            if (trades == null)
+            {
                 trades = [];
             }
 
@@ -164,9 +179,12 @@
             var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
 
             var pips = 0;
-            if ($scope.selectedTrade.type === "Buy") {
+            if ($scope.selectedTrade.type === "Buy")
+            {
                 pips = new Decimal(exitprice).minus(entryprice);
-            } else {
+            }
+            else
+            {
                 pips = new Decimal(entryprice).minus(exitprice);
             }
 
@@ -175,14 +193,21 @@
             var name = $scope.selectedTrade.name.toLowerCase();
 
             if (name.includes("jpy") || name.includes("xau")) {
+            if (name.includes("jpy") || name.includes("xau"))
+            {
                 $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.01);
-            } else {
+            }
+            else
+            {
                 $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.0001);
             }
 
-            if ($scope.selectedTrade.index != undefined) {
+            if ($scope.selectedTrade.index != undefined)
+            {
                 $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
-            } else {
+            }
+            else
+            {
                 $scope.trades.push($scope.selectedTrade);
             }
 
