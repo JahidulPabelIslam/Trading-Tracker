@@ -36,13 +36,69 @@
         };
 
         $scope.dateFilter = function(trade) {
-            if ($scope.dateInput == "" || !$scope.dateInput) {
+            if ($scope.dateInput === "" || !$scope.dateInput) {
                 return true
             } else {
-                var inputDate =  new Date($scope.dateInput).setHours(0,0,0,0);
-                var elemDate =  new Date(trade.date).setHours(0,0,0,0);
+                var tradeDate =  new Date(trade.date);
+                tradeDate.setHours(0, 0, 0, 0);
 
-                return inputDate == elemDate;
+                var matchDate = new Date();
+                matchDate.setHours(0, 0, 0, 0);
+
+                if ($scope.dateInput === "Today") {
+                    // NOP
+
+                } else if ($scope.dateInput === "Yesterday") {
+                    matchDate.setDate(matchDate.getDate() - 1);
+
+                } else if ($scope.dateInput === "This Week") {
+
+                    //Store mapping of how many days to take away from today to get beginning of the week
+                    var mapping = {
+                        0: 6,
+                        1: 0,
+                        2: 1,
+                        3: 2,
+                        4: 3,
+                        5: 4,
+                        6: 5
+                    };
+
+                    var firstDay = new Date(matchDate);
+                    firstDay.setDate(matchDate.getDate() - mapping[matchDate.getDay()]);
+
+                    var lastDay =  new Date(firstDay);
+                    lastDay.setDate(firstDay.getDate() + 6);
+
+                    return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
+                } else if ($scope.dateInput === "This Month") {
+                    //Get beginning of the month
+                    matchDate.setDate(1);
+
+                    //Get last day of the month
+                    var lastDay = new Date(matchDate);
+                    lastDay.setMonth(lastDay.getMonth() + 1);
+                    lastDay.setDate(lastDay.getDate() - 1);
+
+                    return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
+                }
+                else if ($scope.dateInput === "This Year") {
+                    //Get beginning of the month
+                    matchDate.setDate(1);
+                    matchDate.setMonth(1);
+
+                    //Get last day of the month
+                    var lastDay = new Date(matchDate);
+                    lastDay.setMonth(12);
+                    lastDay.setDate(31);
+
+                    return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
+                } else { // This leaves an actual date option left
+                    matchDate = new Date($scope.dateInput);
+                    matchDate.setHours(0, 0, 0, 0);
+                }
+                
+                return matchDate.getTime() === tradeDate.getTime();
             }
         };
 
