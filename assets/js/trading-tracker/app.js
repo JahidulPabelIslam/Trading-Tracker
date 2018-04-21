@@ -192,7 +192,6 @@
 
             var name = $scope.selectedTrade.name.toLowerCase();
 
-            if (name.includes("jpy") || name.includes("xau")) {
             if (name.includes("jpy") || name.includes("xau"))
             {
                 $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.01);
