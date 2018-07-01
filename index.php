@@ -53,9 +53,9 @@
                         <label class="form-group col-md-2">Pips Target</label>
                         <div class="form-group col-md-2"><input ng-model="pipsTarget" type="number" placeholder="60" class="form-control"></div>
                         <label class="form-group col-md-2">Pips Gained/Lost</label>
-                        <div class="form-group col-md-2"><input ng-value="getTotalPips()" type="number" readonly class="form-control"></div>
+                        <div class="form-group col-md-2"><input ng-value="getTotalPips()" ng-class="getTotalPips() > 0 ? 'on-target' : (getTotalPips() < 0 ? 'off-target' : '')" type="number" readonly class="form-control"></div>
                         <label class="form-group col-md-2">Pips Left</label>
-                        <div class="form-group col-md-2"><input ng-value="getPipsLeft()" type="number" readonly class="form-control"></div>
+                        <div class="form-group col-md-2"><input ng-value="getPipsLeft()" ng-class="getPipsLeft() < 0 ? 'on-target' : (getPipsLeft() > 0 ? 'off-target' : '')" type="number" readonly class="form-control"></div>
                 </div>
 
                 <div class="table-responsive">

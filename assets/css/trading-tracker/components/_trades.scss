@@ -42,6 +42,19 @@
     align-items: center;
 }
 
+.on-target.on-target {
+    background: #54a754;
+}
+
+.off-target.off-target {
+    background: #e52525;
+}
+
+.on-target,
+.off-target {
+    color: white;
+}
+
 @media only screen and (max-width: $tablet) {
     .table--trades thead tr {
         display: none;
