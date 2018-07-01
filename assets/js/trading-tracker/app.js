@@ -14,7 +14,10 @@
             {
                 var trade = trades[i];
 
-                options.push(trade.date);
+                if (!options.includes(trade.date))
+                {
+                    options.push(trade.date);
+                }
             }
 
             return options;
