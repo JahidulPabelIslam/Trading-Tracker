@@ -28,34 +28,34 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade()">Add a Trade</button>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-md-3">
+                <div class="row">
+                    <div class="form-group col-md-3">
                         <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
                     </div>
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <select class="form-control" ng-model="dateInput">
                             <option value="" selected>Select Date</option>
                             <option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x  | date:'dd/MM/yyyy' }}</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <select class="form-control" ng-model="searchfilters.type">
                             <option value="" selected>Select Trade Type</option>
                             <option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="form-group col-md-3">
                         <select ng-model="limit" ng-options="x for x in limitOptions" id="limitOptionsInput" class="form-control" ng-change="setPage(0)"></select>
                     </div>
                 </div>
 
-                <div class="form-group row pips-count">
-                        <label class="col-md-2">Pips Target</label>
-                        <div class="col-md-2"><input ng-model="pipsTarget" type="number" placeholder="60" class="form-control"></div>
-                        <label class="col-md-2">Pips Gained/Lost</label>
-                        <div class="col-md-2"><input ng-value="getTotalPips()" type="number" readonly class="form-control"></div>
-                        <label class="col-md-2">Pips Left</label>
-                        <div class="col-md-2"><input ng-value="getPipsLeft()" type="number" readonly class="form-control"></div>
+                <div class="row pips-count">
+                        <label class="form-group col-md-2">Pips Target</label>
+                        <div class="form-group col-md-2"><input ng-model="pipsTarget" type="number" placeholder="60" class="form-control"></div>
+                        <label class="form-group col-md-2">Pips Gained/Lost</label>
+                        <div class="form-group col-md-2"><input ng-value="getTotalPips()" type="number" readonly class="form-control"></div>
+                        <label class="form-group col-md-2">Pips Left</label>
+                        <div class="form-group col-md-2"><input ng-value="getPipsLeft()" type="number" readonly class="form-control"></div>
                 </div>
 
                 <div class="table-responsive">
