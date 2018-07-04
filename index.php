@@ -31,47 +31,47 @@
                 <div class="row filters">
 
                     <div class="form-group col-6 col-md-3">
-                        <label class="">Pair</label>
-                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" value="">
+                        <label for="filters__pair-name">Pair</label>
+                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name">
                     </div>
 
                     <div class="form-group col-6 col-md-3">
-                        <label class="">Date</label>
-                        <select class="form-control" ng-model="dateInput">
+                        <label for="filters__date">Date</label>
+                        <select class="form-control" ng-model="dateInput" id="filters__date">
                             <option value="" selected>Select Date</option>
                             <option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x  | date:'dd/MM/yyyy' }}</option>
                         </select>
                     </div>
 
                     <div class="form-group col-6 col-md-3">
-                        <label class="">Trade Type</label>
-                        <select class="form-control " ng-model="searchfilters.type">
+                        <label for="filters__trade-type">Trade Type</label>
+                        <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type">
                             <option value="" selected>Select Trade Type</option>
                             <option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
                         </select>
                     </div>
 
                     <div class="form-group col-6 col-md-3">
-                        <label class="">Per Page</label>
-                        <select ng-model="limit" ng-options="x for x in limitOptions" id="limitOptionsInput" class="form-control" ng-change="setPage(0)"></select>
+                        <label for="filters__items-limit">Per Page</label>
+                        <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0)"></select>
                     </div>
                 </div>
 
                 <div class="row pips-count">
 
-                    <label class="form-group col-2 col-md-2">Pips Target: </label>
+                    <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-model="pipsTarget" type="number" placeholder="60" class="form-control">
+                        <input ng-model="pipsTarget" type="number" placeholder="60" class="form-control" id="pips-count__target">
                     </div>
 
-                    <label class="form-group col-2 col-md-2">Pips Won: </label>
+                    <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-value="getTotalPips()" ng-class="getTotalPips() > 0 ? 'on-target' : (getTotalPips() < 0 ? 'off-target' : '')" type="number" readonly class="form-control">
+                        <input ng-value="getTotalPips()" ng-class="getTotalPips() > 0 ? 'on-target' : (getTotalPips() < 0 ? 'off-target' : '')" type="number" readonly class="form-control" id="pips-count__won">
                     </div>
 
-                    <label class="form-group col-2 col-md-2">Pips Left: </label>
+                    <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-value="getPipsLeft()" ng-class="getPipsLeft() < 0 ? 'on-target' : (getPipsLeft() > 0 ? 'off-target' : '')" type="number" readonly class="form-control">
+                        <input ng-value="getPipsLeft()" ng-class="getPipsLeft() < 0 ? 'on-target' : (getPipsLeft() > 0 ? 'off-target' : '')" type="number" readonly class="form-control" id="pips-count__remaining">
                     </div>
                 </div>
 
