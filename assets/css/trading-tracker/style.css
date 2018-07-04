@@ -43,15 +43,17 @@
 .pips-count {
   align-items: center; }
 
+.on-target,
+.on-target:focus,
+.off-target,
+.off-target:focus {
+  color: white; }
+
 .on-target.on-target {
   background: #54a754; }
 
 .off-target.off-target {
   background: #e52525; }
-
-.on-target,
-.off-target {
-  color: white; }
 
 .filters label {
   margin-bottom: 0;
