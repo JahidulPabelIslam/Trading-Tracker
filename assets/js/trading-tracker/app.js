@@ -141,6 +141,10 @@
 
         $scope.getPipsLeft = function() {
             var totalGained = $scope.getTotalPips();
+
+            if (!$scope.pipsTarget || $scope.pipsTarget < 0)
+                $scope.pipsTarget = 0;
+
             var left = new Decimal($scope.pipsTarget).minus(totalGained);
             left = parseFloat(left);
 

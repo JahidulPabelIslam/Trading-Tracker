@@ -61,7 +61,7 @@
 
                     <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-model="pipsTarget" type="number" placeholder="60" class="form-control" id="pips-count__target">
+                        <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target">
                     </div>
 
                     <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
