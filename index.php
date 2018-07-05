@@ -96,7 +96,6 @@
                                     <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
                                 </th>
                                 <th scope="col" class="no-padding">-</th>
-                                <th scope="col" class="no-padding"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,8 +106,6 @@
                                 <td data-title="Pips">{{trade.pips}}</td>
                                 <td class="no-padding no-title">
                                     <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade(trade)">Edit</button>
-                                </td>
-                                <td class="no-padding no-title delete-trade-container">
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
                                 </td>
                             </tr>

@@ -121,13 +121,9 @@
         content: none;
     }
 
-    .table--trades td.no-title {
-        display: inline-block;
-        width: 50%;
-    }
-
-    .delete-trade-container {
-        text-align: right;
+    .btn--delete-trade
+    {
+        float: right;
     }
 
     .no-trades {
