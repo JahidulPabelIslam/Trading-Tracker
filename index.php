@@ -7,14 +7,14 @@
         <title>Trading Tracker</title>
 
         <?php if (isset($_GET["debug"])):?>
-            <link href="/assets/css/third-party/bootstrap.min.css" rel="stylesheet" title="style" media="all" type="text/css">
-            <link href="/assets/css/trading-tracker/style.css" rel="stylesheet" title="style" media="all" type="text/css">
+            <link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
+            <link href="/assets/css/trading-tracker/style.css?v=4" rel="stylesheet" title="style" media="all" type="text/css">
         <?php else: ?>
             <!-- Complied CSS File of all CSS Files -->
-            <link href="assets/css/main.min.css" rel="stylesheet" title="style" media="all" type="text/css">
+            <link href="assets/css/main.min.css?v=4" rel="stylesheet" title="style" media="all" type="text/css">
         <?php endif; ?>
 
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet">
     </head>
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
@@ -218,17 +218,17 @@
         </div>
 
         <?php if (isset($_GET["debug"])): ?>
-            <script src="/assets/js/third-party/jquery-3.2.1.min.js" type="application/javascript"></script>
-            <script src="/assets/js/third-party/popper.min.js" type="application/javascript"></script>
-            <script src="/assets/js/third-party/angular.min.js" type="application/javascript"></script>
-            <script src="/assets/js/third-party/decimal.min.js" type="application/javascript"></script>
-            <script src="/assets/js/trading-tracker/stickyFooter.js" type="application/javascript"></script>
+            <script src="/assets/js/third-party/jquery-3.2.1.min.js?v=1" type="application/javascript"></script>
+            <script src="/assets/js/third-party/popper.min.js?v=1" type="application/javascript"></script>
+            <script src="/assets/js/third-party/angular.min.js?v=1" type="application/javascript"></script>
+            <script src="/assets/js/third-party/decimal.min.js?v=1" type="application/javascript"></script>
+            <script src="/assets/js/trading-tracker/stickyFooter.js?v=1" type="application/javascript"></script>
         <?php else: ?>
             <!-- Complied JavaScript File of all JavaScript Files -->
-            <script src="/assets/js/main.min.js" type="application/javascript"></script>
+            <script src="/assets/js/main.min.js?v=4" type="application/javascript"></script>
         <?php endif; ?>
 
-        <script src="/assets/js/third-party/bootstrap.min.js" type="application/javascript"></script>
-        <script src="/assets/js/trading-tracker/app.js" type="application/javascript"></script>
+        <script src="/assets/js/third-party/bootstrap.min.js?v=1" type="application/javascript"></script>
+        <script src="/assets/js/trading-tracker/app.js?v=4" type="application/javascript"></script>
     </body>
 </html>
