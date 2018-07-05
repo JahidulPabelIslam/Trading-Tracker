@@ -105,7 +105,7 @@
                                 <td data-title="Type">{{trade.type}}</td>
                                 <td data-title="Pips">{{trade.pips}}</td>
                                 <td class="no-padding no-title">
-                                    <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade(trade)">Edit</button>
+                                    <button type="button" class="btn btn-primary btn--view-trade" ng-click="selectTrade(trade)">View</button>
                                     <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
                                 </td>
                             </tr>
