@@ -140,7 +140,46 @@
         };
 
         $scope.getPipsLeft = function() {
-            return parseFloat(new Decimal($scope.pipsTarget).minus($scope.getTotalPips()));
+            var totalGained = $scope.getTotalPips();
+            var left = new Decimal($scope.pipsTarget).minus(totalGained);
+            left = parseFloat(left);
+
+            var percent = new Decimal(left).dividedBy(totalGained);
+            percent = parseFloat(percent);
+            percent *= 100;
+
+            if (percent >= 50)
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control way-off-target";
+                jQuery("#pips-count__won")[0].classList = "form-control way-off-target";
+            }
+            else if (percent >= 25)
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control off-target";
+                jQuery("#pips-count__won")[0].classList = "form-control off-target";
+            }
+            else if (percent > 0)
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control close-to-target";
+                jQuery("#pips-count__won")[0].classList = "form-control close-to-target";
+            }
+            else if (percent === 0)
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control on-target";
+                jQuery("#pips-count__won")[0].classList = "form-control on-target";
+            }
+            else if (percent > -50)
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control above-target";
+                jQuery("#pips-count__won")[0].classList = "form-control above-target";
+            }
+            else
+            {
+                jQuery("#pips-count__remaining")[0].classList = "form-control beyond-target";
+                jQuery("#pips-count__won")[0].classList = "form-control beyond-target";
+            }
+
+            return left;
         };
 
         $scope.getTrades = function() {
@@ -235,7 +274,7 @@
 
         $scope.trades = $scope.getTrades();
 
-        $scope.totalPips = $scope.getTotalPips();
         $scope.pipsTarget = 0;
+        $scope.totalPips = $scope.getTotalPips();
     });
 })();

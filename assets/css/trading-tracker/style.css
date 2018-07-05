@@ -43,16 +43,38 @@
 .pips-count {
   align-items: center; }
 
+.beyond-target,
+.beyond-target:focus,
+.above-target,
+.above-target:focus,
 .on-target,
 .on-target:focus,
 .off-target,
-.off-target:focus {
+.off-target:focus,
+.way-off-target,
+.way-off-target:focus {
   color: white; }
 
-.on-target.on-target {
+.beyond-target.beyond-target {
   background: #54a754; }
 
+.above-target.above-target {
+  background: #b5c82f; }
+
+.on-target.on-target {
+  background: gray; }
+
+.close-to-target.close-to-target {
+  background: #fffc00; }
+
+.close-to-target,
+.close-to-target:focus {
+  color: black; }
+
 .off-target.off-target {
+  background: #e1a02f; }
+
+.way-off-target.way-off-target {
   background: #e52525; }
 
 .filters label {
