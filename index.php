@@ -154,7 +154,7 @@
                     <div class="modal-content">
                         <form ng-submit="addTrade()">
                             <div class="modal-header">
-                                <h5 class="modal-title">Add Trade</h5>
+                                <h5 class="modal-title">{{ selectedTrade.index != undefined ? 'Update' : 'Add' }} Trade</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -191,7 +191,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">{{selectedTrade.index != undefined ? 'Update' : 'Add'}}</button>
+                                <button type="submit" class="btn btn-success">{{ selectedTrade.index != undefined ? 'Update' : 'Add' }}</button>
                             </div>
                         </form>
                     </div>
