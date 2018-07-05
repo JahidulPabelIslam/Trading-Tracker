@@ -1,4 +1,4 @@
-(function () {
+;(function (jQuery) {
     'use strict';
 
     var app = angular.module("TradingTrackerApp", []);
@@ -217,7 +217,7 @@
             $scope.selectedTrade.date = new Date($scope.selectedTrade.date);
             var index = $scope.trades.indexOf(trade);
             $scope.selectedTrade.index = index;
-            $("#addTrade").modal("show");
+            jQuery("#addTrade").modal("show");
         };
 
         $scope.addTrade = function() {
@@ -247,7 +247,7 @@
                 $scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.0001);
             }
 
-            if ($scope.selectedTrade.index != undefined)
+            if ($scope.selectedTrade.index !== undefined)
             {
                 $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
             }
@@ -256,7 +256,7 @@
                 $scope.trades.push($scope.selectedTrade);
             }
 
-            $("#addTrade").modal("hide");
+            jQuery("#addTrade").modal("hide");
             $scope.newTrade();
             $scope.saveTrades();
         };
@@ -281,4 +281,4 @@
         $scope.pipsTarget = 0;
         $scope.totalPips = $scope.getTotalPips();
     });
-})();
+})(jQuery);
