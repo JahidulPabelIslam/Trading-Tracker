@@ -91,21 +91,9 @@
                                     Type
                                     <span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
                                 </th>
-                                <th scope="col" class="sort-by" ng-click="sortType = 'entryprice'">
-                                    Entry Price
-                                    <span ng-show="sortType == 'entryprice'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
-                                </th>
-                                <th scope="col" class="sort-by" ng-click="sortType = 'exitprice'">
-                                    Exit Price
-                                    <span ng-show="sortType == 'exitprice'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
-                                </th>
                                 <th scope="col" class="sort-by" ng-click="sortType = 'pips'">
                                     Pips
                                     <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
-                                </th>
-                                <th scope="col" class="sort-by" ng-click="sortType = 'lot'">
-                                    Lot
-                                    <span ng-show="sortType == 'lot'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
                                 </th>
                                 <th scope="col" class="no-padding">-</th>
                                 <th scope="col" class="no-padding"></th>
@@ -116,10 +104,7 @@
                                 <td data-title="Name">{{trade.name}}</td>
                                 <td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
                                 <td data-title="Type">{{trade.type}}</td>
-                                <td data-title="Entry Price">{{trade.entryprice}}</td>
-                                <td data-title="Exit Price">{{trade.exitprice}}</td>
                                 <td data-title="Pips">{{trade.pips}}</td>
-                                <td data-title="Lot">{{trade.lot}}</td>
                                 <td class="no-padding no-title">
                                     <button type="button" class="btn btn-primary btn--edit-trade" ng-click="selectTrade(trade)">Edit</button>
                                 </td>
