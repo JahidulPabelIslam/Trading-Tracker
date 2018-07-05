@@ -66,12 +66,12 @@
 
                     <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-value="getTotalPips()" ng-class="getTotalPips() > 0 ? 'on-target' : (getTotalPips() < 0 ? 'off-target' : '')" type="number" readonly class="form-control" id="pips-count__won">
+                        <input ng-value="getTotalPips()" type="number" readonly class="form-control" id="pips-count__won">
                     </div>
 
                     <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
                     <div class="form-group col-4 col-md-2">
-                        <input ng-value="getPipsLeft()" ng-class="getPipsLeft() < 0 ? 'on-target' : (getPipsLeft() > 0 ? 'off-target' : '')" type="number" readonly class="form-control" id="pips-count__remaining">
+                        <input ng-value="getPipsLeft()" type="number" readonly class="form-control" id="pips-count__remaining">
                     </div>
                 </div>
 
