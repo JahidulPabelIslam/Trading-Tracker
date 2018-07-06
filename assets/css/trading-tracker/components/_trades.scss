@@ -96,6 +96,11 @@
     padding-right: 0;
 }
 
+.no-trades.no-trades
+{
+    text-align: center;
+}
+
 @media only screen and (max-width: $tablet) {
     .table--trades thead tr {
         display: none;
