@@ -77,7 +77,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table--trades">
-                        <thead>
+                        <thead ng-if="(trades | filter:searchfilters | filter :dateFilter).length > 0">
                             <tr>
                                 <th scope="col" class="sort-by" ng-click="sortType = 'name'">
                                     Pair
