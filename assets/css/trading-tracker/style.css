@@ -15,7 +15,8 @@
 .table--trades.table--trades th,
 .table--trades.table--trades td {
   vertical-align: middle;
-  border: none; }
+  border: none;
+  text-align: center; }
 
 .table--trades thead {
   background: #343a40;
@@ -37,7 +38,8 @@
 .btn--delete-trade {
   padding: 0 6px;
   font-weight: 700;
-  border-radius: 50%; }
+  border-radius: 50%;
+  float: right; }
 
 .sort-by, .order-by {
   cursor: pointer; }
@@ -110,7 +112,7 @@
   .table--trades .no-trades:before {
     content: none; }
   .btn--delete-trade {
-    float: right; }
+    float: none; }
   .no-trades {
     width: 100%; }
   .table--trades .no-padding {
