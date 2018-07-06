@@ -33,12 +33,12 @@
 				<div class="row filters">
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__pair-name">Pair</label>
+						<label for="filters__pair-name">Pair: </label>
 						<input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name">
 					</div>
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__date">Date</label>
+						<label for="filters__date">Date: </label>
 						<select class="form-control" ng-model="dateInput" id="filters__date">
 							<option value="" selected>Select Date</option>
 							<option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x | date:"dd/MM/yyyy" }}</option>
@@ -46,7 +46,7 @@
 					</div>
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__trade-type">Trade Type</label>
+						<label for="filters__trade-type">Trade Type: </label>
 						<select class="form-control" ng-model="searchfilters.type" id="filters__trade-type">
 							<option value="" selected>Select Trade Type</option>
 							<option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
@@ -54,7 +54,7 @@
 					</div>
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__items-limit">Per Page</label>
+						<label for="filters__items-limit">Per Page: </label>
 						<select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0)"></select>
 					</div>
 				</div>
@@ -166,32 +166,32 @@
 							</div>
 							<div class="modal-body">
 								<div class="form-group row col-12">
-									<label for="pairInput" class="col-md-6">Pair Name</label>
+									<label for="pairInput" class="col-md-6">Pair Name: </label>
 									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required>
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="dateInput" class="col-6">Date Traded</label>
+									<label for="dateInput" class="col-6">Date Traded: </label>
 									<input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required>
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="lotInput" class="col-md-6">Lot Size</label>
+									<label for="lotInput" class="col-md-6">Lot Size: </label>
 									<input ng-model="selectedTrade.lot" type="text" id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="typeInput" class="col-md-6">Trade Type</label>
+									<label for="typeInput" class="col-md-6">Trade Type: </label>
 									<select ng-model="selectedTrade.type" ng-options="x for x in types" id="typeInput" class="form-control col-md-6" required></select>
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="entrypriceInput" class="col-md-6">Entry Price</label>
+									<label for="entrypriceInput" class="col-md-6">Entry Price: </label>
 									<input ng-model="selectedTrade.entryprice" type="text" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="exitpriceInput" class="col-md-6">Exit Price</label>
+									<label for="exitpriceInput" class="col-md-6">Exit Price: </label>
 									<input ng-model="selectedTrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
 								</div>
 							</div>
