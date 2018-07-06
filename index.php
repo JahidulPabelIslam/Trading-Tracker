@@ -81,21 +81,21 @@
 					<table class="table table-striped table--trades">
 						<thead ng-show="(trades | filter : searchfilters | filter : dateFilter).length > 0">
 							<tr>
-								<th scope="col" class="sort-by" ng-click="sortType = 'name'">
+								<th scope="col" class="sort-by" ng-click="setSortBy('name')">
 									Pair
-									<span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+									<span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'"></span>
 								</th>
-								<th scope="col" class="sort-by" ng-click="sortType = 'date'">
+								<th scope="col" class="sort-by" ng-click="setSortBy('date')">
 									Date
-									<span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+									<span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'"></span>
 								</th>
-								<th scope="col" class="sort-by" ng-click="sortType = 'type'">
+								<th scope="col" class="sort-by" ng-click="setSortBy('type')">
 									Type
-									<span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+									<span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'"></span>
 								</th>
-								<th scope="col" class="sort-by" ng-click="sortType = 'pips'">
+								<th scope="col" class="sort-by" ng-click="setSortBy('pips')">
 									Pips
-									<span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'" ng-click="sortReverse = !sortReverse"></span>
+									<span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'"></span>
 								</th>
 								<th scope="col" class="no-padding">-</th>
 							</tr>
