@@ -1,45 +1,46 @@
-.table--trades thead th, .table--trades tbody td {
-    vertical-align: middle;
+.table--trades thead th,
+.table--trades tbody td {
+	vertical-align: middle;
 }
 
 .table--trades thead {
-     background: #343a40;
-    color: white;
+	background: #343a40;
+	color: white;
 }
 
 .addTradeToggle {
-    padding-top: 10px;
-    text-align: right;
+	padding-top: 10px;
+	text-align: right;
 }
 
-.btn {
-    margin: 0 6px;
+.table--trades .btn {
+	margin: 0 6px;
 }
 
 .table--trades .no-padding {
-    padding: 0;
+	padding: 0;
 }
 
 .btn--view-trade {
-    padding: 2px 6px;
+	padding: 2px 6px;
 }
 
 .btn--delete-trade {
-    padding: 0 6px;
-    font-weight: 700;
-    border-radius: 50%;
+	padding: 0 6px;
+	font-weight: 700;
+	border-radius: 50%;
 }
 
 .sort-by, .order-by {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .pips-count label {
-    font-weight: 700;
+	font-weight: 700;
 }
 
 .pips-count {
-    align-items: center;
+	align-items: center;
 }
 
 .beyond-target,
@@ -51,91 +52,88 @@
 .off-target,
 .off-target:focus,
 .way-off-target,
-.way-off-target:focus
-{
-  color: white;
+.way-off-target:focus {
+	color: white;
 }
 
 .beyond-target.beyond-target {
-  background: #54a754;
+	background: #54a754;
 }
 
 .above-target.above-target {
-  background: #b5c82f;
+	background: #b5c82f;
 }
 
 .on-target.on-target {
-    background: gray;
+	background: gray;
 }
 
 .close-to-target.close-to-target {
-  background: #fffc00;
+	background: #fffc00;
 }
 
 .close-to-target,
-.close-to-target:focus
-{
-  color: black;
+.close-to-target:focus {
+	color: black;
 }
 
 .off-target.off-target {
-  background: #e1a02f;
+	background: #e1a02f;
 }
 
 .way-off-target.way-off-target {
-  background: #e52525;
+	background: #e52525;
 }
 
 .filters label {
-    margin-bottom: 0;
-    font-weight: 700;
+	margin-bottom: 0;
+	font-weight: 700;
 }
 
 .pips-count label {
-    text-align: right;
-    padding-right: 0;
+	text-align: right;
+	padding-right: 0;
 }
 
-.no-trades.no-trades
-{
-    text-align: center;
+.no-trades.no-trades {
+	text-align: center;
 }
 
 @media only screen and (max-width: $tablet) {
-    .table--trades thead tr {
-        display: none;
-    }
+	.table--trades thead tr {
+		display: none;
+	}
 
-    .trades__trade {
-        border: 1px solid #262626;
-    }
+	.trades__trade {
+		border: 1px solid #262626;
+	}
 
-    .table--trades td {
-        display: block;
-        width: 100%;
-        padding: 4px 10px;
-    }
+	.table--trades td {
+		display: block;
+		width: 100%;
+		padding: 4px 10px;
+	}
 
-    .table--trades td:before {
-        content: attr(data-title) ": ";
-        margin-right: 8px;
-        font-weight: bold;
-    }
+	.table--trades td:before {
+		content: attr(data-title) ": ";
+		margin-right: 8px;
+		font-weight: bold;
+	}
 
-    .table--trades td.no-title:before, .table--trades .no-trades:before {
-        content: none;
-    }
+	.table--trades td.no-title:before,
+	.table--trades .no-trades:before {
+		content: none;
+	}
 
-    .btn--delete-trade
-    {
-        float: right;
-    }
+	.btn--delete-trade {
+		float: right;
+	}
 
-    .no-trades {
-        width: 100%;
-    }
+	.no-trades {
+		width: 100%;
+	}
 
-    .table--trades .no-padding {
-        padding: 4px 0;
-    }
+	.table--trades .no-padding {
+		padding: 4px 0;
+	}
 }

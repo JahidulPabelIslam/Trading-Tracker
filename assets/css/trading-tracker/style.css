@@ -9,7 +9,8 @@
 .navbar-brand.navbar-brand:hover {
   color: #e6c200; }
 
-.table--trades thead th, .table--trades tbody td {
+.table--trades thead th,
+.table--trades tbody td {
   vertical-align: middle; }
 
 .table--trades thead {
@@ -20,7 +21,7 @@
   padding-top: 10px;
   text-align: right; }
 
-.btn {
+.table--trades .btn {
   margin: 0 6px; }
 
 .table--trades .no-padding {
@@ -101,7 +102,8 @@
     content: attr(data-title) ": ";
     margin-right: 8px;
     font-weight: bold; }
-  .table--trades td.no-title:before, .table--trades .no-trades:before {
+  .table--trades td.no-title:before,
+  .table--trades .no-trades:before {
     content: none; }
   .btn--delete-trade {
     float: right; }
