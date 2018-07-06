@@ -181,8 +181,12 @@
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="typeInput" class="col-md-6">Trade Type: </label>
-									<select ng-model="selectedTrade.type" ng-options="x for x in types" id="typeInput" class="form-control col-md-6" required></select>
+
+									<label for="typeInput" class="col-md-6">Trade Type</label>
+									<select ng-model="selectedTrade.type" id="typeInput" class="form-control col-md-6" required>
+										<option value="" selected>Select Trade Type</option>
+										<option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
+									</select>
 								</div>
 
 								<div class="form-group row col-12">
