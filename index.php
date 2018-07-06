@@ -79,7 +79,7 @@
 
 				<div class="table-responsive">
 					<table class="table table-striped table--trades">
-						<thead ng-show="(trades | filter:searchfilters | filter :dateFilter).length > 0">
+						<thead ng-show="(trades | filter : searchfilters | filter : dateFilter).length > 0">
 							<tr>
 								<th scope="col" class="sort-by" ng-click="sortType = 'name'">
 									Pair
@@ -101,7 +101,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="trade in trades | orderBy:sortType:sortReverse | filter : searchfilters | filter :dateFilter | limitTo: limit: page track by $index " class="trades__trade">
+							<tr ng-repeat="trade in trades | orderBy : sortType : sortReverse | filter : searchfilters | filter : dateFilter | limitTo : limit : page track by $index " class="trades__trade">
 								<td data-title="Name">{{trade.name}}</td>
 								<td data-title="Date">{{trade.date | date: "dd/MM/yyyy"}}</td>
 								<td data-title="Type">{{trade.type}}</td>
@@ -111,7 +111,7 @@
 									<button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
 								</td>
 							</tr>
-							<tr ng-if="(trades | filter:searchfilters | filter :dateFilter).length == 0">
+							<tr ng-if="(trades | filter : searchfilters | filter : dateFilter).length == 0">
 								<td class="no-trades" colspan="9">No Trades Found.</td>
 							</tr>
 						</tbody>
@@ -150,8 +150,7 @@
 			<footer class="footer">
 				<div class="container">
 					<p>&copy; <a href="https://jahidulpabelislam.000webhostapp.com/">Jahidul Pabel Islam</a> 2018</p>
-					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a> / Team <a
-								href="https://www.instagram.com/myriad.official/" class="myriad-text">#Myriad</a></p>
+					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a> / Team <a href="https://www.instagram.com/myriad.official/" class="myriad-text">#Myriad</a></p>
 				</div>
 			</footer>
 
@@ -168,26 +167,22 @@
 							<div class="modal-body">
 								<div class="form-group row col-12">
 									<label for="pairInput" class="col-md-6">Pair Name</label>
-									<input ng-model="selectedTrade.name" type="text" id="pairInput"
-									       class="form-control col-md-6" placeholder="EURUSD" required>
+									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required>
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="dateInput" class="col-6">Date Traded</label>
-									<input ng-model="selectedTrade.date" type="date" id="dateInput"
-									       class="form-control col-md-6" placeholder="18/02/18" required>
+									<input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required>
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="lotInput" class="col-md-6">Lot Size</label>
-									<input ng-model="selectedTrade.lot" type="text" id="lotInput" class="form-control col-md-6"
-									       placeholder="0.01" required>
+									<input ng-model="selectedTrade.lot" type="text" id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="typeInput" class="col-md-6">Trade Type</label>
-									<select ng-model="selectedTrade.type" ng-options="x for x in types" id="typeInput"
-									        class="form-control col-md-6" required></select>
+									<select ng-model="selectedTrade.type" ng-options="x for x in types" id="typeInput" class="form-control col-md-6" required></select>
 								</div>
 
 								<div class="form-group row col-12">
