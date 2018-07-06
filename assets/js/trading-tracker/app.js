@@ -21,6 +21,16 @@
 			return options;
 		};
 
+		$scope.setSortBy = function ($sortType) {
+
+			if ($sortType === $scope.sortType) {
+				$scope.sortReverse = !$scope.sortReverse;
+			}
+			else {
+				$scope.sortType = $sortType;
+			}
+		};
+
 		$scope.setPage = function (page) {
 			$scope.page = page;
 		};
