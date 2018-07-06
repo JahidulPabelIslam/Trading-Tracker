@@ -48,7 +48,8 @@
   font-weight: 700; }
 
 .pips-count {
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
 
 .beyond-target,
 .beyond-target:focus,
