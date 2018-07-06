@@ -9,9 +9,13 @@
 .navbar-brand.navbar-brand:hover {
   color: #e6c200; }
 
-.table--trades thead th,
-.table--trades tbody td {
-  vertical-align: middle; }
+.table--trades {
+  border: 1px solid #262626; }
+
+.table--trades.table--trades th,
+.table--trades.table--trades td {
+  vertical-align: middle;
+  border: none; }
 
 .table--trades thead {
   background: #343a40;
