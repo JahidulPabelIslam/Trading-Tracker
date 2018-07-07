@@ -129,18 +129,15 @@
 							<p class="page-link">Previous</p>
 						</li>
 
-						<li ng-repeat="pageNum in getPages()" class="page-item" ng-class="page == pageNum ? 'active' : ''"
-						    ng-click="setPage(pageNum)">
+						<li ng-repeat="pageNum in getPages()" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
 							<p class="page-link" ng-click="setPage(pageNum)">{{pageNum + 1}}</p>
 						</li>
 
-						<li class="page-item" ng-show="page < getFilteredTrades().length / limit - 1"
-						    ng-click="setPage(page + 1)">
+						<li class="page-item" ng-show="page < getFilteredTrades().length / limit - 1" ng-click="setPage(page + 1)">
 							<p class="page-link">Next</p>
 						</li>
 
-						<li class="page-item" ng-show="page < (getFilteredTrades().length / limit - 1)"
-						    ng-click="setPage(getFilteredTrades().length / limit - 1 | number:0)">
+						<li class="page-item" ng-show="page < (getFilteredTrades().length / limit - 1)" ng-click="setPage(getFilteredTrades().length / limit - 1 | number:0)">
 							<p class="page-link">Last</p>
 						</li>
 					</ul>
