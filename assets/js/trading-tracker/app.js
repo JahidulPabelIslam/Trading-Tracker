@@ -8,7 +8,7 @@
 		$scope.getDateOptions = function () {
 			var options = ["Today", "Yesterday", "This Week", "This Month", "This Year"];
 
-			var trades = $scope.getTrades();
+			var trades = $scope.trades;
 
 			for (var i = 0; i < trades.length; i++) {
 				var trade = trades[i];
@@ -36,7 +36,7 @@
 		};
 
 		$scope.getPages = function () {
-			var total = $scope.getFilteredTrades().length;
+			var total = $scope.filteredTrades.length;
 			var last = Math.ceil(total / $scope.limit);
 			var pages = [];
 
@@ -120,11 +120,13 @@
 		$scope.getFilteredTrades = function () {
 			var trades = $filter("filter")($scope.trades, $scope.searchfilters);
 			trades = $filter("filter")(trades, $scope.dateFilter);
+
+			$scope.filteredTrades = trades;
 			return trades;
 		};
 
 		$scope.getTotalPips = function () {
-			var trades = $scope.getFilteredTrades();
+			var trades = $scope.filteredTrades;
 			var pips = 0;
 
 			for (var i = 0; i < trades.length; i++) {
@@ -134,11 +136,13 @@
 
 			pips = parseFloat(pips);
 
+			$scope.totalPips = pips;
+
 			return pips;
 		};
 
 		$scope.getPipsLeft = function () {
-			var totalGained = $scope.getTotalPips();
+			var totalGained = $scope.totalPips;
 
 			if (!$scope.pipsTarget || $scope.pipsTarget < 0)
 				$scope.pipsTarget = 0;
@@ -174,6 +178,8 @@
 				jQuery("#pips-count__remaining")[0].classList = "form-control beyond-target";
 				jQuery("#pips-count__won")[0].classList = "form-control beyond-target";
 			}
+
+			$scope.pipsLeft = left;
 
 			return left;
 		};
@@ -262,8 +268,14 @@
 		$scope.types = ["Sell", "Buy"];
 
 		$scope.trades = $scope.getTrades();
+		$scope.filteredTrades = $scope.getFilteredTrades();
 
 		$scope.pipsTarget = 0;
 		$scope.totalPips = $scope.getTotalPips();
+		$scope.pipsLeft = $scope.getPipsLeft();
+
+		$scope.dateOptions = $scope.getDateOptions();
+
+		$scope.pages = $scope.getPages();
 	});
 })(jQuery);

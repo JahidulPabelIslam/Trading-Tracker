@@ -40,7 +40,7 @@
 						<label for="filters__date">Date: </label>
 						<select class="form-control" ng-model="dateInput" id="filters__date">
 							<option value="" selected>Select Date</option>
-							<option ng-repeat="x in getDateOptions()" value="{{ x }}">{{ x | date:"dd/MM/yyyy" }}</option>
+							<option ng-repeat="x in dateOptions" value="{{ x }}">{{ x | date: "dd/MM/yyyy" }}</option>
 						</select>
 					</div>
 
@@ -67,18 +67,18 @@
 
 					<label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
 					<div class="form-group col-4 col-md-2">
-						<input ng-value="getTotalPips()" type="number" readonly class="form-control" id="pips-count__won">
+						<input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won">
 					</div>
 
 					<label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
 					<div class="form-group col-4 col-md-2">
-						<input ng-value="getPipsLeft()" type="number" readonly class="form-control" id="pips-count__remaining">
+						<input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining">
 					</div>
 				</div>
 
 				<div class="table-responsive">
 					<table class="table table-striped table--trades">
-						<thead ng-show="getFilteredTrades().length > 0">
+						<thead ng-show="filteredTrades.length > 0">
 							<tr>
 								<th scope="col" class="sort-by" ng-click="setSortBy('name')">
 									Pair
@@ -110,14 +110,14 @@
 									<button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
 								</td>
 							</tr>
-							<tr ng-if="getFilteredTrades().length == 0">
+							<tr ng-if="filteredTrades.length == 0">
 								<td class="no-trades" colspan="9">No Trades Found.</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
-				<nav aria-label="Trades list navigation" ng-show="getFilteredTrades().length > 0 && getPages().length > 1">
+				<nav aria-label="Trades list navigation" ng-show="filteredTrades.length > 0 && pages.length > 1">
 					<ul class="pagination justify-content-end">
 
 						<li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
@@ -128,15 +128,15 @@
 							<p class="page-link">Previous</p>
 						</li>
 
-						<li ng-repeat="pageNum in getPages()" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
+						<li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
 							<p class="page-link" ng-click="setPage(pageNum)">{{pageNum + 1}}</p>
 						</li>
 
-						<li class="page-item" ng-show="page < getFilteredTrades().length / limit - 1" ng-click="setPage(page + 1)">
+						<li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(page + 1)">
 							<p class="page-link">Next</p>
 						</li>
 
-						<li class="page-item" ng-show="page < (getFilteredTrades().length / limit - 1)" ng-click="setPage(getFilteredTrades().length / limit - 1 | number:0)">
+						<li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(filteredTrades.length / limit - 1 | number : 0)">
 							<p class="page-link">Last</p>
 						</li>
 					</ul>
