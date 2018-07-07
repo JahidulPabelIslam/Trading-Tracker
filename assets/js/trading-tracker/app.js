@@ -208,10 +208,10 @@
 			$scope.selectedTrade.date = new Date($scope.selectedTrade.date);
 			var index = $scope.trades.indexOf(trade);
 			$scope.selectedTrade.index = index;
-			jQuery("#addTrade").modal("show");
+			jQuery("#trade-form-modal").modal("show");
 		};
 
-		$scope.addTrade = function () {
+		$scope.saveTrade = function () {
 			var entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
 			var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
 
@@ -241,7 +241,7 @@
 				$scope.trades.push($scope.selectedTrade);
 			}
 
-			jQuery("#addTrade").modal("hide");
+			jQuery("#trade-form-modal").modal("hide");
 			$scope.newTrade();
 			$scope.saveTrades();
 		};
