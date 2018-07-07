@@ -79,7 +79,7 @@
 
 				<div class="table-responsive">
 					<table class="table table-striped table--trades">
-						<thead ng-show="(trades | filter : searchfilters | filter : dateFilter).length > 0">
+						<thead ng-show="getFilteredTrades().length > 0">
 							<tr>
 								<th scope="col" class="sort-by" ng-click="setSortBy('name')">
 									Pair
@@ -111,7 +111,7 @@
 									<button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">x</button>
 								</td>
 							</tr>
-							<tr ng-if="(trades | filter : searchfilters | filter : dateFilter).length == 0">
+							<tr ng-if="getFilteredTrades().length == 0">
 								<td class="no-trades" colspan="9">No Trades Found.</td>
 							</tr>
 						</tbody>
