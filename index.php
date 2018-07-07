@@ -25,9 +25,8 @@
 
 			<main role="main" class="container">
 
-				<div class="form-group addTradeToggle">
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrade" ng-click="newTrade()">Add a Trade
-					</button>
+				<div class="form-group add-trade-trigger-wrapper">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">Add a Trade</button>
 				</div>
 
 				<div class="row filters">
@@ -151,10 +150,10 @@
 				</div>
 			</footer>
 
-			<div class="modal" tabindex="-1" role="dialog" id="addTrade">
+			<div class="modal" tabindex="-1" role="dialog" id="trade-form-modal">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						<form ng-submit="addTrade()">
+						<form ng-submit="saveTrade()">
 							<div class="modal-header">
 								<h5 class="modal-title">{{ selectedTrade.index != undefined ? "Update" : "Add" }} Trade</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
