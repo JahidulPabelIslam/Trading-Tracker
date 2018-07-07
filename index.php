@@ -194,6 +194,11 @@
 									<label for="exitpriceInput" class="col-md-6">Exit Price: </label>
 									<input ng-model="selectedTrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
 								</div>
+
+								<div class="form-group row col-12">
+									<label for="notesInput">Note(s)</label>
+									<textarea ng-model="selectedTrade.notes" id="notesInput" class="form-control" placeholder="Saw a down trend on 2hr and ..." rows="6"></textarea>
+								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-success">{{ selectedTrade.index != undefined ? "Update" : "Add" }}</button>
