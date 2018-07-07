@@ -96,6 +96,18 @@
 .no-trades.no-trades {
   text-align: center; }
 
+.modal-body .form-group {
+  font-weight: 700;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0; }
+
+.form-group label {
+  margin-bottom: 0;
+  padding-left: 0; }
+
 @media only screen and (max-width: 768px) {
   .table--trades thead tr {
     display: none; }
