@@ -203,6 +203,7 @@
 		$scope.saveTrades = function () {
 			localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
 			window.tt.stickyFooter.expandSection();
+			$scope.update();
 		};
 
 		$scope.deleteTrade = function (trade) {
@@ -259,6 +260,17 @@
 			jQuery("#trade-form-modal").modal("hide");
 			$scope.newTrade();
 			$scope.saveTrades();
+		};
+
+		$scope.update = function () {
+			$scope.filteredTrades = $scope.getFilteredTrades();
+
+			$scope.totalPips = $scope.getTotalPips();
+			$scope.pipsLeft = $scope.getPipsLeft();
+
+			$scope.dateOptions = $scope.getDateOptions();
+
+			$scope.pages = $scope.getPages();
 		};
 
 		$scope.sortType = "date";
