@@ -218,8 +218,13 @@
 		};
 
 		$scope.saveTrade = function () {
+			$scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot, 10);
+
 			var entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
+			$scope.selectedTrade.entryprice = entryprice;
+
 			var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
+			$scope.selectedTrade.exitprice = exitprice;
 
 			var pips = 0;
 			if ($scope.selectedTrade.type === "Buy") {
@@ -234,11 +239,13 @@
 			var name = $scope.selectedTrade.name.toLowerCase();
 
 			if (name.includes("jpy") || name.includes("xau")) {
-				$scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.01);
+				pips = new Decimal(pips).dividedBy(0.01);
 			}
 			else {
-				$scope.selectedTrade.pips = new Decimal(pips).dividedBy(0.0001);
+				pips = new Decimal(pips).dividedBy(0.0001);
 			}
+
+			$scope.selectedTrade.pips = parseFloat(pips, 10);
 
 			if ($scope.selectedTrade.index !== undefined) {
 				$scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
