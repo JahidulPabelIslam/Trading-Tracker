@@ -174,7 +174,7 @@
 
 								<div class="form-group row col-12">
 									<label for="lotInput" class="col-md-6">Lot Size: </label>
-									<input ng-model="selectedTrade.lot" type="text" id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
+									<input ng-model="selectedTrade.lot" type="number" id="lotInput" class="form-control col-md-6" placeholder="0.01" required>
 								</div>
 
 								<div class="form-group row col-12">
@@ -188,12 +188,12 @@
 
 								<div class="form-group row col-12">
 									<label for="entrypriceInput" class="col-md-6">Entry Price: </label>
-									<input ng-model="selectedTrade.entryprice" type="text" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
+									<input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="exitpriceInput" class="col-md-6">Exit Price: </label>
-									<input ng-model="selectedTrade.exitprice" type="text" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
+									<input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
 								</div>
 
 								<div class="form-group row col-12">
