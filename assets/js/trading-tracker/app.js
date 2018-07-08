@@ -29,6 +29,8 @@
 			else {
 				$scope.sortType = $sortType;
 			}
+
+			$scope.setPage(0);
 		};
 
 		$scope.setPage = function (page) {
