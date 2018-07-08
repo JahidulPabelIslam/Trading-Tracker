@@ -143,7 +143,9 @@
 			return pips;
 		};
 
-		$scope.updatePipsCounterColours = function (pipsLeft) {
+		$scope.updatePipsCounterColours = function () {
+
+			var pipsLeft = $scope.pipsLeft;
 
 			var totalGained = $scope.totalPips;
 
@@ -151,30 +153,28 @@
 			percent = parseFloat(percent);
 			percent *= 100;
 
+			var classes = "";
+
 			if (percent >= 50) {
-				jQuery("#pips-count__remaining")[0].classList = "form-control way-off-target";
-				jQuery("#pips-count__won")[0].classList = "form-control way-off-target";
+				classes = "form-control way-off-target";
 			}
 			else if (percent >= 25) {
-				jQuery("#pips-count__remaining")[0].classList = "form-control off-target";
-				jQuery("#pips-count__won")[0].classList = "form-control off-target";
+				classes = "form-control off-target";
 			}
 			else if (percent > 0) {
-				jQuery("#pips-count__remaining")[0].classList = "form-control close-to-target";
-				jQuery("#pips-count__won")[0].classList = "form-control close-to-target";
+				classes = "form-control close-to-target";
 			}
 			else if (percent === 0) {
-				jQuery("#pips-count__remaining")[0].classList = "form-control on-target";
-				jQuery("#pips-count__won")[0].classList = "form-control on-target";
+				classes = "form-control on-target";
 			}
 			else if (percent > -50) {
-				jQuery("#pips-count__remaining")[0].classList = "form-control above-target";
-				jQuery("#pips-count__won")[0].classList = "form-control above-target";
+				classes = "form-control above-target";
 			}
 			else {
-				jQuery("#pips-count__remaining")[0].classList = "form-control beyond-target";
-				jQuery("#pips-count__won")[0].classList = "form-control beyond-target";
+				classes = "form-control beyond-target";
 			}
+
+			jQuery("#pips-count__remaining, #pips-count__won").removeClass().addClass(classes);
 		};
 
 		$scope.getPipsLeft = function () {
@@ -188,8 +188,6 @@
 			pipsLeft = parseFloat(pipsLeft);
 
 			$scope.pipsLeft = pipsLeft;
-
-			$scope.updatePipsCounterColours(pipsLeft);
 
 			return pipsLeft;
 		};
@@ -280,9 +278,16 @@
 			$scope.totalPips = $scope.getTotalPips();
 			$scope.pipsLeft = $scope.getPipsLeft();
 
+			$scope.updatePipsCounterColours();
+
 			$scope.dateOptions = $scope.getDateOptions();
 
 			$scope.pages = $scope.getPages();
+		};
+
+		$scope.updateCounters = function () {
+			$scope.pipsLeft = $scope.getPipsLeft();
+			$scope.updatePipsCounterColours();
 		};
 
 		$scope.sortType = "date";
@@ -306,6 +311,7 @@
 		$scope.pipsTarget = 0;
 		$scope.totalPips = $scope.getTotalPips();
 		$scope.pipsLeft = $scope.getPipsLeft();
+		$scope.updatePipsCounterColours();
 
 		$scope.dateOptions = $scope.getDateOptions();
 
