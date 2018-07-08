@@ -143,7 +143,7 @@
 			return pips;
 		};
 
-		var updatePipsCounterColours = function (pipsLeft) {
+		$scope.updatePipsCounterColours = function (pipsLeft) {
 
 			var totalGained = $scope.totalPips;
 
@@ -189,7 +189,7 @@
 
 			$scope.pipsLeft = pipsLeft;
 
-			updatePipsCounterColours(pipsLeft);
+			$scope.updatePipsCounterColours(pipsLeft);
 
 			return pipsLeft;
 		};
