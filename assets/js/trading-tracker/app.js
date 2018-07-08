@@ -228,14 +228,10 @@
 			jQuery("#trade-form-modal").modal("show");
 		};
 
-		$scope.saveTrade = function () {
-			$scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot, 10);
+		$scope.calculatePips = function () {
+			var entryprice = $scope.selectedTrade.entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
 
-			var entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
-			$scope.selectedTrade.entryprice = entryprice;
-
-			var exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
-			$scope.selectedTrade.exitprice = exitprice;
+			var exitprice = $scope.selectedTrade.exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
 
 			var pips = 0;
 			if ($scope.selectedTrade.type === "Buy") {
@@ -256,7 +252,15 @@
 				pips = new Decimal(pips).dividedBy(0.0001);
 			}
 
-			$scope.selectedTrade.pips = parseFloat(pips, 10);
+			pips = parseFloat(pips, 10);
+
+			$scope.selectedTrade.pips = pips;
+
+			return pips;
+		};
+
+		$scope.saveTrade = function () {
+			$scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot, 10);
 
 			if ($scope.selectedTrade.index !== undefined) {
 				$scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;

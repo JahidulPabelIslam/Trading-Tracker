@@ -164,7 +164,7 @@
 							<div class="modal-body">
 								<div class="form-group row col-12">
 									<label for="pairInput" class="col-md-6">Pair Name: </label>
-									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required>
+									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required ng-change="calculatePips()">
 								</div>
 
 								<div class="form-group row col-12">
@@ -180,7 +180,7 @@
 								<div class="form-group row col-12">
 
 									<label for="typeInput" class="col-md-6">Trade Type</label>
-									<select ng-model="selectedTrade.type" id="typeInput" class="form-control col-md-6" required>
+									<select ng-model="selectedTrade.type" id="typeInput" class="form-control col-md-6" required ng-change="calculatePips()">
 										<option value="" selected>Select Trade Type</option>
 										<option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
 									</select>
@@ -188,12 +188,17 @@
 
 								<div class="form-group row col-12">
 									<label for="entrypriceInput" class="col-md-6">Entry Price: </label>
-									<input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required>
+									<input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required ng-change="calculatePips()">
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="exitpriceInput" class="col-md-6">Exit Price: </label>
-									<input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required>
+									<input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required ng-change="calculatePips()">
+								</div>
+
+								<div class="form-group row col-12">
+									<label for="pipsInput" class="col-md-6">Pips: </label>
+									<input ng-model="selectedTrade.pips" type="number" id="pipsInput" class="form-control col-md-6" placeholder="0" readonly>
 								</div>
 
 								<div class="form-group row col-12">
