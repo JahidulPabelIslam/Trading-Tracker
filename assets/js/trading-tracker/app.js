@@ -143,16 +143,11 @@
 			return pips;
 		};
 
-		$scope.getPipsLeft = function () {
+		var updatePipsCounterColours = function (pipsLeft) {
+
 			var totalGained = $scope.totalPips;
 
-			if (!$scope.pipsTarget || $scope.pipsTarget < 0)
-				$scope.pipsTarget = 0;
-
-			var left = new Decimal($scope.pipsTarget).minus(totalGained);
-			left = parseFloat(left);
-
-			var percent = new Decimal(left).dividedBy(totalGained);
+			var percent = new Decimal(pipsLeft).dividedBy(totalGained);
 			percent = parseFloat(percent);
 			percent *= 100;
 
@@ -180,10 +175,23 @@
 				jQuery("#pips-count__remaining")[0].classList = "form-control beyond-target";
 				jQuery("#pips-count__won")[0].classList = "form-control beyond-target";
 			}
+		};
 
-			$scope.pipsLeft = left;
+		$scope.getPipsLeft = function () {
 
-			return left;
+			var totalGained = $scope.totalPips;
+
+			if (!$scope.pipsTarget || $scope.pipsTarget < 0)
+				$scope.pipsTarget = 0;
+
+			var pipsLeft = new Decimal($scope.pipsTarget).minus(totalGained);
+			pipsLeft = parseFloat(pipsLeft);
+
+			$scope.pipsLeft = pipsLeft;
+
+			updatePipsCounterColours(pipsLeft);
+
+			return pipsLeft;
 		};
 
 		$scope.getTrades = function () {
