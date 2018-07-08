@@ -32,13 +32,13 @@
 				<div class="row filters">
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__pair-name">Pair: </label>
-						<input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name">
+						<label for="filters__pair-name">Pair</label>
+						<input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0)">
 					</div>
 
 					<div class="form-group col-6 col-md-3">
-						<label for="filters__date">Date: </label>
-						<select class="form-control" ng-model="dateInput" id="filters__date">
+						<label for="filters__date">Date</label>
+						<select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0)">
 							<option value="" selected>Select Date</option>
 							<option ng-repeat="x in dateOptions" value="{{ x }}">{{ x | date: "dd/MM/yyyy" }}</option>
 						</select>
@@ -46,7 +46,7 @@
 
 					<div class="form-group col-6 col-md-3">
 						<label for="filters__trade-type">Trade Type: </label>
-						<select class="form-control" ng-model="searchfilters.type" id="filters__trade-type">
+						<select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0)">
 							<option value="" selected>Select Trade Type</option>
 							<option ng-repeat="x in types" value="{{ x }}">{{x}}</option>
 						</select>
@@ -196,7 +196,7 @@
 								</div>
 
 								<div class="form-group row col-12">
-									<label for="notesInput">Note(s)</label>
+									<label for="notesInput">Note(s): </label>
 									<textarea ng-model="selectedTrade.notes" id="notesInput" class="form-control" placeholder="Saw a down trend on 2hr and ..." rows="6"></textarea>
 								</div>
 							</div>
