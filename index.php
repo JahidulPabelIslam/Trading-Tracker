@@ -152,8 +152,9 @@
 						if (!empty($version)) {
 							echo "<p>" . $version . "</p>";
 						}
+						date_default_timezone_set("Europe/London");
 					?>
-					<p>&copy; <a href="https://jahidulpabelislam.000webhostapp.com/">Jahidul Pabel Islam</a> 2018</p>
+					<p>&copy; <a href="https://jahidulpabelislam.000webhostapp.com/">Jahidul Pabel Islam</a> <?php echo date("Y"); ?></p>
 					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a></p>
 				</div>
 			</footer>
