@@ -68,39 +68,53 @@ gulp.task("store-version", function() {
 
 	var fileName = "assets/version.txt";
 
-	// Try and get the latest tag on current branch
-	exec("git describe --abbrev=0 --tags\n", function (err, stdout, stderr) {
+	// Try to get current branch name
+	exec("git branch | grep \\* | cut -d ' ' -f2", function (err, branchName, stderr) {
 
-		// If found store in text file
-		if (stdout && stdout !== "null")
+		// If name found store in text file
+		// If current branch if master we used use tags (As most likely this is in production environment)
+		// Else it is one of dev branches so display branch name
+		if (branchName && branchName !== "null" && branchName !== "master")
 		{
-			fs.writeFile(fileName, stdout);
+			fs.writeFile(fileName, branchName);
 		}
 		else
 		{
-			// Else log any errors
+			// Else just log errors & try to store latest tag name string in text file
 			console.log(err);
 			console.log(stdout);
 			console.log(stderr);
 
-			// Then try to get current branch name
-			exec("git branch | grep \\* | cut -d ' ' -f2", function (err, stdout, stderr) {
-				// If name found store
-				if (stdout && stdout !== "null")
+			// Try and get the latest tag on current branch
+			exec("git describe --abbrev=0 --tags\n", function (err, tagName, stderr) {
+
+				// If found store in text file
+				if (tagName && tagName !== "null")
 				{
-					fs.writeFile(fileName, stdout);
+					fs.writeFile(fileName, tagName);
 				}
 				else
 				{
-					// Else just log errors & store empty string in text file
+					// Else log any errors
 					console.log(err);
-					console.log(stdout);
+					console.log(tagName);
 					console.log(stderr);
-					fs.writeFile(fileName, "");
+
+					// Else drop back to branch name if exists else remove version value from file
+					if (branchName && branchName !== "null")
+					{
+						fs.writeFile(fileName, branchName);
+					}
+					else
+					{
+						fs.writeFile(fileName, '');
+					}
 				}
 			});
 		}
 	});
+
+
 });
 
 gulp.task("default", ["scripts", "styles"]);
