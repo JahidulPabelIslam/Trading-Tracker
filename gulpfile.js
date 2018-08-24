@@ -6,6 +6,9 @@ var minifyCss = require("gulp-minify-css");
 var autoprefixer = require("gulp-autoprefixer");
 var sass = require("gulp-sass");
 
+var fs = require('fs');
+var exec = require('child_process').exec;
+
 // Concatenate & Minify JS
 var scripts = {
 	main: [
@@ -59,6 +62,45 @@ gulp.task("sass", function () {
 // Watch Files For Changes
 gulp.task("watch", function () {
 	gulp.watch("assets/css/trading-tracker/**/*.scss", ["sass"]);
+});
+
+gulp.task("store-version", function() {
+
+	var fileName = "assets/version.txt";
+
+	// Try and get the latest tag on current branch
+	exec("git describe --abbrev=0 --tags\n", function (err, stdout, stderr) {
+
+		// If found store in text file
+		if (stdout && stdout !== "null")
+		{
+			fs.writeFile(fileName, stdout);
+		}
+		else
+		{
+			// Else log any errors
+			console.log(err);
+			console.log(stdout);
+			console.log(stderr);
+
+			// Then try to get current branch name
+			exec("git branch | grep \\* | cut -d ' ' -f2", function (err, stdout, stderr) {
+				// If name found store
+				if (stdout && stdout !== "null")
+				{
+					fs.writeFile(fileName, stdout);
+				}
+				else
+				{
+					// Else just log errors & store empty string in text file
+					console.log(err);
+					console.log(stdout);
+					console.log(stderr);
+					fs.writeFile(fileName, "");
+				}
+			});
+		}
+	});
 });
 
 gulp.task("default", ["scripts", "styles"]);
