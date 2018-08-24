@@ -146,7 +146,13 @@
 
 			<footer class="footer">
 				<div class="container">
-					<p><?php echo file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/version.txt') ?></p>
+					<?php
+						$version = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/assets/version.txt');
+
+						if (!empty($version)) {
+							echo "<p>" . $version . "</p>";
+						}
+					?>
 					<p>&copy; <a href="https://jahidulpabelislam.000webhostapp.com/">Jahidul Pabel Islam</a> 2018</p>
 					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a> / Team <a href="https://www.instagram.com/myriad.official/" class="myriad-text">#Myriad</a></p>
 				</div>
