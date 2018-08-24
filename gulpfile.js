@@ -69,7 +69,7 @@ gulp.task("store-version", function() {
 	var fileName = "assets/version.txt";
 
 	// Try to get current branch name
-	exec("git branch | grep \\* | cut -d ' ' -f2", function (err, branchName, stderr) {
+	exec("git branch | grep \\* | cut -d ' ' -f2", function (branchNameErr, branchName, branchNameStderr) {
 
 		// If name found store in text file
 		// If current branch if master we used use tags (As most likely this is in production environment)
@@ -81,12 +81,12 @@ gulp.task("store-version", function() {
 		else
 		{
 			// Else just log errors & try to store latest tag name string in text file
-			console.log(err);
-			console.log(stdout);
-			console.log(stderr);
+			console.log(branchNameErr);
+			console.log(branchName);
+			console.log(branchNameStderr);
 
 			// Try and get the latest tag on current branch
-			exec("git describe --abbrev=0 --tags\n", function (err, tagName, stderr) {
+			exec("git describe --abbrev=0 --tags\n", function (tagNameErr, tagName, tagNameStderr) {
 
 				// If found store in text file
 				if (tagName && tagName !== "null")
@@ -96,9 +96,9 @@ gulp.task("store-version", function() {
 				else
 				{
 					// Else log any errors
-					console.log(err);
+					console.log(tagNameErr);
 					console.log(tagName);
-					console.log(stderr);
+					console.log(tagNameStderr);
 
 					// Else drop back to branch name if exists else remove version value from file
 					if (branchName && branchName !== "null")
