@@ -8,10 +8,10 @@
 
 		<?php if (isset($_GET["debug"])): ?>
 			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
-			<link href="/assets/css/trading-tracker/style.css?v=4" rel="stylesheet" title="style" media="all" type="text/css">
+			<link href="/assets/css/trading-tracker/style.css?v=1.5" rel="stylesheet" title="style" media="all" type="text/css">
 		<?php else: ?>
 			<!-- Complied CSS File of all CSS Files -->
-			<link href="assets/css/main.min.css?v=4" rel="stylesheet" title="style" media="all" type="text/css">
+			<link href="assets/css/main.min.css?v=1.5" rel="stylesheet" title="style" media="all" type="text/css">
 		<?php endif; ?>
 
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet">
@@ -231,10 +231,10 @@
 			<script src="/assets/js/trading-tracker/stickyFooter.js?v=1" type="application/javascript"></script>
 		<?php else: ?>
 			<!-- Complied JavaScript File of all JavaScript Files -->
-			<script src="/assets/js/main.min.js?v=4" type="application/javascript"></script>
+			<script src="/assets/js/main.min.js?v=1" type="application/javascript"></script>
 		<?php endif; ?>
 
 		<script src="/assets/js/third-party/bootstrap.min.js?v=1" type="application/javascript"></script>
-		<script src="/assets/js/trading-tracker/app.js?v=4" type="application/javascript"></script>
+		<script src="/assets/js/trading-tracker/app.js?v=1.5" type="application/javascript"></script>
 	</body>
 </html>
