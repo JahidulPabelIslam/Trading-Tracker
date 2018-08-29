@@ -74,9 +74,9 @@ gulp.task("store-version", function() {
 		// If name found store in text file
 		// If current branch if master we used use tags (As most likely this is in production environment)
 		// Else it is one of dev branches so display branch name
-		if (branchName && branchName !== "null" && branchName !== "master")
+		if (branchName && branchName !== "null" && branchName.trim() !== "master")
 		{
-			fs.writeFile(fileName, branchName);
+			fs.writeFile(fileName, branchName.trim());
 		}
 		else
 		{
@@ -91,7 +91,7 @@ gulp.task("store-version", function() {
 				// If found store in text file
 				if (tagName && tagName !== "null")
 				{
-					fs.writeFile(fileName, tagName);
+					fs.writeFile(fileName, tagName.trim());
 				}
 				else
 				{
@@ -103,7 +103,7 @@ gulp.task("store-version", function() {
 					// Else drop back to branch name if exists else remove version value from file
 					if (branchName && branchName !== "null")
 					{
-						fs.writeFile(fileName, branchName);
+						fs.writeFile(fileName, branchName.trim());
 					}
 					else
 					{
