@@ -4,7 +4,7 @@ While partaking in Forex trading as a small hobby in my spare time, I soon reali
 
 Therefore I decided to build a quick small web app to track history of trades in Forex.
 
-This will track different information about the trades I enter:
+#### This will track different information about the trades I enter:
 
 * Type of trade
 * Reason I entered
