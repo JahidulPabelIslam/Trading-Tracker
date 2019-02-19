@@ -24,7 +24,22 @@
 		$localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
 
 		$isProduction = $liveURL === $localURL;
+
+		if ($isProduction) {
+			?>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70803146-3"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'UA-70803146-3');
+			</script>
+			<?php
+		}
 		?>
+
 		<title><?php echo $pageTitle; ?></title>
 
 		<meta name="author" content="Jahidul Pabel Islam" />
