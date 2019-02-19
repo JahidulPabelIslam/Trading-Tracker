@@ -222,7 +222,6 @@
 					?>
 					<p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> <?php echo date("Y"); ?></p>
 					<?php date_default_timezone_set($origTimeZone); ?>
-					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a></p>
 				</div>
 			</footer>
 
