@@ -49,15 +49,22 @@
 		}
 		?>
 
-		<?php if (isset($_GET["debug"])): ?>
-			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css" >
-			<link href="/assets/css/trading-tracker/style.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" >
-		<?php else: ?>
+		<?php
+		if (isset($_GET["debug"])) {
+			?>
+			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css" />
+			<link href="/assets/css/trading-tracker/style.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" />
+			<?php
+		}
+		else {
+			?>
 			<!-- Complied CSS File of all CSS Files -->
-			<link href="assets/css/main.min.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" >
-		<?php endif; ?>
+			<link href="assets/css/main.min.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" />
+			<?php
+		}
+		?>
 
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet" >
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet" />
 	</head>
 
 	<body ng-app="TradingTrackerApp">
