@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 	<head>
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<meta charset="UTF-8">
-
 		<?php
-		$pageTitle = "Trading Tracker";
+		$pageTitle = "Online Tool for the Forex Market | Trading Tracker";
+		$pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
 		?>
 		<title><?php echo $pageTitle; ?></title>
+
+		<meta name="description" content="<?php echo $pageDesc; ?>"/>
+
+		<meta property="og:title" content="<?php echo $pageTitle; ?>"/>
+		<meta property="og:description" content="<?php echo $pageDesc; ?>"/>
+
+		<meta name="twitter:title" content="<?php echo $pageTitle; ?>"/>
 
 		<?php if (isset($_GET["debug"])): ?>
 			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
