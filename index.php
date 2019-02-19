@@ -199,12 +199,14 @@
 					<?php
 						$version = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/assets/version.txt');
 
+						$origTimeZone = date_default_timezone_get();
 						if (!empty($version)) {
 							echo "<p>" . $version . "</p>";
 						}
 						date_default_timezone_set("Europe/London");
 					?>
 					<p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> <?php echo date("Y"); ?></p>
+					<?php date_default_timezone_set($origTimeZone); ?>
 					<p>Team <a href="https://www.jkmt.co.uk/">#JKMT</a></p>
 				</div>
 			</footer>
