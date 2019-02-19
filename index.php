@@ -5,15 +5,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<?php
-		$pageTitle = "Online Tool for the Forex Market | Trading Tracker";
+		$appName = $pageTitle = "Trading Tracker";
+		$pageTitle = "Online Tool for the Forex Market | {$pageTitle}";
 		$pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
+
+		$requestedRelativeURL = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "";
+		$requestedRelativeURL = parse_url($requestedRelativeURL, PHP_URL_PATH);
+		$requestedRelativeURL = trim($requestedRelativeURL, " /");
+
+		if (!empty($requestedRelativeURL)) {
+			$requestedRelativeURL .= "/";
+		}
+
+		$protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
+		$localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
 		?>
 		<title><?php echo $pageTitle; ?></title>
 
+		<meta name="author" content="Jahidul Pabel Islam"/>
+
 		<meta name="description" content="<?php echo $pageDesc; ?>"/>
 
+		<meta property="og:locale" content="en_GB"/>
+		<meta property="og:type" content="website"/>
 		<meta property="og:title" content="<?php echo $pageTitle; ?>"/>
 		<meta property="og:description" content="<?php echo $pageDesc; ?>"/>
+		<meta property="og:url" content="<?php echo $localURL; ?>"/>
+		<meta property="og:site_name" content="<?php echo $appName; ?>"/>
 
 		<meta name="twitter:title" content="<?php echo $pageTitle; ?>"/>
 
