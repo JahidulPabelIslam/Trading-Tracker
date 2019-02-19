@@ -17,6 +17,9 @@
 			$requestedRelativeURL .= "/";
 		}
 
+		$liveDomain = "https://tradingtracker.000webhostapp.com/";
+		$liveURL = rtrim($liveDomain, " /") . "/" . $requestedRelativeURL;
+
 		$protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
 		$localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
 		?>
@@ -34,6 +37,14 @@
 		<meta property="og:site_name" content="<?php echo $appName; ?>"/>
 
 		<meta name="twitter:title" content="<?php echo $pageTitle; ?>"/>
+
+		<?php
+		if ($liveURL === $localURL) {
+			echo "<link rel='canonical' href='{$liveURL}' />";
+		} else {
+			echo "<meta name='robots' content='noindex,nofollow' />";
+		}
+		?>
 
 		<?php if (isset($_GET["debug"])): ?>
 			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
