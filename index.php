@@ -22,6 +22,8 @@
 
 		$protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
 		$localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
+
+		$isProduction = $liveURL === $localURL;
 		?>
 		<title><?php echo $pageTitle; ?></title>
 
@@ -39,7 +41,7 @@
 		<meta name="twitter:title" content="<?php echo $pageTitle; ?>" />
 
 		<?php
-		if ($liveURL === $localURL) {
+		if ($isProduction) {
 			echo "<link rel='canonical' href='{$liveURL}' />";
 		}
 		else {
