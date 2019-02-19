@@ -4,7 +4,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<meta charset="UTF-8">
-		<title>Trading Tracker</title>
+
+		<?php
+		$pageTitle = "Trading Tracker";
+		?>
+		<title><?php echo $pageTitle; ?></title>
 
 		<?php if (isset($_GET["debug"])): ?>
 			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
