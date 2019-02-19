@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1" >
 
 		<?php
 		$appName = $pageTitle = "Trading Tracker";
@@ -25,36 +25,37 @@
 		?>
 		<title><?php echo $pageTitle; ?></title>
 
-		<meta name="author" content="Jahidul Pabel Islam"/>
+		<meta name="author" content="Jahidul Pabel Islam" />
 
-		<meta name="description" content="<?php echo $pageDesc; ?>"/>
+		<meta name="description" content="<?php echo $pageDesc; ?>" />
 
-		<meta property="og:locale" content="en_GB"/>
-		<meta property="og:type" content="website"/>
-		<meta property="og:title" content="<?php echo $pageTitle; ?>"/>
-		<meta property="og:description" content="<?php echo $pageDesc; ?>"/>
-		<meta property="og:url" content="<?php echo $localURL; ?>"/>
-		<meta property="og:site_name" content="<?php echo $appName; ?>"/>
+		<meta property="og:locale" content="en_GB "/>
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="<?php echo $pageTitle; ?>" />
+		<meta property="og:description" content="<?php echo $pageDesc; ?>" />
+		<meta property="og:url" content="<?php echo $localURL; ?>" />
+		<meta property="og:site_name" content="<?php echo $appName; ?>" />
 
-		<meta name="twitter:title" content="<?php echo $pageTitle; ?>"/>
+		<meta name="twitter:title" content="<?php echo $pageTitle; ?>" />
 
 		<?php
 		if ($liveURL === $localURL) {
 			echo "<link rel='canonical' href='{$liveURL}' />";
-		} else {
+		}
+		else {
 			echo "<meta name='robots' content='noindex,nofollow' />";
 		}
 		?>
 
 		<?php if (isset($_GET["debug"])): ?>
-			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css">
-			<link href="/assets/css/trading-tracker/style.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css">
+			<link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css" >
+			<link href="/assets/css/trading-tracker/style.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" >
 		<?php else: ?>
 			<!-- Complied CSS File of all CSS Files -->
-			<link href="assets/css/main.min.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css">
+			<link href="assets/css/main.min.css?v=1.4.1" rel="stylesheet" title="style" media="all" type="text/css" >
 		<?php endif; ?>
 
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?v=1" rel="stylesheet" >
 	</head>
 
 	<body ng-app="TradingTrackerApp">
@@ -73,7 +74,7 @@
 
 					<div class="form-group col-6 col-md-3">
 						<label for="filters__pair-name">Pair</label>
-						<input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()">
+						<input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
 					</div>
 
 					<div class="form-group col-6 col-md-3">
@@ -103,17 +104,17 @@
 
 					<label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
 					<div class="form-group col-4 col-md-2">
-						<input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()">
+						<input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
 					</div>
 
 					<label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
 					<div class="form-group col-4 col-md-2">
-						<input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won">
+						<input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
 					</div>
 
 					<label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
 					<div class="form-group col-4 col-md-2">
-						<input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining">
+						<input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
 					</div>
 				</div>
 
@@ -212,17 +213,17 @@
 							<div class="modal-body">
 								<div class="form-group row col-12">
 									<label for="pairInput" class="col-md-6">Pair Name: </label>
-									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required ng-change="calculatePips()">
+									<input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required ng-change="calculatePips()" />
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="dateInput" class="col-6">Date Traded: </label>
-									<input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required>
+									<input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required />
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="lotInput" class="col-md-6">Lot Size: </label>
-									<input ng-model="selectedTrade.lot" type="number" id="lotInput" class="form-control col-md-6" placeholder="0.01" required step="any">
+									<input ng-model="selectedTrade.lot" type="number" id="lotInput" class="form-control col-md-6" placeholder="0.01" required step="any" />
 								</div>
 
 								<div class="form-group row col-12">
@@ -236,17 +237,17 @@
 
 								<div class="form-group row col-12">
 									<label for="entrypriceInput" class="col-md-6">Entry Price: </label>
-									<input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required ng-change="calculatePips()" step="any">
+									<input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required ng-change="calculatePips()" step="any" />
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="exitpriceInput" class="col-md-6">Exit Price: </label>
-									<input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required ng-change="calculatePips()" step="any">
+									<input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required ng-change="calculatePips()" step="any" />
 								</div>
 
 								<div class="form-group row col-12">
 									<label for="pipsInput" class="col-md-6">Pips: </label>
-									<input ng-model="selectedTrade.pips" type="number" id="pipsInput" class="form-control col-md-6" placeholder="0" readonly>
+									<input ng-model="selectedTrade.pips" type="number" id="pipsInput" class="form-control col-md-6" placeholder="0" readonly />
 								</div>
 
 								<div class="form-group row col-12">
