@@ -6,7 +6,7 @@
 
 		<?php
 		$appName = $pageTitle = "Trading Tracker";
-		$pageTitle = "Online Tool for the Forex Market | {$pageTitle}";
+		$pageTitle = "Online Tracking Tool for the Forex Market | {$pageTitle}";
 		$pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
 
 		$requestedRelativeURL = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "";
