@@ -6,8 +6,8 @@ Therefore I decided to build a quick small web app to track history of trades in
 
 #### This will track different information about the trades I enter:
 
-* Type of trade
-* Reason I entered
-* Result of trade
+-   Type of trade
+-   Reason I entered
+-   Result of trade
 
 As well as analysis of trades overall, by week, month, day etc.
