@@ -82,9 +82,11 @@ gulp.task("store-version", function() {
     // Try to get current branch name
     exec("git branch | grep \\* | cut -d ' ' -f2", function(branchNameErr, branchName, branchNameStderr) {
 
-        // If name found store in text file
-        // If current branch if master we used use tags (As most likely this is in production environment)
-        // Else it is one of dev branches so display branch name
+        /*
+         * If name found store in text file
+         * If current branch if master we used use tags (As most likely this is in production environment)
+         * Else it is one of dev branches so display branch name
+         */
         if (branchName && branchName !== "null" && branchName.trim() !== "master") {
             fs.writeFile(fileName, branchName.trim());
         }
