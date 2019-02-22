@@ -1,13 +1,13 @@
 .navbar {
-	display: block;
-	text-align: center;
+    display: block;
+    text-align: center;
 }
 
 .navbar-brand.navbar-brand {
-	margin-right: 0;
-	color: $primary-colour;
+    margin-right: 0;
+    color: $primary-colour;
 }
 
 .navbar-brand.navbar-brand:hover {
-	color: darken($primary-colour, 5%);
+    color: darken($primary-colour, 5%);
 }
