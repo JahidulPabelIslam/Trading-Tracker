@@ -16,7 +16,7 @@ var scripts = {
         "assets/js/third-party/popper.min.js",
         "assets/js/third-party/angular.min.js",
         "assets/js/third-party/decimal.min.js",
-        "assets/js/trading-tracker/stickyFooter.js",
+        "assets/js/trading-tracker/sticky-footer.js",
     ],
 };
 

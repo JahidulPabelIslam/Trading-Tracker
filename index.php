@@ -313,7 +313,7 @@
             <script src="/assets/js/third-party/popper.min.js?v=1" type="application/javascript"></script>
             <script src="/assets/js/third-party/angular.min.js?v=1" type="application/javascript"></script>
             <script src="/assets/js/third-party/decimal.min.js?v=1" type="application/javascript"></script>
-            <script src="/assets/js/trading-tracker/stickyFooter.js?v=1" type="application/javascript"></script>
+            <script src="/assets/js/trading-tracker/sticky-footer.js?v=1" type="application/javascript"></script>
             <?php
         }
         else {
