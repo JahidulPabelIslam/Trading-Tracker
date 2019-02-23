@@ -3,11 +3,3 @@
 @import "components/nav";
 @import "components/trades";
 @import "components/footer";
-
-.myriad-text {
-    color: $primary-colour;
-}
-
-.myriad-text:hover {
-    color: darken($primary-colour, 5%);
-}
