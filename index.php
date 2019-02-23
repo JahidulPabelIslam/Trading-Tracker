@@ -46,7 +46,7 @@
 
         <meta name="description" content="<?php echo $pageDesc; ?>" />
 
-        <meta property="og:locale" content="en_GB " />
+        <meta property="og:locale" content="en_GB" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="<?php echo $pageTitle; ?>" />
         <meta property="og:description" content="<?php echo $pageDesc; ?>" />
