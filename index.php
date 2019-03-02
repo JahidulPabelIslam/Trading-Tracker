@@ -9,8 +9,8 @@ include_once(rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/functions.php");
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <?php
-        $appName = $pageTitle = "Trading Tracker";
-        $pageTitle = "Online Tracking Tool for the Forex Market | {$pageTitle}";
+        $appName = "Trading Tracker";
+        $pageTitle = "{$appName} - Online Tracking Tool for the Forex Market";
         $pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
 
         $liveDomain = "https://tradingtracker.000webhostapp.com";
