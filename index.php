@@ -9,6 +9,8 @@ include_once(rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/functions.php");
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <?php
+        $isDebug = isset($_GET["debug"]) && !($_GET["debug"] === "false" || $_GET["debug"] === "0");
+
         $appName = "Trading Tracker";
         $pageTitle = "{$appName} - Online Tracking Tool for the Forex Market";
         $pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
@@ -94,7 +96,7 @@ include_once(rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/functions.php");
         <meta name="theme-color" content="#343a40" />
 
         <?php
-        if (isset($_GET["debug"])) {
+        if ($isDebug) {
             ?>
             <link href="<?php addVersion("/assets/css/third-party/bootstrap.min.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
             <link href="<?php addVersion("/assets/css/trading-tracker/style.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
@@ -339,7 +341,7 @@ include_once(rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/functions.php");
         </div>
 
         <?php
-        if (isset($_GET["debug"])) {
+        if ($isDebug) {
             ?>
             <script src="<?php addVersion("/assets/js/third-party/jquery-3.2.1.min.js"); ?>" type="application/javascript"></script>
             <script src="<?php addVersion("/assets/js/third-party/popper.min.js"); ?>" type="application/javascript"></script>
