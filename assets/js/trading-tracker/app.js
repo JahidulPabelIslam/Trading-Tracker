@@ -5,20 +5,8 @@
 
     app.controller("ctrl", function($scope, $filter) {
 
-        $scope.getDateOptions = function() {
-            var options = ["Today", "Yesterday", "This Week", "This Month", "This Year"];
-
-            var trades = $scope.trades;
-
-            for (var i = 0; i < trades.length; i++) {
-                var trade = trades[i];
-
-                if (!options.includes(trade.date)) {
-                    options.push(trade.date);
-                }
-            }
-
-            return options;
+        $scope.setPage = function(page) {
+            $scope.page = page;
         };
 
         $scope.setSortBy = function($sortType) {
@@ -32,20 +20,53 @@
             $scope.setPage(0);
         };
 
-        $scope.setPage = function(page) {
-            $scope.page = page;
-        };
+        $scope.getTrades = function() {
+            var trades = JSON.parse(localStorage.getItem("tradingtrackertrades"));
 
-        $scope.getPages = function() {
-            var total = $scope.filteredTrades.length;
-            var last = Math.ceil(total / $scope.limit);
-            var pages = [];
-
-            for (var i = 0; i < last; i++) {
-                pages.push(i);
+            if (!trades) {
+                trades = [];
             }
 
-            return pages;
+            return trades;
+        };
+
+        $scope.newTrade = function() {
+            $scope.selectedTrade = {};
+        };
+
+        $scope.saveTrades = function() {
+            localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
+            window.tt.stickyFooter.expandSection();
+            $scope.update();
+        };
+
+        $scope.saveTrade = function() {
+            $scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot);
+
+            if ($scope.selectedTrade.index !== undefined) {
+                $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
+            }
+            else {
+                $scope.trades.push($scope.selectedTrade);
+            }
+
+            jQuery("#trade-form-modal").modal("hide");
+            $scope.newTrade();
+            $scope.saveTrades();
+        };
+
+        $scope.deleteTrade = function(trade) {
+            var index = $scope.trades.indexOf(trade);
+            $scope.trades.splice(index, 1);
+            $scope.saveTrades();
+        };
+
+        $scope.selectTrade = function(trade) {
+            trade.date = new Date(trade.date);
+            trade.index = $scope.trades.indexOf(trade);
+            $scope.selectedTrade = trade;
+
+            jQuery("#trade-form-modal").modal("show");
         };
 
         $scope.dateFilter = function(trade) {
@@ -86,7 +107,7 @@
                     return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
                 }
                 else if ($scope.dateInput === "This Month") {
-                    //Get beginning of the month
+                    // Get beginning of the month
                     matchDate.setDate(1);
 
                     // Get last day of the month
@@ -142,6 +163,37 @@
             return pips;
         };
 
+        $scope.calculatePips = function() {
+            var entryprice = $scope.selectedTrade.entryprice = parseFloat($scope.selectedTrade.entryprice);
+
+            var exitprice = $scope.selectedTrade.exitprice = parseFloat($scope.selectedTrade.exitprice);
+
+            var pips = 0;
+            if ($scope.selectedTrade.type === "Buy") {
+                pips = new Decimal(exitprice).minus(entryprice);
+            }
+            else {
+                pips = new Decimal(entryprice).minus(exitprice);
+            }
+
+            pips = parseFloat(pips);
+
+            var name = $scope.selectedTrade.name.toLowerCase();
+
+            if (name.includes("jpy") || name.includes("xau")) {
+                pips = new Decimal(pips).dividedBy(0.01);
+            }
+            else {
+                pips = new Decimal(pips).dividedBy(0.0001);
+            }
+
+            pips = parseFloat(pips);
+
+            $scope.selectedTrade.pips = pips;
+
+            return pips;
+        };
+
         $scope.updatePipsCounterColours = function() {
             var pipsLeft = $scope.pipsLeft;
 
@@ -190,97 +242,45 @@
             return pipsLeft;
         };
 
-        $scope.getTrades = function() {
-            var trades = JSON.parse(localStorage.getItem("tradingtrackertrades"));
+        $scope.getDateOptions = function() {
+            var options = ["Today", "Yesterday", "This Week", "This Month", "This Year"];
 
-            if (!trades) {
-                trades = [];
+            var trades = $scope.trades;
+
+            for (var i = 0; i < trades.length; i++) {
+                var trade = trades[i];
+
+                if (!options.includes(trade.date)) {
+                    options.push(trade.date);
+                }
             }
 
-            return trades;
+            return options;
         };
 
-        $scope.newTrade = function() {
-            $scope.selectedTrade = {};
-        };
+        $scope.getPages = function() {
+            var total = $scope.filteredTrades.length;
+            var last = Math.ceil(total / $scope.limit);
+            var pages = [];
 
-        $scope.saveTrades = function() {
-            localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            window.tt.stickyFooter.expandSection();
-            $scope.update();
-        };
-
-        $scope.deleteTrade = function(trade) {
-            var index = $scope.trades.indexOf(trade);
-            $scope.trades.splice(index, 1);
-            $scope.saveTrades();
-        };
-
-        $scope.selectTrade = function(trade) {
-            $scope.selectedTrade = trade;
-            $scope.selectedTrade.date = new Date($scope.selectedTrade.date);
-            var index = $scope.trades.indexOf(trade);
-            $scope.selectedTrade.index = index;
-            jQuery("#trade-form-modal").modal("show");
-        };
-
-        $scope.calculatePips = function() {
-            var entryprice = $scope.selectedTrade.entryprice = parseFloat($scope.selectedTrade.entryprice, 10);
-
-            var exitprice = $scope.selectedTrade.exitprice = parseFloat($scope.selectedTrade.exitprice, 10);
-
-            var pips = 0;
-            if ($scope.selectedTrade.type === "Buy") {
-                pips = new Decimal(exitprice).minus(entryprice);
-            }
-            else {
-                pips = new Decimal(entryprice).minus(exitprice);
+            for (var i = 0; i < last; i++) {
+                pages.push(i);
             }
 
-            pips = parseFloat(pips, 10);
-
-            var name = $scope.selectedTrade.name.toLowerCase();
-
-            if (name.includes("jpy") || name.includes("xau")) {
-                pips = new Decimal(pips).dividedBy(0.01);
-            }
-            else {
-                pips = new Decimal(pips).dividedBy(0.0001);
-            }
-
-            pips = parseFloat(pips, 10);
-
-            $scope.selectedTrade.pips = pips;
-
-            return pips;
-        };
-
-        $scope.saveTrade = function() {
-            $scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot, 10);
-
-            if ($scope.selectedTrade.index !== undefined) {
-                $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
-            }
-            else {
-                $scope.trades.push($scope.selectedTrade);
-            }
-
-            jQuery("#trade-form-modal").modal("hide");
-            $scope.newTrade();
-            $scope.saveTrades();
+            return pages;
         };
 
         $scope.update = function() {
+            $scope.dateOptions = $scope.getDateOptions();
+
             $scope.filteredTrades = $scope.getFilteredTrades();
+
+            $scope.pages = $scope.getPages();
 
             $scope.totalPips = $scope.getTotalPips();
             $scope.pipsLeft = $scope.getPipsLeft();
 
             $scope.updatePipsCounterColours();
-
-            $scope.dateOptions = $scope.getDateOptions();
-
-            $scope.pages = $scope.getPages();
         };
 
         $scope.updateCounters = function() {
@@ -296,7 +296,10 @@
         $scope.page = 0;
 
         $scope.selectedTrade = {};
+
+        $scope.dateOptions = $scope.getDateOptions();
         $scope.dateInput = "";
+
         $scope.searchfilters = {
             name: "",
             type: "",
@@ -306,14 +309,12 @@
         $scope.trades = $scope.getTrades();
         $scope.filteredTrades = $scope.getFilteredTrades();
 
+        $scope.pages = $scope.getPages();
+
         $scope.pipsTarget = 0;
         $scope.totalPips = $scope.getTotalPips();
         $scope.pipsLeft = $scope.getPipsLeft();
         $scope.updatePipsCounterColours();
-
-        $scope.dateOptions = $scope.getDateOptions();
-
-        $scope.pages = $scope.getPages();
     });
 
 })(jQuery);
