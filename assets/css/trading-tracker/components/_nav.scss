@@ -3,11 +3,30 @@
     text-align: center;
 }
 
-.navbar-brand.navbar-brand {
-    margin-right: 0;
-    color: $primary-colour;
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+    opacity: 0.95%;
+    transition: opacity 0.3s ease-out;
 }
 
-.navbar-brand.navbar-brand:hover {
-    color: darken($primary-colour, 5%);
+.navbar-brand:hover {
+    opacity: 1%;
+}
+
+.navbar__logo {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.navbar__app-name {
+    display: none;
+}
+
+@media only screen and (min-width: $tablet-width) {
+    .navbar__app-name {
+        display: inline-block;
+        height: 30px;
+        vertical-align: middle;
+    }
 }

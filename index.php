@@ -9,19 +9,21 @@
         $pageTitle = "Online Tracking Tool for the Forex Market | {$pageTitle}";
         $pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
 
+        $liveDomain = "https://tradingtracker.000webhostapp.com";
+        $liveURL = rtrim($liveDomain, " /");
+
+        $protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
+        $localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /");
+
         $requestedRelativeURL = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "";
         $requestedRelativeURL = parse_url($requestedRelativeURL, PHP_URL_PATH);
         $requestedRelativeURL = trim($requestedRelativeURL, " /");
 
         if (!empty($requestedRelativeURL)) {
-            $requestedRelativeURL .= "/";
+            $requestedRelativeURL = "/$requestedRelativeURL/";
+            $liveURL .= $requestedRelativeURL;
+            $localURL .= $requestedRelativeURL;
         }
-
-        $liveDomain = "https://tradingtracker.000webhostapp.com/";
-        $liveURL = rtrim($liveDomain, " /") . "/" . $requestedRelativeURL;
-
-        $protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
-        $localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
 
         $isProduction = $liveURL === $localURL;
 
@@ -65,6 +67,33 @@
         ?>
 
         <?php
+        $faviconVersion = "?v=1";
+        ?>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png<?php echo $faviconVersion; ?>" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png<?php echo $faviconVersion; ?>" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png<?php echo $faviconVersion; ?>" />
+        <link rel="icon" type="image/png" sizes="194x194" href="/assets/favicons/favicon-194x194.png<?php echo $faviconVersion; ?>" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-chrome-192x192.png<?php echo $faviconVersion; ?>" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png<?php echo $faviconVersion; ?>" />
+        <link rel="manifest" href="/assets/favicons/site.webmanifest<?php echo $faviconVersion; ?>" />
+        <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg<?php echo $faviconVersion; ?>" color="#ffd700" />
+        <link rel="shortcut icon" href="favicon.ico<?php echo $faviconVersion; ?>" />
+        <meta name="apple-mobile-web-app-title" content="<?php echo $appName; ?>" />
+        <meta name="application-name" content="<?php echo $appName; ?>" />
+        <meta name="msapplication-TileColor" content="#ffd700" />
+        <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png<?php echo $faviconVersion; ?>" />
+        <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml<?php echo $faviconVersion; ?>" />
+        <meta name="theme-color" content="#343a40" />
+
+        <?php
         if (isset($_GET["debug"])) {
             ?>
             <link href="/assets/css/third-party/bootstrap.min.css?v=1" rel="stylesheet" title="style" media="all" type="text/css" />
@@ -85,7 +114,10 @@
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
             <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Trading Tracker</a>
+                <a class="navbar-brand" href="#">
+                    <img src="/assets/images/logo.png?v=1" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
+                    <img src="/assets/images/app-name.png?v=1" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
+                </a>
             </nav>
 
             <main role="main" class="container">
