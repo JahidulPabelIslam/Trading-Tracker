@@ -36,11 +36,7 @@ include_once(rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/functions.php");
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70803146-3"></script>
             <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag() {dataLayer.push(arguments);}
-                gtag("js", new Date());
-
-                gtag("config", "UA-70803146-3");
+                window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","UA-70803146-3");
             </script>
             <?php
         }
