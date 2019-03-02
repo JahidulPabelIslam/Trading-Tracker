@@ -85,7 +85,10 @@
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
             <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Trading Tracker</a>
+                <a class="navbar-brand" href="#">
+                    <img src="/assets/images/logo.png?v=1" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
+                    <img src="/assets/images/app-name.png?v=1" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
+                </a>
             </nav>
 
             <main role="main" class="container">
