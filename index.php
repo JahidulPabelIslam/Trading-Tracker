@@ -104,146 +104,149 @@ $app = App::get();
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
             <nav class="navbar navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="<?php $app->addVersion("/assets/images/logo.png"); ?>" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
-                    <img src="<?php $app->addVersion("/assets/images/app-name.png"); ?>" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
-                </a>
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="<?php $app->addVersion("/assets/images/logo.png"); ?>" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
+                        <img src="<?php $app->addVersion("/assets/images/app-name.png"); ?>" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
+                    </a>
+                </div>
             </nav>
 
-            <main role="main" class="container">
-
-                <div class="form-group add-trade-trigger-wrapper">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">
-                        Add a Trade
-                    </button>
-                </div>
-
-                <div class="row filters">
-
-                    <div class="form-group col-6 col-md-3">
-                        <label for="filters__pair-name">Pair</label>
-                        <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
+            <main role="main" class="main">
+                <div class="container">
+                    <div class="form-group add-trade-trigger-wrapper">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">
+                            Add a Trade
+                        </button>
                     </div>
 
-                    <div class="form-group col-6 col-md-3">
-                        <label for="filters__date">Date</label>
-                        <select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0); update();">
-                            <option value="" selected>Select Date</option>
-                            <option ng-repeat="x in dateOptions" value="{{ x }}">
-                                {{ x | date: "dd/MM/yyyy" }}
-                            </option>
-                        </select>
+                    <div class="row filters">
+
+                        <div class="form-group col-6 col-md-3">
+                            <label for="filters__pair-name">Pair</label>
+                            <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
+                        </div>
+
+                        <div class="form-group col-6 col-md-3">
+                            <label for="filters__date">Date</label>
+                            <select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0); update();">
+                                <option value="" selected>Select Date</option>
+                                <option ng-repeat="x in dateOptions" value="{{ x }}">
+                                    {{ x | date: "dd/MM/yyyy" }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6 col-md-3">
+                            <label for="filters__trade-type">Trade Type: </label>
+                            <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
+                                <option value="" selected>Select Trade Type</option>
+                                <option ng-repeat="x in types" value="{{ x }}">
+                                    {{ x }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6 col-md-3">
+
+                            <label for="filters__items-limit">Per Page: </label>
+                            <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group col-6 col-md-3">
-                        <label for="filters__trade-type">Trade Type: </label>
-                        <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
-                            <option value="" selected>Select Trade Type</option>
-                            <option ng-repeat="x in types" value="{{ x }}">
-                                {{ x }}
-                            </option>
-                        </select>
+                    <div class="row pips-count">
+
+                        <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
+                        </div>
+
+                        <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
+                        </div>
+
+                        <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
+                        </div>
                     </div>
 
-                    <div class="form-group col-6 col-md-3">
-
-                        <label for="filters__items-limit">Per Page: </label>
-                        <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row pips-count">
-
-                    <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
-                    <div class="form-group col-4 col-md-2">
-                        <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
-                    </div>
-
-                    <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
-                    <div class="form-group col-4 col-md-2">
-                        <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
-                    </div>
-
-                    <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
-                    <div class="form-group col-4 col-md-2">
-                        <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
-                    </div>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-striped table--trades">
-                        <thead ng-show="filteredTrades.length > 0">
-                            <tr>
-                                <th scope="col" class="sort-by" ng-click="setSortBy('name')">
-                                    Pair
-                                    <span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                    <div class="table-responsive">
+                        <table class="table table-striped table--trades">
+                            <thead ng-show="filteredTrades.length > 0">
+                                <tr>
+                                    <th scope="col" class="sort-by" ng-click="setSortBy('name')">
+                                        Pair
+                                        <span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
-                                </th>
-                                <th scope="col" class="sort-by" ng-click="setSortBy('date')">
-                                    Date
-                                    <span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                    </th>
+                                    <th scope="col" class="sort-by" ng-click="setSortBy('date')">
+                                        Date
+                                        <span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
-                                </th>
-                                <th scope="col" class="sort-by" ng-click="setSortBy('type')">
-                                    Type
-                                    <span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                    </th>
+                                    <th scope="col" class="sort-by" ng-click="setSortBy('type')">
+                                        Type
+                                        <span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
-                                </th>
-                                <th scope="col" class="sort-by" ng-click="setSortBy('pips')">
-                                    Pips
-                                    <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                    </th>
+                                    <th scope="col" class="sort-by" ng-click="setSortBy('pips')">
+                                        Pips
+                                        <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
-                                </th>
-                                <th scope="col" class="no-padding">-</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="trade in trades | orderBy : sortType : sortReverse | filter : searchfilters | filter : dateFilter | limitTo : limit : page track by $index " class="trades__trade">
-                                <td data-title="Pair">{{ trade.name }}</td>
-                                <td data-title="Date">{{ trade.date | date: "dd/MM/yyyy" }}</td>
-                                <td data-title="Type">{{ trade.type }}</td>
-                                <td data-title="Pips">{{ trade.pips }}</td>
-                                <td class="no-padding no-title">
-                                    <button type="button" class="btn btn-primary btn--view-trade" ng-click="selectTrade(trade)">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">
-                                        x
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr ng-if="filteredTrades.length == 0">
-                                <td class="no-trades" colspan="9">No Trades Found.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </th>
+                                    <th scope="col" class="no-padding">-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="trade in trades | orderBy : sortType : sortReverse | filter : searchfilters | filter : dateFilter | limitTo : limit : page track by $index " class="trades__trade">
+                                    <td data-title="Pair">{{ trade.name }}</td>
+                                    <td data-title="Date">{{ trade.date | date: "dd/MM/yyyy" }}</td>
+                                    <td data-title="Type">{{ trade.type }}</td>
+                                    <td data-title="Pips">{{ trade.pips }}</td>
+                                    <td class="no-padding no-title">
+                                        <button type="button" class="btn btn-primary btn--view-trade" ng-click="selectTrade(trade)">
+                                            View
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn--delete-trade" ng-click="deleteTrade(trade)">
+                                            x
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="filteredTrades.length == 0">
+                                    <td class="no-trades" colspan="9">No Trades Found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav aria-label="Trades list navigation" ng-show="filteredTrades.length > 0 && pages.length > 1">
+                        <ul class="pagination justify-content-end">
+
+                            <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
+                                <p class="page-link">First</p>
+                            </li>
+
+                            <li ng-show="page != 0" class="page-item" ng-click="setPage(page - 1)">
+                                <p class="page-link">Previous</p>
+                            </li>
+
+                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
+                                <p class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</p>
+                            </li>
+
+                            <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(page + 1)">
+                                <p class="page-link">Next</p>
+                            </li>
+
+                            <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(filteredTrades.length / limit - 1 | number : 0)">
+                                <p class="page-link">Last</p>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-
-                <nav aria-label="Trades list navigation" ng-show="filteredTrades.length > 0 && pages.length > 1">
-                    <ul class="pagination justify-content-end">
-
-                        <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
-                            <p class="page-link">First</p>
-                        </li>
-
-                        <li ng-show="page != 0" class="page-item" ng-click="setPage(page - 1)">
-                            <p class="page-link">Previous</p>
-                        </li>
-
-                        <li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
-                            <p class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</p>
-                        </li>
-
-                        <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(page + 1)">
-                            <p class="page-link">Next</p>
-                        </li>
-
-                        <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(filteredTrades.length / limit - 1 | number : 0)">
-                            <p class="page-link">Last</p>
-                        </li>
-                    </ul>
-                </nav>
             </main>
 
             <footer class="footer">
