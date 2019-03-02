@@ -5,11 +5,11 @@
 .navbar-brand {
   margin: 0;
   padding: 0;
-  opacity: 0.90;
+  opacity: 0.95%;
   transition: opacity 0.3s ease-out; }
 
 .navbar-brand:hover {
-  opacity: 1; }
+  opacity: 1%; }
 
 .navbar__logo {
   height: 40px;
