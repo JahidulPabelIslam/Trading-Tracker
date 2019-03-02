@@ -9,19 +9,21 @@
         $pageTitle = "Online Tracking Tool for the Forex Market | {$pageTitle}";
         $pageDesc = "A online tool to track any executed trades in the Forex market, to aid in future planning and/or execution of trades";
 
+        $liveDomain = "https://tradingtracker.000webhostapp.com";
+        $liveURL = rtrim($liveDomain, " /");
+
+        $protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
+        $localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /");
+
         $requestedRelativeURL = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "";
         $requestedRelativeURL = parse_url($requestedRelativeURL, PHP_URL_PATH);
         $requestedRelativeURL = trim($requestedRelativeURL, " /");
 
         if (!empty($requestedRelativeURL)) {
-            $requestedRelativeURL .= "/";
+            $requestedRelativeURL = "/$requestedRelativeURL/";
+            $liveURL .= $requestedRelativeURL;
+            $localURL .= $requestedRelativeURL;
         }
-
-        $liveDomain = "https://tradingtracker.000webhostapp.com/";
-        $liveURL = rtrim($liveDomain, " /") . "/" . $requestedRelativeURL;
-
-        $protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
-        $localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /") . "/" . $requestedRelativeURL;
 
         $isProduction = $liveURL === $localURL;
 
