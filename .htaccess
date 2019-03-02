@@ -4,6 +4,19 @@ IndexIgnore *
 
 DirectoryIndex index.php
 
+RewriteEngine On
+
+# Redirect all requests to main index page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ / [R=307,QSA,L]
+
+# Force trailing slash
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(.+)/$
+RewriteRule ^(.*)$ %{REQUEST_URI}/ [R=301,L]
+
 # Stop users from viewing these folders and files
 <Files /node_modules/>
     order allow,deny
