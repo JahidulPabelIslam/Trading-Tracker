@@ -5,7 +5,7 @@
     "private": true,
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/JahidulPabelIslam/Trading-Tracker.git"
+        "url": "git+https://github.com/jahidulpabelislam/trading-tracker.git"
     },
     "author": "Jahidul Pabel Islam <me@jahidulpabelislam.com>",
     "license": "ISC",
