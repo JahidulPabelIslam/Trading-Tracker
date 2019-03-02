@@ -1,0 +1,77 @@
+# Block user from viewing list of files in a directory
+Options -Indexes
+IndexIgnore *
+
+DirectoryIndex index.php
+
+# Stop users from viewing these folders and files
+<Files /node_modules/>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files .gitattributes>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files .gitignore>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files gulpfile.js>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files package.json>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files README.md>
+    order allow,deny
+    deny from all
+</Files>
+
+<Files robots.txt>
+    order allow,deny
+    deny from all
+</Files>
+
+<IfModule mod_headers.c>
+    # Cache specified file types for 31 days
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|css|svg|js)$">
+        Header set Cache-Control "max-age=2678400, public"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 seconds"
+    ExpiresByType image/gif "access plus 2678400 seconds"
+    ExpiresByType image/jpeg "access plus 2678400 seconds"
+    ExpiresByType image/png "access plus 2678400 seconds"
+    ExpiresByType image/svg+xml "access plus 2678400 seconds"
+    ExpiresByType text/css "access plus 2678400 seconds"
+    ExpiresByType text/javascript "access plus 2678400 seconds"
+    ExpiresByType application/json "access plus 2678400 seconds"
+    ExpiresByType application/javascript "access plus 2678400 seconds"
+    ExpiresByType text/plain "access plus 2678400 seconds"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml
+        AddOutputFilterByType DEFLATE text/css
+        AddOutputFilterByType DEFLATE application/javascript
+        AddOutputFilterByType DEFLATE application/rss+xml
+        AddOutputFilterByType DEFLATE application/xml
+    </IfModule>
+</IfModule>
