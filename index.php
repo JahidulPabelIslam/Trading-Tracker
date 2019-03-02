@@ -112,7 +112,7 @@ $app = App::get();
                 </div>
             </nav>
 
-            <main role="main" class="main">
+            <main role="main" class="main-content">
                 <div class="container">
                     <div class="form-group add-trade-trigger-wrapper">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">

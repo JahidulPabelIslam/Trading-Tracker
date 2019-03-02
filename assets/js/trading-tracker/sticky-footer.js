@@ -5,17 +5,21 @@ window.tt.stickyFooter = (function(jQuery) {
 
     // Expands height of section to create sticky footer
     var expandSection = function() {
+        var mainContent = jQuery(".main-content");
+
         // Makes section default height to work out if content is too small or big
-        jQuery("main").height("auto");
+        mainContent.height("auto");
 
         // Calculates the default height of the content
-        var height = jQuery("nav").outerHeight(true) + jQuery("main").outerHeight(true) + jQuery("footer").outerHeight(true);
+        var defaultHeight = jQuery(".navbar").outerHeight(true) + mainContent.outerHeight(true) + jQuery(".footer").outerHeight(true);
+
+        var windowHeight = jQuery(window).height();
 
         // Checks if default height of content is shorter than screen height
-        if (height < jQuery(window).height()) {
+        if (defaultHeight < windowHeight) {
 
             // Section is extended to fill the difference
-            jQuery("main").height(jQuery(window).height() - height + jQuery("main").height());
+            mainContent.height(windowHeight - defaultHeight + mainContent.height());
         }
     };
 
