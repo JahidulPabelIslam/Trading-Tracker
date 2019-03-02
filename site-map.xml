@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Link to the stylesheet -->
+<?xml-stylesheet type="text/xsl" href="/assets/site-map.xsl"?>
+<!-- The set of Pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- A Page -->
+    <url>
+        <!-- The URL of the page -->
+        <loc>https://tradingtracker.000webhostapp.com/</loc>
+        <!-- The last modification date of page -->
+        <lastmod>2019-03-10</lastmod>
+        <!-- How often the page is changed -->
+        <changefreq>yearly</changefreq>
+        <!-- How important the page is to the site -->
+        <priority>1.0</priority>
+    </url>
+</urlset>
