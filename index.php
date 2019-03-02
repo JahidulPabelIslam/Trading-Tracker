@@ -50,10 +50,14 @@
 
         <meta property="og:locale" content="en_GB" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="<?php echo $appName; ?>" />
         <meta property="og:title" content="<?php echo $pageTitle; ?>" />
         <meta property="og:description" content="<?php echo $pageDesc; ?>" />
         <meta property="og:url" content="<?php echo $localURL; ?>" />
-        <meta property="og:site_name" content="<?php echo $appName; ?>" />
+
+        <meta property="og:image" content="/assets/images/og-home-image.jpg?v=1" />
+        <meta property="og:image:width" content="1145" />
+        <meta property="og:image:height" content="599" />
 
         <meta name="twitter:title" content="<?php echo $pageTitle; ?>" />
 
