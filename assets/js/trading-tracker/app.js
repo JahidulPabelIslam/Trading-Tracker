@@ -271,8 +271,6 @@
         };
 
         $scope.update = function() {
-            $scope.dateOptions = $scope.getDateOptions();
-
             $scope.filteredTrades = $scope.getFilteredTrades();
 
             $scope.pages = $scope.getPages();
@@ -281,6 +279,8 @@
             $scope.pipsLeft = $scope.getPipsLeft();
 
             $scope.updatePipsCounterColours();
+
+            $scope.dateOptions = $scope.getDateOptions();
         };
 
         $scope.updateCounters = function() {
@@ -297,15 +297,6 @@
 
         $scope.selectedTrade = {};
 
-        $scope.dateOptions = $scope.getDateOptions();
-        $scope.dateInput = "";
-
-        $scope.searchfilters = {
-            name: "",
-            type: "",
-        };
-        $scope.types = ["Sell", "Buy"];
-
         $scope.trades = $scope.getTrades();
         $scope.filteredTrades = $scope.getFilteredTrades();
 
@@ -315,6 +306,15 @@
         $scope.totalPips = $scope.getTotalPips();
         $scope.pipsLeft = $scope.getPipsLeft();
         $scope.updatePipsCounterColours();
+
+        $scope.dateOptions = $scope.getDateOptions();
+        $scope.dateInput = "";
+
+        $scope.searchfilters = {
+            name: "",
+            type: "",
+        };
+        $scope.types = ["Sell", "Buy"];
     });
 
 })(jQuery);
