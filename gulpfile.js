@@ -122,4 +122,4 @@ gulp.task("store-version", function() {
     });
 });
 
-gulp.task("default", ["scripts", "styles"]);
+gulp.task("default", ["scripts", "styles", "store-version"]);
