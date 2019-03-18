@@ -1,4 +1,4 @@
-;(function(jQuery) {
+;(function(angular, jQuery, Decimal) {
     "use strict";
 
     var app = angular.module("TradingTrackerApp", []);
@@ -77,57 +77,55 @@
                 var tradeDate = new Date(trade.date);
                 tradeDate.setHours(0, 0, 0, 0);
 
+                if ($scope.dateInput === "This Week" || $scope.dateInput === "This Month" || $scope.dateInput === "This Year") {
+                    var firstDay = new Date();
+                    firstDay.setHours(0, 0, 0, 0);
+                    var lastDay = new Date(firstDay);
+
+                    if ($scope.dateInput === "This Week") {
+                        // Store mapping of how many days to take away from today to get beginning of the week
+                        var mapping = {
+                            0: 6,
+                            1: 0,
+                            2: 1,
+                            3: 2,
+                            4: 3,
+                            5: 4,
+                            6: 5,
+                        };
+                        firstDay.setDate(firstDay.getDate() - mapping[firstDay.getDay()]);
+
+                        lastDay = new Date(firstDay);
+                        lastDay.setDate(firstDay.getDate() + 6);
+                    }
+                    else if ($scope.dateInput === "This Month") {
+                        // Get beginning of the current month
+                        firstDay.setDate(1);
+
+                        // Get last day of the current month
+                        lastDay.setMonth(lastDay.getMonth() + 1);
+                        lastDay.setDate(lastDay.getDate() - 1);
+                    }
+                    else if ($scope.dateInput === "This Year") {
+                        // Get beginning of the first month of the year
+                        firstDay.setDate(1);
+                        firstDay.setMonth(1);
+
+                        // Get last day of the last month of the year
+                        lastDay.setMonth(12);
+                        lastDay.setDate(31);
+                    }
+
+                    return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
+                }
+
                 var matchDate = new Date();
                 matchDate.setHours(0, 0, 0, 0);
-
                 if ($scope.dateInput === "Today") {
                     // NOP
                 }
                 else if ($scope.dateInput === "Yesterday") {
                     matchDate.setDate(matchDate.getDate() - 1);
-                }
-                else if ($scope.dateInput === "This Week") {
-                    // Store mapping of how many days to take away from today to get beginning of the week
-                    var mapping = {
-                        0: 6,
-                        1: 0,
-                        2: 1,
-                        3: 2,
-                        4: 3,
-                        5: 4,
-                        6: 5,
-                    };
-
-                    var firstDay = new Date(matchDate);
-                    firstDay.setDate(matchDate.getDate() - mapping[matchDate.getDay()]);
-
-                    var lastDay = new Date(firstDay);
-                    lastDay.setDate(firstDay.getDate() + 6);
-
-                    return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
-                }
-                else if ($scope.dateInput === "This Month") {
-                    // Get beginning of the month
-                    matchDate.setDate(1);
-
-                    // Get last day of the month
-                    var lastDay = new Date(matchDate);
-                    lastDay.setMonth(lastDay.getMonth() + 1);
-                    lastDay.setDate(lastDay.getDate() - 1);
-
-                    return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
-                }
-                else if ($scope.dateInput === "This Year") {
-                    // Get beginning of the month
-                    matchDate.setDate(1);
-                    matchDate.setMonth(1);
-
-                    // Get last day of the month
-                    var lastDay = new Date(matchDate);
-                    lastDay.setMonth(12);
-                    lastDay.setDate(31);
-
-                    return (tradeDate.getTime() >= matchDate.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
                 }
                 // This leaves an actual date option left
                 else {
@@ -203,25 +201,24 @@
             percent = parseFloat(percent);
             percent *= 100;
 
-            var classes = "";
-
+            var classes = "form-control ";
             if (percent >= 50) {
-                classes = "form-control way-off-target";
+                classes += "way-off-target";
             }
             else if (percent >= 25) {
-                classes = "form-control off-target";
+                classes += "off-target";
             }
             else if (percent > 0) {
-                classes = "form-control close-to-target";
+                classes += "close-to-target";
             }
             else if (percent === 0) {
-                classes = "form-control on-target";
+                classes += "on-target";
             }
             else if (percent > -50) {
-                classes = "form-control above-target";
+                classes += "above-target";
             }
             else {
-                classes = "form-control beyond-target";
+                classes += "beyond-target";
             }
 
             jQuery("#pips-count__remaining, #pips-count__won").removeClass().addClass(classes);
@@ -230,11 +227,16 @@
         $scope.getPipsLeft = function() {
             var totalGained = $scope.totalPips;
 
-            if (!$scope.pipsTarget || $scope.pipsTarget < 0) {
-                $scope.pipsTarget = 0;
+            var pipsTarget = parseFloat($scope.pipsTarget);
+            if (!pipsTarget || pipsTarget < 0) {
+                if (isNaN(pipsTarget) && $scope.pipsTarget !== null) {
+                    $scope.pipsTarget = 0;
+                }
+
+                pipsTarget = 0;
             }
 
-            var pipsLeft = new Decimal($scope.pipsTarget).minus(totalGained);
+            var pipsLeft = new Decimal(pipsTarget).minus(totalGained);
             pipsLeft = parseFloat(pipsLeft);
 
             $scope.pipsLeft = pipsLeft;
@@ -317,4 +319,4 @@
         $scope.types = ["Sell", "Buy"];
     });
 
-})(jQuery);
+}(angular, jQuery, Decimal));
