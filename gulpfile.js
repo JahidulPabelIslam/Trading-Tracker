@@ -1,16 +1,18 @@
-var gulp = require("gulp");
+const gulp = require("gulp");
 
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
-var minifyCss = require("gulp-minify-css");
-var autoprefixer = require("gulp-autoprefixer");
-var sass = require("gulp-sass");
+const concat = require("gulp-concat");
+const uglify = require("gulp-uglify");
+const minifyCss = require("gulp-minify-css");
+const autoprefixer = require("gulp-autoprefixer");
+const sass = require("gulp-sass");
 
-var fs = require("fs");
-var exec = require("child_process").exec;
+const fs = require("fs");
+const exec = require("child_process").exec;
+
+let defaultTasks = [];
 
 // Concatenate & Minify JS
-var scripts = {
+const scripts = {
     main: [
         "assets/js/third-party/jquery-3.2.1.min.js",
         "assets/js/third-party/popper.min.js",
@@ -20,10 +22,10 @@ var scripts = {
     ],
 };
 
-var scriptsTasks = [];
-var scriptNames = Object.keys(scripts);
+let scriptsTasks = [];
+const scriptNames = Object.keys(scripts);
 scriptNames.forEach(function(key) {
-    var scriptTask = "scripts-" + key;
+    const scriptTask = "scripts-" + key;
     scriptsTasks.push(scriptTask);
     gulp.task(scriptTask, function() {
         return gulp.src(scripts[key])
@@ -33,19 +35,20 @@ scriptNames.forEach(function(key) {
     });
 });
 gulp.task("scripts", scriptsTasks);
+defaultTasks.push("scripts");
 
 // Minify Stylesheets
-var stylesheets = {
+const stylesheets = {
     main: [
         "assets/css/third-party/bootstrap.min.css",
         "assets/css/trading-tracker/style.css",
     ],
 };
 
-var stylesheetTasks = [];
-var stylesheetNames = Object.keys(stylesheets);
+let stylesheetTasks = [];
+const stylesheetNames = Object.keys(stylesheets);
 stylesheetNames.forEach(function(key) {
-    var stylesheetTask = "styles-" + key;
+    const stylesheetTask = "styles-" + key;
     stylesheetTasks.push(stylesheetTask);
     gulp.task(stylesheetTask, function() {
         return gulp.src(stylesheets[key])
@@ -65,6 +68,7 @@ stylesheetNames.forEach(function(key) {
     });
 });
 gulp.task("styles", stylesheetTasks);
+defaultTasks.push("styles");
 
 gulp.task("sass", function() {
     return gulp.src("assets/css/trading-tracker/style.scss")
@@ -76,59 +80,58 @@ gulp.task("watch", function() {
     gulp.watch("assets/css/trading-tracker/**/*.scss", ["sass"]);
 });
 
-gulp.task("store-version", function() {
-    var githubBaseUrl = "https://github.com/jahidulpabelislam/trading-tracker/";
-    var fileName = "assets/version.txt";
-    var versionText = "";
+const errorCallback = function(err) {
+    if (err) {
+        console.log(err);
+    }
+};
 
-    var errorCallback = function(err) {
-        if (err) {
-            console.log(err);
+const runCommand = function(command, callback) {
+    exec(command, function(err, res, stdErr) {
+        // If found store in text file
+        if (res && res.trim() !== "null") {
+            callback(res.trim());
+            return;
         }
-    };
+        // Else log any errors
+        console.log(err, res, stdErr);
+        callback(null);
+    });
+};
+
+defaultTasks.push("store-version");
+gulp.task("store-version", function() {
+    const githubBaseUrl = "https://github.com/jahidulpabelislam/trading-tracker/";
+    const fileName = "assets/version.txt";
+    let versionText = "";
 
     // Try to get current branch name
-    exec("git branch | grep \\* | cut -d ' ' -f2", function(branchNameErr, branchName, branchNameStderr) {
+    runCommand("git branch | grep \\* | cut -d ' ' -f2", function(branchName) {
         /*
          * If name found store in text file
          * If current branch if master we used use tags (As most likely this is in production environment)
          * Else it is one of dev branches so display branch name
          */
-        if (branchName && branchName !== "null" && branchName.trim() !== "master") {
-            branchName = branchName.trim();
+        if (branchName && branchName !== "master") {
             versionText = `<a href="${githubBaseUrl}tree/${branchName}/" class="" target="_blank">${branchName}</a>`;
             fs.writeFile(fileName, versionText, errorCallback);
         }
         else {
-            // Else just log errors & try to store latest tag name string in text file
-            console.log(branchNameErr);
-            console.log(branchName);
-            console.log(branchNameStderr);
-
             // Try and get the latest tag on current branch
-            exec("git describe --abbrev=0 --tags\n", function(tagNameErr, tagName, tagNameStderr) {
+            runCommand("git describe --abbrev=0 --tags", function(tagName) {
                 // If found store in text file
-                if (tagName && tagName !== "null") {
-                    tagName = tagName.trim();
+                if (tagName) {
                     versionText = `<a href="${githubBaseUrl}releases/tag/${tagName}/" class="" target="_blank">${tagName}</a>`;
                 }
-                else {
-                    // Else log any errors
-                    console.log(tagNameErr);
-                    console.log(tagName);
-                    console.log(tagNameStderr);
-
-                    // Else drop back to branch name if exists else remove version value from file
-                    if (branchName && branchName !== "null") {
-                        branchName = branchName.trim();
-                        versionText = `<a href="${githubBaseUrl}tree/${branchName}/" class="link-styled" target="_blank">${branchName}</a>`;
-                    }
+                // Else drop back to branch name if exists else remove version value from file
+                else if (branchName) {
+                    versionText = `<a href="${githubBaseUrl}tree/${branchName}/" class="link-styled" target="_blank">${branchName}</a>`;
                 }
+
+                fs.writeFile(fileName, versionText, errorCallback);
             });
         }
-
-        fs.writeFile(fileName, versionText, errorCallback);
     });
 });
 
-gulp.task("default", ["scripts", "styles", "store-version"]);
+gulp.task("default", defaultTasks);
