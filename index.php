@@ -223,27 +223,26 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <nav aria-label="Trades list navigation" ng-show="filteredTrades.length > 0 && pages.length > 1">
+                    <nav aria-label="Trades list navigation">
                         <ul class="pagination justify-content-end">
-
-                            <li ng-show="page != 0" class="page-item" ng-click="setPage(0)">
-                                <p class="page-link">First</p>
+                            <li class="page-item">
+                                <button class="page-link" ng-disabled="page < 1" ng-click="setPage(0)">First</button>
                             </li>
 
-                            <li ng-show="page != 0" class="page-item" ng-click="setPage(page - 1)">
-                                <p class="page-link">Previous</p>
+                            <li class="page-item">
+                                <button class="page-link" ng-disabled="page < 1" ng-click="setPage(page - 1)">Previous</button>
                             </li>
 
-                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''" ng-click="setPage(pageNum)">
-                                <p class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</p>
+                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''">
+                                <button class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</button>
                             </li>
 
-                            <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(page + 1)">
-                                <p class="page-link">Next</p>
+                            <li class="page-item">
+                                <button class="page-link" ng-disabled="page == pages[pages.length - 1]" ng-click="setPage(page + 1)">Next</button>
                             </li>
 
-                            <li class="page-item" ng-show="page < (filteredTrades.length / limit - 1)" ng-click="setPage(filteredTrades.length / limit - 1 | number : 0)">
-                                <p class="page-link">Last</p>
+                            <li class="page-item">
+                                <button class="page-link" ng-disabled="page == pages[pages.length - 1]" ng-click="setPage(pages[pages.length - 1])">Last</button>
                             </li>
                         </ul>
                     </nav>
