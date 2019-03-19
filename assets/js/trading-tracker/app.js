@@ -53,6 +53,8 @@
                 $scope.trades.push($scope.selectedTrade);
             }
 
+            $scope.selectedTrade.date = $scope.selectedTrade.dateObj.toISOString();
+
             jQuery("#trade-form-modal").modal("hide");
             $scope.newTrade();
             $scope.saveTrades();
@@ -65,7 +67,7 @@
         };
 
         $scope.selectTrade = function(trade) {
-            trade.date = new Date(trade.date);
+            trade.dateObj = new Date(trade.date);
             trade.index = $scope.trades.indexOf(trade);
             $scope.selectedTrade = trade;
 

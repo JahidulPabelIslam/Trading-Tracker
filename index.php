@@ -284,7 +284,7 @@ $app = App::get();
 
                                 <div class="form-group row col-12">
                                     <label for="dateInput" class="col-6">Date Traded: </label>
-                                    <input ng-model="selectedTrade.date" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required />
+                                    <input ng-model="selectedTrade.dateObj" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required />
                                 </div>
 
                                 <div class="form-group row col-12">
