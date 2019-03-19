@@ -34,7 +34,7 @@
         };
 
         $scope.newTrade = function() {
-            $scope.selectedTrade = {};
+            $scope.selectedTrade = {new: false};
         };
 
         $scope.saveTrades = function() {
@@ -44,16 +44,18 @@
         };
 
         $scope.saveTrade = function() {
-            $scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot);
+            var isUpdateTrade = $scope.selectedTrade.isOld;
 
-            if ($scope.selectedTrade.index !== undefined) {
-                $scope.trades[$scope.selectedTrade.index] = $scope.selectedTrade;
-            }
-            else {
+            $scope.selectedTrade.lot = parseFloat($scope.selectedTrade.lot);
+            $scope.selectedTrade.date = $scope.selectedTrade.dateObj.toISOString();
+
+            delete $scope.selectedTrade.index;
+            delete $scope.selectedTrade.isOld;
+            delete $scope.selectedTrade.dateObj;
+
+            if (!isUpdateTrade) {
                 $scope.trades.push($scope.selectedTrade);
             }
-
-            $scope.selectedTrade.date = $scope.selectedTrade.dateObj.toISOString();
 
             jQuery("#trade-form-modal").modal("hide");
             $scope.newTrade();
@@ -67,9 +69,9 @@
         };
 
         $scope.selectTrade = function(trade) {
-            trade.dateObj = new Date(trade.date);
-            trade.index = $scope.trades.indexOf(trade);
             $scope.selectedTrade = trade;
+            $scope.selectedTrade.isOld = true;
+            $scope.selectedTrade.dateObj = new Date(trade.date);
 
             jQuery("#trade-form-modal").modal("show");
         };
@@ -308,7 +310,7 @@
         $scope.limit = 10;
         $scope.page = 0;
 
-        $scope.selectedTrade = {};
+        $scope.selectedTrade = {isOld: false};
 
         $scope.trades = $scope.getTrades();
         $scope.filteredTrades = $scope.getFilteredTrades();

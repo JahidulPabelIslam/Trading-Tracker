@@ -271,7 +271,7 @@ $app = App::get();
                     <div class="modal-content">
                         <form ng-submit="saveTrade()">
                             <div class="modal-header">
-                                <h5 class="modal-title">{{ selectedTrade.index != undefined ? "Update" : "Add" }} Trade</h5>
+                                <h5 class="modal-title">{{ selectedTrade.isOld ? "Update" : "Add" }} Trade</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -323,7 +323,7 @@ $app = App::get();
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">
-                                    {{ selectedTrade.index != undefined ? "Update" : "Add" }}
+                                    {{ selectedTrade.isOld ? "Update" : "Add" }}
                                 </button>
                             </div>
                         </form>
