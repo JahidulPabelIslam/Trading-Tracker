@@ -1,0 +1,26 @@
+.page-link,
+.page-link:disabled,
+.page-link:disabled:hover {
+    color: #373737;
+    text-decoration: none;
+    background: #ffffff;
+    border-color: #dee2e6;
+    font-weight: 700;
+}
+
+.page-item.active .page-link {
+    color: #ffffff;
+    background: $primary-colour;
+    border-color: darken($primary-colour, 0.1);
+}
+
+.page-link:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.page-link:not(disabled):hover {
+    color: #1e1e1e;
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
