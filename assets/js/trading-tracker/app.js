@@ -23,7 +23,10 @@
         $scope.getTrades = function() {
             var trades = JSON.parse(localStorage.getItem("tradingtrackertrades"));
 
-            if (!trades) {
+            if (trades) {
+                trades = $scope.sortTrades(trades);
+            }
+            else {
                 trades = [];
             }
 
@@ -137,9 +140,15 @@
             }
         };
 
+        $scope.sortTrades = function(trades) {
+            trades = $filter("orderBy")(trades, $scope.sortType, $scope.sortReverse);
+            return trades;
+        };
+
         $scope.getFilteredTrades = function() {
             var trades = $filter("filter")($scope.trades, $scope.searchfilters);
             trades = $filter("filter")(trades, $scope.dateFilter);
+            trades = $scope.sortTrades(trades);
 
             $scope.filteredTrades = trades;
             return trades;
