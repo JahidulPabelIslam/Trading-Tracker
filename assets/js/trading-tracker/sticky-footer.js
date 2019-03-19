@@ -29,4 +29,4 @@ window.tt.stickyFooter = (function(jQuery) {
         expandSection: expandSection,
     };
 
-})(jQuery);
+}(jQuery));
