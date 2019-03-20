@@ -1,6 +1,5 @@
 <?php
-$serverData = $_SERVER;
-include_once(rtrim($serverData["DOCUMENT_ROOT"], "/") . "/App.php");
+include_once rtrim($_SERVER["DOCUMENT_ROOT"], "/") . "/App.php";
 $app = App::get();
 ?>
 
@@ -255,7 +254,7 @@ $app = App::get();
             <footer class="footer">
                 <div class="container">
                     <?php
-                    $version = file_get_contents($serverData['DOCUMENT_ROOT'] . '/assets/version.txt');
+                    $version = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/assets/version.txt');
 
                     $origTimeZone = date_default_timezone_get();
                     if (!empty($version)) {

@@ -8,19 +8,9 @@ class App {
 
     private static $instance = null;
 
-    private $getData = "";
-    private $postData = "";
-    private $serverData = "";
-
     private $liveURL = "";
     private $localURL = "";
     private $requestRelativeURL = "";
-
-    public function __construct() {
-        $this->getData = $_GET ?? [];
-        $this->postData = $_POST ?? [];
-        $this->serverData = $_SERVER ?? [];
-    }
 
     public static function get() {
         if (self::$instance === null) {
@@ -32,7 +22,7 @@ class App {
 
     public function getRequestRelativeURL() {
         if (empty($this->requestRelativeURL)) {
-            $requestedRelativeURL = isset($this->serverData["REQUEST_URI"]) ? $this->serverData["REQUEST_URI"] : "";
+            $requestedRelativeURL = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "";
             $requestedRelativeURL = parse_url($requestedRelativeURL, PHP_URL_PATH);
             $requestedRelativeURL = trim($requestedRelativeURL, " /");
 
@@ -62,9 +52,9 @@ class App {
     public function getLocalURL() {
         if (empty($this->localURL)) {
 
-            $protocol = (!empty($this->serverData["HTTPS"]) && $this->serverData["HTTPS"] != "off") ? "https" : "http";
+            $protocol = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") ? "https" : "http";
 
-            $localURL = "{$protocol}://" . rtrim($this->serverData["SERVER_NAME"], " /");
+            $localURL = "{$protocol}://" . rtrim($_SERVER["SERVER_NAME"], " /");
 
             $localURL .= $this->getRequestRelativeURL();
             $this->localURL = $localURL;
@@ -75,7 +65,7 @@ class App {
 
     public function addVersion($src, $ver = false) {
         if (!$ver) {
-            $root = rtrim($this->serverData["DOCUMENT_ROOT"], "/");
+            $root = rtrim($_SERVER["DOCUMENT_ROOT"], "/");
             $file = $root . "/" . ltrim($src, "/");
 
             if (file_exists($file)) {
@@ -89,7 +79,7 @@ class App {
     }
 
     public function isDebug() {
-        $isDebug = isset($this->getData["debug"]) && !($this->getData["debug"] === "false" || $this->getData["debug"] === "0");
+        $isDebug = isset($_GET["debug"]) && !($_GET["debug"] === "false" || $_GET["debug"] === "0");
 
         return $isDebug;
     }
