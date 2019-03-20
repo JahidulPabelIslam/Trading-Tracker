@@ -1,5 +1,8 @@
+.main-content {
+  margin-top: 56px;
+  padding: 25px 0; }
+
 .navbar-brand {
-  margin: 0 auto;
   padding: 0;
   opacity: 0.95;
   transition: opacity 0.3s ease-out; }

@@ -104,23 +104,23 @@ $app = App::get();
 
     <body ng-app="TradingTrackerApp">
         <div ng-controller="ctrl">
-            <nav class="navbar navbar-dark bg-dark">
+            <nav class="navbar navbar-dark bg-dark fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="<?php $app->addVersion("/assets/images/logo.png"); ?>" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
                         <img src="<?php $app->addVersion("/assets/images/app-name.png"); ?>" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
                     </a>
+
+                    <div>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">
+                            Add a Trade
+                        </button>
+                    </div>
                 </div>
             </nav>
 
             <main role="main" class="main-content">
                 <div class="container">
-                    <div class="form-group add-trade-trigger-wrapper">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#trade-form-modal" ng-click="newTrade()">
-                            Add a Trade
-                        </button>
-                    </div>
-
                     <div class="row pips-count">
                         <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target:</label>
                         <div class="form-group col-4 col-md-2">
