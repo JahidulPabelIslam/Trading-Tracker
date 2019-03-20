@@ -151,6 +151,12 @@
 .footer p {
   margin: 4px; }
 
+.pagination-container {
+  text-align: right; }
+
+.pagination {
+  justify-content: flex-end; }
+
 .page-link,
 .page-link:disabled,
 .page-link:disabled:hover {
@@ -173,3 +179,12 @@
   color: #1e1e1e;
   background: #e9ecef;
   border-color: #dee2e6; }
+
+.trades-counters__value {
+  font-weight: 700; }
+
+@media only screen and (min-width: 768px) {
+  .pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; } }

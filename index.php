@@ -223,8 +223,14 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <nav aria-label="Trades list navigation">
-                        <ul class="pagination justify-content-end">
+                    <nav aria-label="Trades list navigation" class="pagination-container">
+                        <p class="trades__counters">
+                            Showing <span class="trades-counters__value">{{ limit * page + 1 }}</span>
+                            - <span class="trades-counters__value">{{ (page < (filteredTrades.length / limit - 1)) ? limit * (page + 1) : filteredTrades.length }}</span>
+                            of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
+                        </p>
+
+                        <ul class="pagination">
                             <li class="page-item">
                                 <button class="page-link" ng-disabled="page < 1" ng-click="setPage(0)">First</button>
                             </li>
