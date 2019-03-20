@@ -121,15 +121,31 @@ $app = App::get();
                         </button>
                     </div>
 
-                    <div class="row filters">
+                    <div class="row pips-count">
+                        <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target:</label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
+                        </div>
 
+                        <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won:</label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
+                        </div>
+
+                        <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left:</label>
+                        <div class="form-group col-4 col-md-2">
+                            <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
+                        </div>
+                    </div>
+
+                    <div class="row filters">
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__pair-name">Pair</label>
+                            <label for="filters__pair-name">Pair:</label>
                             <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__date">Date</label>
+                            <label for="filters__date">Date:</label>
                             <select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Date</option>
                                 <option ng-repeat="x in dateOptions" value="{{ x }}">
@@ -139,7 +155,7 @@ $app = App::get();
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__trade-type">Trade Type: </label>
+                            <label for="filters__trade-type">Trade Type:</label>
                             <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="x in types" value="{{ x }}">
@@ -149,28 +165,9 @@ $app = App::get();
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-
-                            <label for="filters__items-limit">Per Page: </label>
+                            <label for="filters__items-limit">Per Page:</label>
                             <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
                             </select>
-                        </div>
-                    </div>
-
-                    <div class="row pips-count">
-
-                        <label class="form-group col-2 col-md-2" for="pips-count__target">Pips Target: </label>
-                        <div class="form-group col-4 col-md-2">
-                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
-                        </div>
-
-                        <label class="form-group col-2 col-md-2" for="pips-count__won">Pips Won: </label>
-                        <div class="form-group col-4 col-md-2">
-                            <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
-                        </div>
-
-                        <label class="form-group col-2 col-md-2" for="pips-count__remaining">Pips Left: </label>
-                        <div class="form-group col-4 col-md-2">
-                            <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
                         </div>
                     </div>
 
