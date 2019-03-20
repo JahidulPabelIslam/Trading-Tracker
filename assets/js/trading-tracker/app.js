@@ -306,8 +306,8 @@
         $scope.sortType = "date";
         $scope.sortReverse = true;
 
-        $scope.limitOptions = [5, 10, 15, 25, 50, 100];
-        $scope.limit = 10;
+        $scope.limitOptions = [10, 30, 50, 100];
+        $scope.limit = 30;
         $scope.page = 0;
 
         $scope.selectedTrade = {isOld: false};
