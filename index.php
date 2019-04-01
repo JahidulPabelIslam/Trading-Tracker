@@ -198,7 +198,7 @@ $app = App::get();
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trade in getFilteredTrades() | limitTo : limit : (page * limit) track by $index " class="trades__trade">
+                                <tr ng-repeat="trade in filteredTrades | limitTo : limit : (page * limit) track by $index " class="trades__trade">
                                     <td data-title="Pair">{{ trade.name }}</td>
                                     <td data-title="Date">{{ trade.date | date: "dd/MM/yyyy" }}</td>
                                     <td data-title="Type">{{ trade.type }}</td>
