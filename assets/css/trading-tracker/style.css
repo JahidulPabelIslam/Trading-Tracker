@@ -63,7 +63,11 @@
 
 .pips-count {
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  margin: 0 auto; }
+
+.pips-count .form-group {
+  padding: 0 2px; }
 
 .beyond-target,
 .beyond-target:focus,
@@ -191,3 +195,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between; } }
+
+.form-control {
+  padding: 6px 4px;
+  text-align: center; }
