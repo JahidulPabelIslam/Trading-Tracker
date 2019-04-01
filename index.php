@@ -135,6 +135,11 @@ $app = App::get();
                         <div class="form-group col-3 col-md-2">
                             <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
                         </div>
+
+                        <label class="form-group col-3 col-md-2" for="pips-count__win-loss">Win Ratio:</label>
+                        <div class="form-group col-3 col-md-2">
+                            <input ng-value="winToLoss" readonly class="form-control" id="pips-count__win-loss" />
+                        </div>
                     </div>
 
                     <div class="row filters">

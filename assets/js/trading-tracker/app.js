@@ -257,6 +257,31 @@
             return pipsLeft;
         };
 
+        $scope.getWinToLoss = function() {
+            var trades = $scope.filteredTrades;
+            var numOfTrades = trades.length;
+            if (!numOfTrades) {
+                return "N/A";
+            }
+
+            var wins = 0;
+
+            for (var i = 0; i < numOfTrades; i++) {
+                var trade = trades[i];
+
+                if (trade.pips > 0) {
+                    wins++;
+                }
+            }
+
+            wins = new Decimal(wins);
+
+            var winPercentage = (wins.dividedBy(numOfTrades)).times(100);
+            winPercentage = winPercentage.toFixed(2);
+
+            return winPercentage + "%";
+        };
+
         $scope.getDateOptions = function() {
             var options = ["Today", "Yesterday", "This Week", "This Month", "This Year"];
 
@@ -296,6 +321,8 @@
             $scope.updatePipsCounterColours();
 
             $scope.dateOptions = $scope.getDateOptions();
+
+            $scope.winToLoss = $scope.getWinToLoss();
         };
 
         $scope.updateCounters = function() {
@@ -321,6 +348,8 @@
         $scope.totalPips = $scope.getTotalPips();
         $scope.pipsLeft = $scope.getPipsLeft();
         $scope.updatePipsCounterColours();
+
+        $scope.winToLoss = $scope.getWinToLoss();
 
         $scope.dateOptions = $scope.getDateOptions();
         $scope.dateInput = "";
