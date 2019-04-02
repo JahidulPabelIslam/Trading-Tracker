@@ -42,27 +42,29 @@
     cursor: pointer;
 }
 
-.pips-count label {
-    font-weight: 700;
-}
-
-.pips-count {
+.counters {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
 
-.pips-count .form-group {
+.counters label {
+    font-weight: 700;
+    text-align: right;
+    padding-right: 0;
+}
+
+.counters .form-group {
     padding: 0 2px;
 }
 
-.pips-count .form-control {
+.counters .form-control {
     text-align: center;
 }
 
-.pips-count__won,
-.pips-count__remaining,
-.pips-count__win-loss {
+.counters__pips-won,
+.counters__pips-remaining,
+.counters__win-loss {
     transition: background-color 0.3s ease-in;
     background: #cdcdcd;
 }
@@ -114,11 +116,6 @@
     font-weight: 700;
 }
 
-.pips-count label {
-    text-align: right;
-    padding-right: 0;
-}
-
 .no-trades.no-trades {
     text-align: center;
 }
@@ -157,7 +154,7 @@
         font-weight: bold;
     }
 
-    .table--trades td.no-title:before,
+    .table--trades .no-title:before,
     .table--trades .no-trades:before {
         content: none;
     }

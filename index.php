@@ -122,57 +122,57 @@ $app = App::get();
 
             <main role="main" class="main-content">
                 <div class="container">
-                    <div class="row pips-count">
-                        <label class="label form-group col-3 col-md-2" for="pips-count__target">Pips Target:</label>
+                    <div class="row counters">
+                        <label class="label form-group col-3 col-md-2" for="counters__pips-target">Pips Target:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control pips-count__target" id="pips-count__target" ng-change="updateCounters()" />
+                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters()" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="pips-count__won">Pips Won:</label>
+                        <label class="label form-group col-3 col-md-2" for="counters__pips-won">Pips Won:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="totalPips" readonly class="form-control pips-count__won" id="pips-count__won" />
+                            <input ng-value="totalPips" readonly class="form-control counters__pips-won" id="counters__pips-won" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="pips-count__remaining">Pips Left:</label>
+                        <label class="label form-group col-3 col-md-2" for="counters__pips-remaining">Pips Left:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="pipsLeft" readonly class="form-control pips-count__remaining" id="pips-count__remaining" />
+                            <input ng-value="pipsRemaining" readonly class="form-control counters__pips-remaining" id="counters__pips-remaining" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="pips-count__win-loss">Win Ratio:</label>
+                        <label class="label form-group col-3 col-md-2" for="counters__win-loss">Win Ratio:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="winToLoss" readonly class="form-control pips-count__win-loss" id="pips-count__win-loss" />
+                            <input ng-value="winToLoss" readonly class="form-control counters__win-loss" id="counters__win-loss" />
                         </div>
                     </div>
 
                     <div class="row filters">
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__pair-name">Pair:</label>
-                            <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
+                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
                         </div>
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__date">Date:</label>
-                            <select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0); update();">
+                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Date</option>
-                                <option ng-repeat="x in dateOptions" value="{{ x }}">
-                                    {{ x | date: "dd/MM/yyyy" }}
+                                <option ng-repeat="dateFilterOption in dateFilterOptions" value="{{ dateFilterOption }}">
+                                    {{ dateFilterOption | date: "dd/MM/yyyy" }}
                                 </option>
                             </select>
                         </div>
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__trade-type">Trade Type:</label>
-                            <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
+                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Trade Type</option>
-                                <option ng-repeat="x in types" value="{{ x }}">
-                                    {{ x }}
+                                <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">
+                                    {{ tradeType }}
                                 </option>
                             </select>
                         </div>
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__items-limit">Per Page:</label>
-                            <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
+                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
                             </select>
                         </div>
                     </div>
@@ -183,29 +183,29 @@ $app = App::get();
                                 <tr>
                                     <th scope="col" class="sort-by" ng-click="setSortBy('name')">
                                         Pair
-                                        <span ng-show="sortType == 'name'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                        <span ng-show="sortBy == 'name'" class="fa order-by" ng-class="isSortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
                                     </th>
                                     <th scope="col" class="sort-by" ng-click="setSortBy('date')">
                                         Date
-                                        <span ng-show="sortType == 'date'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                        <span ng-show="sortBy == 'date'" class="fa order-by" ng-class="isSortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
                                     </th>
                                     <th scope="col" class="sort-by" ng-click="setSortBy('type')">
                                         Type
-                                        <span ng-show="sortType == 'type'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                        <span ng-show="sortBy == 'type'" class="fa order-by" ng-class="isSortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
                                     </th>
                                     <th scope="col" class="sort-by" ng-click="setSortBy('pips')">
                                         Pips
-                                        <span ng-show="sortType == 'pips'" class="fa order-by" ng-class="sortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
+                                        <span ng-show="sortBy == 'pips'" class="fa order-by" ng-class="isSortReverse == true ? 'fa-caret-up' : 'fa-caret-down'">
                                     </span>
                                     </th>
                                     <th scope="col" class="no-padding">-</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trade in filteredTrades | limitTo : limit : (page * limit) track by $index " class="trades__trade">
+                                <tr ng-repeat="trade in filteredTrades | limitTo : limitTo : (currentPage * limitTo) track by $index " class="trades__trade">
                                     <td data-title="Pair">{{ trade.name }}</td>
                                     <td data-title="Date">{{ trade.date | date: "dd/MM/yyyy" }}</td>
                                     <td data-title="Type">{{ trade.type }}</td>
@@ -228,30 +228,30 @@ $app = App::get();
 
                     <nav aria-label="Trades list navigation" class="pagination-container">
                         <p class="trades__counters">
-                            Showing <span class="trades-counters__value">{{ limit * page + 1 }}</span>
-                            - <span class="trades-counters__value">{{ (page < (filteredTrades.length / limit - 1)) ? limit * (page + 1) : filteredTrades.length }}</span>
+                            Showing <span class="trades-counters__value">{{ limitTo * currentPage + 1 }}</span>
+                            - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo - 1)) ? limitTo * (currentPage + 1) : filteredTrades.length }}</span>
                             of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
                         </p>
 
                         <ul class="pagination">
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="page < 1" ng-click="setPage(0)">First</button>
+                                <button class="page-link" ng-disabled="currentPage < 1" ng-click="setPage(0)">First</button>
                             </li>
 
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="page < 1" ng-click="setPage(page - 1)">Previous</button>
+                                <button class="page-link" ng-disabled="currentPage < 1" ng-click="setPage(currentPage - 1)">Previous</button>
                             </li>
 
-                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="page == pageNum ? 'active' : ''">
+                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="currentPage == pageNum ? 'active' : ''">
                                 <button class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</button>
                             </li>
 
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="page == pages[pages.length - 1]" ng-click="setPage(page + 1)">Next</button>
+                                <button class="page-link" ng-disabled="currentPage == pages[pages.length - 1]" ng-click="setPage(currentPage + 1)">Next</button>
                             </li>
 
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="page == pages[pages.length - 1]" ng-click="setPage(pages[pages.length - 1])">Last</button>
+                                <button class="page-link" ng-disabled="currentPage == pages[pages.length - 1]" ng-click="setPage(pages[pages.length - 1])">Last</button>
                             </li>
                         </ul>
                     </nav>
@@ -291,8 +291,8 @@ $app = App::get();
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="dateInput" class="label col-6">Date Traded: </label>
-                                    <input ng-model="selectedTrade.dateObj" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required />
+                                    <label for="dateFilterInput" class="label col-6">Date Traded: </label>
+                                    <input ng-model="selectedTrade.dateObj" type="date" id="dateFilterInput" class="form-control col-md-6" placeholder="18/02/18" required />
                                 </div>
 
                                 <div class="form-group row col-12">
@@ -304,7 +304,7 @@ $app = App::get();
                                     <label for="typeInput" class="label col-md-6">Trade Type</label>
                                     <select ng-model="selectedTrade.type" id="typeInput" class="form-control col-md-6" required ng-change="calculatePips()">
                                         <option value="" selected>Select Trade Type</option>
-                                        <option ng-repeat="x in types" value="{{ x }}">{{ x }}</option>
+                                        <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">{{ tradeType }}</option>
                                     </select>
                                 </div>
 
