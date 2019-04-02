@@ -6,6 +6,8 @@ class App {
 
     const APP_NAME = "Trading Tracker";
 
+    const DEFAULT_ASSET_VERSION = "1";
+
     private static $instance = null;
 
     private $liveURL = "";
@@ -68,13 +70,12 @@ class App {
             $root = rtrim($_SERVER["DOCUMENT_ROOT"], "/");
             $file = $root . "/" . ltrim($src, "/");
 
+            $ver = self::DEFAULT_ASSET_VERSION;
             if (file_exists($file)) {
                 $ver = date("mdYHi", filemtime($file));
             }
-            else {
-                $ver = "1";
-            }
         }
+
         echo "{$src}?v={$ver}";
     }
 
