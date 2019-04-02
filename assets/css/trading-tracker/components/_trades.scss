@@ -64,6 +64,7 @@
 .pips-count__remaining,
 .pips-count__win-loss {
     transition: background-color 0.3s ease-in;
+    background: #cdcdcd;
 }
 
 .beyond-target,
@@ -80,7 +81,7 @@
 }
 
 .beyond-target.beyond-target {
-    background: #54a754;
+    background: #4f9d4f;
 }
 
 .above-target.above-target {
@@ -88,7 +89,7 @@
 }
 
 .on-target.on-target {
-    background: gray;
+    background: #55c82d;
 }
 
 .close-to-target.close-to-target {
