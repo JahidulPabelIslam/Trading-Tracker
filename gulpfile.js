@@ -7,7 +7,8 @@ const autoprefixer = require("gulp-autoprefixer");
 const sass = require("gulp-sass");
 
 const fs = require("fs");
-const exec = require("child_process").exec;
+
+const { exec } = require("child_process");
 
 let defaultTasks = [];
 
@@ -34,7 +35,7 @@ scriptNames.forEach(function(key) {
                    .pipe(gulp.dest("assets/js/"));
     });
 });
-gulp.task("scripts", scriptsTasks);
+gulp.task("scripts", gulp.parallel(scriptsTasks));
 defaultTasks.push("scripts");
 
 // Minify Stylesheets
@@ -67,7 +68,7 @@ stylesheetNames.forEach(function(key) {
                    .pipe(gulp.dest("assets/css/"));
     });
 });
-gulp.task("styles", stylesheetTasks);
+gulp.task("styles", gulp.parallel(stylesheetTasks));
 defaultTasks.push("styles");
 
 gulp.task("sass", function() {
@@ -87,7 +88,7 @@ const errorCallback = function(err) {
 };
 
 const runCommand = function(command, callback) {
-    exec(command, function(err, res, stdErr) {
+    return exec(command, function(err, res, stdErr) {
         // If found store in text file
         if (res && res.trim() !== "null") {
             callback(res.trim());
@@ -106,32 +107,32 @@ gulp.task("store-version", function() {
     let versionText = "";
 
     // Try to get current branch name
-    runCommand("git branch | grep \\* | cut -d ' ' -f2", function(branchName) {
+    return runCommand("git branch | grep \\* | cut -d ' ' -f2", function(branchName) {
         /*
          * If name found store in text file
          * If current branch if master we used use tags (As most likely this is in production environment)
          * Else it is one of dev branches so display branch name
          */
         if (branchName && branchName !== "master") {
-            versionText = `<a href="${githubBaseUrl}tree/${branchName}/" class="" target="_blank">${branchName}</a>`;
+            versionText = `<a href="${githubBaseUrl}tree/${branchName}/" target="_blank">${branchName}</a>`;
             fs.writeFile(fileName, versionText, errorCallback);
+            return;
         }
-        else {
-            // Try and get the latest tag on current branch
-            runCommand("git describe --abbrev=0 --tags", function(tagName) {
-                // If found store in text file
-                if (tagName) {
-                    versionText = `<a href="${githubBaseUrl}releases/tag/${tagName}/" class="" target="_blank">${tagName}</a>`;
-                }
-                // Else drop back to branch name if exists else remove version value from file
-                else if (branchName) {
-                    versionText = `<a href="${githubBaseUrl}tree/${branchName}/" class="" target="_blank">${branchName}</a>`;
-                }
 
-                fs.writeFile(fileName, versionText, errorCallback);
-            });
-        }
+        // Try and get the latest tag on current branch
+        return runCommand("git describe --abbrev=0 --tags", function(tagName) {
+            // If found store in text file
+            if (tagName) {
+                versionText = `<a href="${githubBaseUrl}releases/tag/${tagName}/" target="_blank">${tagName}</a>`;
+            }
+            // Else drop back to branch name if exists else remove version value from file
+            else if (branchName) {
+                versionText = `<a href="${githubBaseUrl}tree/${branchName}/" target="_blank">${branchName}</a>`;
+            }
+
+            fs.writeFile(fileName, versionText, errorCallback);
+        });
     });
 });
 
-gulp.task("default", defaultTasks);
+gulp.task("default", gulp.parallel(defaultTasks));
