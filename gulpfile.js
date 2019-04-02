@@ -2,7 +2,7 @@ const gulp = require("gulp");
 
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify");
-const minifyCss = require("gulp-minify-css");
+const cleanCSS  = require("gulp-clean-css");
 const autoprefixer = require("gulp-autoprefixer");
 const sass = require("gulp-sass");
 
@@ -61,7 +61,7 @@ stylesheetNames.forEach(function(key) {
                        })
                    )
                    .pipe(
-                       minifyCss({
+                       cleanCSS({
                            compatibility: "ie8",
                        })
                    )
@@ -78,7 +78,7 @@ gulp.task("sass", function() {
 });
 // Watch Files For Changes
 gulp.task("watch", function() {
-    gulp.watch("assets/css/trading-tracker/**/*.scss", ["sass"]);
+    gulp.watch("assets/css/trading-tracker/**/*.scss", gulp.parallel(["sass"]));
 });
 
 const errorCallback = function(err) {
