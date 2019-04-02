@@ -5,6 +5,36 @@
 
     app.controller("ctrl", function($scope, $filter) {
 
+        var fn = {
+
+            addColourClassByPercentage: function(percentage, selectors) {
+                var classesToAdd = "";
+                if (percentage > 150) {
+                    classesToAdd = "beyond-target";
+                }
+                else if (percentage > 100) {
+                    classesToAdd = "above-target";
+                }
+                else if (percentage === 100) {
+                    classesToAdd = "on-target";
+                }
+                else if (percentage > 80) {
+                    classesToAdd = "close-to-target";
+                }
+                else if (percentage > 50) {
+                    classesToAdd = "off-target";
+                }
+                else {
+                    classesToAdd = "way-off-target";
+                }
+
+                var classesToRemove = "way-off-target off-target close-to-target on-target above-target beyond-target";
+
+                jQuery(selectors).removeClass(classesToRemove).addClass(classesToAdd);
+            },
+
+        };
+
         $scope.setPage = function(page) {
             $scope.page = page;
         };
@@ -160,11 +190,11 @@
 
         $scope.getTotalPips = function() {
             var trades = $scope.filteredTrades;
-            var pips = 0;
+            var pips = new Decimal(0);
 
             for (var i = 0; i < trades.length; i++) {
                 var trade = trades[i];
-                pips = new Decimal(pips).add(trade.pips);
+                pips = pips.add(trade.pips);
             }
 
             pips = parseFloat(pips);
@@ -205,48 +235,30 @@
             return pips;
         };
 
+        $scope.getPipsTarget = function() {
+            var pipsTarget = parseFloat($scope.pipsTarget);
+            if (!pipsTarget || pipsTarget < 0) {
+                pipsTarget = 0;
+            }
+
+            return pipsTarget;
+        };
+
         $scope.updatePipsCounterColours = function() {
-            var pipsLeft = $scope.pipsLeft;
-
-            var totalGained = $scope.totalPips;
-
-            var percent = new Decimal(pipsLeft).dividedBy(totalGained);
-            percent = parseFloat(percent);
-            percent *= 100;
-
-            var classes = "form-control ";
-            if (percent >= 50) {
-                classes += "way-off-target";
-            }
-            else if (percent >= 25) {
-                classes += "off-target";
-            }
-            else if (percent > 0) {
-                classes += "close-to-target";
-            }
-            else if (percent === 0) {
-                classes += "on-target";
-            }
-            else if (percent > -50) {
-                classes += "above-target";
-            }
-            else {
-                classes += "beyond-target";
-            }
-
-            jQuery("#pips-count__remaining, #pips-count__won").removeClass().addClass(classes);
+            var percentage = new Decimal($scope.totalPips).dividedBy($scope.getPipsTarget()).times(100);
+            fn.addColourClassByPercentage(
+                percentage,
+                ".pips-count__won, .pips-count__remaining"
+            );
         };
 
         $scope.getPipsLeft = function() {
             var totalGained = $scope.totalPips;
 
-            var pipsTarget = parseFloat($scope.pipsTarget);
-            if (!pipsTarget || pipsTarget < 0) {
-                if (isNaN(pipsTarget) && $scope.pipsTarget !== null) {
-                    $scope.pipsTarget = 0;
-                }
+            var pipsTarget = $scope.getPipsTarget();
 
-                pipsTarget = 0;
+            if ($scope.pipsTarget !== null) {
+                $scope.pipsTarget = 0;
             }
 
             var pipsLeft = new Decimal(pipsTarget).minus(totalGained);
@@ -278,6 +290,8 @@
 
             var winPercentage = (wins.dividedBy(numOfTrades)).times(100);
             winPercentage = winPercentage.toFixed(2);
+
+            fn.addColourClassByPercentage(winPercentage, ".pips-count__win-loss");
 
             return winPercentage + "%";
         };

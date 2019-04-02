@@ -125,22 +125,22 @@ $app = App::get();
                     <div class="row pips-count">
                         <label class="label form-group col-3 col-md-2" for="pips-count__target">Pips Target:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
+                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control pips-count__target" id="pips-count__target" ng-change="updateCounters()" />
                         </div>
 
                         <label class="label form-group col-3 col-md-2" for="pips-count__won">Pips Won:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
+                            <input ng-value="totalPips" readonly class="form-control pips-count__won" id="pips-count__won" />
                         </div>
 
                         <label class="label form-group col-3 col-md-2" for="pips-count__remaining">Pips Left:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
+                            <input ng-value="pipsLeft" readonly class="form-control pips-count__remaining" id="pips-count__remaining" />
                         </div>
 
                         <label class="label form-group col-3 col-md-2" for="pips-count__win-loss">Win Ratio:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-value="winToLoss" readonly class="form-control" id="pips-count__win-loss" />
+                            <input ng-value="winToLoss" readonly class="form-control pips-count__win-loss" id="pips-count__win-loss" />
                         </div>
                     </div>
 
