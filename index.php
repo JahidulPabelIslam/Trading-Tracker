@@ -83,6 +83,8 @@ $app = App::get();
         <meta name="msapplication-config" content="<?php $app->addVersion("/assets/favicons/browserconfig.xml"); ?>" />
         <meta name="theme-color" content="#343a40" />
 
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans|Roboto+Slab" rel="stylesheet">
+
         <?php
         if ($isDebug) {
             ?>
@@ -121,22 +123,22 @@ $app = App::get();
             <main role="main" class="main-content">
                 <div class="container">
                     <div class="row pips-count">
-                        <label class="form-group col-3 col-md-2" for="pips-count__target">Pips Target:</label>
+                        <label class="label form-group col-3 col-md-2" for="pips-count__target">Pips Target:</label>
                         <div class="form-group col-3 col-md-1">
                             <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control" id="pips-count__target" ng-change="updateCounters()" />
                         </div>
 
-                        <label class="form-group col-3 col-md-2" for="pips-count__won">Pips Won:</label>
+                        <label class="label form-group col-3 col-md-2" for="pips-count__won">Pips Won:</label>
                         <div class="form-group col-3 col-md-1">
                             <input ng-value="totalPips" type="number" readonly class="form-control" id="pips-count__won" />
                         </div>
 
-                        <label class="form-group col-3 col-md-2" for="pips-count__remaining">Pips Left:</label>
+                        <label class="label form-group col-3 col-md-2" for="pips-count__remaining">Pips Left:</label>
                         <div class="form-group col-3 col-md-1">
                             <input ng-value="pipsLeft" type="number" readonly class="form-control" id="pips-count__remaining" />
                         </div>
 
-                        <label class="form-group col-3 col-md-2" for="pips-count__win-loss">Win Ratio:</label>
+                        <label class="label form-group col-3 col-md-2" for="pips-count__win-loss">Win Ratio:</label>
                         <div class="form-group col-3 col-md-1">
                             <input ng-value="winToLoss" readonly class="form-control" id="pips-count__win-loss" />
                         </div>
@@ -144,12 +146,12 @@ $app = App::get();
 
                     <div class="row filters">
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__pair-name">Pair:</label>
+                            <label class="label" for="filters__pair-name">Pair:</label>
                             <input ng-model="searchfilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__date">Date:</label>
+                            <label class="label" for="filters__date">Date:</label>
                             <select class="form-control" ng-model="dateInput" id="filters__date" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Date</option>
                                 <option ng-repeat="x in dateOptions" value="{{ x }}">
@@ -159,7 +161,7 @@ $app = App::get();
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__trade-type">Trade Type:</label>
+                            <label class="label" for="filters__trade-type">Trade Type:</label>
                             <select class="form-control" ng-model="searchfilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="x in types" value="{{ x }}">
@@ -169,7 +171,7 @@ $app = App::get();
                         </div>
 
                         <div class="form-group col-6 col-md-3">
-                            <label for="filters__items-limit">Per Page:</label>
+                            <label class="label" for="filters__items-limit">Per Page:</label>
                             <select ng-model="limit" ng-options="x for x in limitOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
                             </select>
                         </div>
@@ -284,22 +286,22 @@ $app = App::get();
                             </div>
                             <div class="modal-body">
                                 <div class="form-group row col-12">
-                                    <label for="pairInput" class="col-md-6">Pair Name: </label>
+                                    <label for="pairInput" class="label col-md-6">Pair Name: </label>
                                     <input ng-model="selectedTrade.name" type="text" id="pairInput" class="form-control col-md-6" placeholder="EURUSD" required ng-change="calculatePips()" />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="dateInput" class="col-6">Date Traded: </label>
+                                    <label for="dateInput" class="label col-6">Date Traded: </label>
                                     <input ng-model="selectedTrade.dateObj" type="date" id="dateInput" class="form-control col-md-6" placeholder="18/02/18" required />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="lotInput" class="col-md-6">Lot Size: </label>
+                                    <label for="lotInput" class="label col-md-6">Lot Size: </label>
                                     <input ng-model="selectedTrade.lot" type="number" id="lotInput" class="form-control col-md-6" placeholder="0.01" required step="any" />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="typeInput" class="col-md-6">Trade Type</label>
+                                    <label for="typeInput" class="label col-md-6">Trade Type</label>
                                     <select ng-model="selectedTrade.type" id="typeInput" class="form-control col-md-6" required ng-change="calculatePips()">
                                         <option value="" selected>Select Trade Type</option>
                                         <option ng-repeat="x in types" value="{{ x }}">{{ x }}</option>
@@ -307,22 +309,22 @@ $app = App::get();
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="entrypriceInput" class="col-md-6">Entry Price: </label>
+                                    <label for="entrypriceInput" class="label col-md-6">Entry Price: </label>
                                     <input ng-model="selectedTrade.entryprice" type="number" id="entrypriceInput" class="form-control col-md-6" placeholder="1.1234" required ng-change="calculatePips()" step="any" />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="exitpriceInput" class="col-md-6">Exit Price: </label>
+                                    <label for="exitpriceInput" class="label col-md-6">Exit Price: </label>
                                     <input ng-model="selectedTrade.exitprice" type="number" id="exitpriceInput" class="form-control col-md-6" placeholder="1.4321" required ng-change="calculatePips()" step="any" />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="pipsInput" class="col-md-6">Pips: </label>
+                                    <label for="pipsInput" class="label col-md-6">Pips: </label>
                                     <input ng-model="selectedTrade.pips" type="number" id="pipsInput" class="form-control col-md-6" placeholder="0" readonly />
                                 </div>
 
                                 <div class="form-group row col-12">
-                                    <label for="notesInput">Note(s): </label>
+                                    <label for="notesInput" class="label">Note(s): </label>
                                     <textarea ng-model="selectedTrade.notes" id="notesInput" class="form-control" placeholder="Saw a down trend on 2hr and ..." rows="6">
                                     </textarea>
                                 </div>

@@ -1,6 +1,20 @@
+body {
+  color: #333;
+  font-family: 'PT Sans', sans-serif; }
+
 .main-content {
   margin-top: 56px;
   padding: 25px 0; }
+
+.form-control {
+  padding: 6px 4px;
+  color: #455A64; }
+
+.form-control::placeholder {
+  color: #cdcdcd; }
+
+.label {
+  font-family: 'Roboto Slab', serif; }
 
 .navbar-brand {
   padding: 0;
@@ -22,6 +36,53 @@
     display: inline-block;
     height: 30px;
     vertical-align: middle; } }
+
+.footer {
+  text-align: center;
+  background-color: #f5f5f5;
+  color: #6c757d;
+  padding: 4px; }
+
+.footer p {
+  margin: 4px; }
+
+.pagination-container {
+  text-align: right; }
+
+.pagination {
+  justify-content: flex-end; }
+
+.page-link,
+.page-link:disabled,
+.page-link:disabled:hover {
+  color: #373737;
+  text-decoration: none;
+  background: #ffffff;
+  border-color: #dee2e6;
+  font-weight: 700; }
+
+.page-item.active .page-link {
+  color: #ffffff;
+  background: #ffd700;
+  border-color: #fed700; }
+
+.page-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.8; }
+
+.page-link:not(disabled):hover {
+  color: #1e1e1e;
+  background: #e9ecef;
+  border-color: #dee2e6; }
+
+.trades-counters__value {
+  font-weight: 700; }
+
+@media only screen and (min-width: 768px) {
+  .pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; } }
 
 .table--trades {
   border: 1px solid #262626; }
@@ -140,7 +201,6 @@
     padding: 4px 10px; }
   .table--trades td:before {
     content: attr(data-title) ": ";
-    margin-right: 8px;
     font-weight: bold; }
   .table--trades td.no-title:before,
   .table--trades .no-trades:before {
@@ -151,53 +211,3 @@
     width: 100%; }
   .table--trades .no-padding {
     padding: 4px 0; } }
-
-.footer {
-  text-align: center;
-  background-color: #f5f5f5;
-  color: #6c757d;
-  padding: 4px; }
-
-.footer p {
-  margin: 4px; }
-
-.pagination-container {
-  text-align: right; }
-
-.pagination {
-  justify-content: flex-end; }
-
-.page-link,
-.page-link:disabled,
-.page-link:disabled:hover {
-  color: #373737;
-  text-decoration: none;
-  background: #ffffff;
-  border-color: #dee2e6;
-  font-weight: 700; }
-
-.page-item.active .page-link {
-  color: #ffffff;
-  background: #ffd700;
-  border-color: #fed700; }
-
-.page-link:disabled {
-  cursor: not-allowed;
-  opacity: 0.8; }
-
-.page-link:not(disabled):hover {
-  color: #1e1e1e;
-  background: #e9ecef;
-  border-color: #dee2e6; }
-
-.trades-counters__value {
-  font-weight: 700; }
-
-@media only screen and (min-width: 768px) {
-  .pagination-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; } }
-
-.form-control {
-  padding: 6px 4px; }

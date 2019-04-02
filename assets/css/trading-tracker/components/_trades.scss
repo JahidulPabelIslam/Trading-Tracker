@@ -147,7 +147,6 @@
 
     .table--trades td:before {
         content: attr(data-title) ": ";
-        margin-right: 8px;
         font-weight: bold;
     }
 

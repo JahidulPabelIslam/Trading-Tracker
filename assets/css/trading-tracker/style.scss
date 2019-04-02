@@ -1,9 +1,10 @@
 @import "tools/variables";
 
+@import "base/global";
 @import "base/layout";
 
+@import "components/forms";
 @import "components/nav";
-@import "components/trades";
 @import "components/footer";
 @import "components/pagination";
-@import "components/inputs";
+@import "components/trades";
