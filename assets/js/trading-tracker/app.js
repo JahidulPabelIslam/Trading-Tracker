@@ -15,7 +15,7 @@
                 else if (percentage > 100) {
                     classesToAdd = "above-target";
                 }
-                else if (percentage === 100) {
+                else if (percentage == 100) {
                     classesToAdd = "on-target";
                 }
                 else if (percentage > 80) {
@@ -217,15 +217,13 @@
                 pips = new Decimal(entryprice).minus(exitprice);
             }
 
-            pips = parseFloat(pips);
-
             var name = $scope.selectedTrade.name.toLowerCase();
 
             if (name.includes("jpy") || name.includes("xau")) {
-                pips = new Decimal(pips).dividedBy(0.01);
+                pips = pips.dividedBy(0.01);
             }
             else {
-                pips = new Decimal(pips).dividedBy(0.0001);
+                pips = pips.dividedBy(0.0001);
             }
 
             pips = parseFloat(pips);
@@ -238,6 +236,10 @@
         $scope.getPipsTarget = function() {
             var pipsTarget = parseFloat($scope.pipsTarget);
             if (!pipsTarget || pipsTarget < 0) {
+                if (isNaN(pipsTarget) && $scope.pipsTarget !== null) {
+                    $scope.pipsTarget = 0;
+                }
+
                 pipsTarget = 0;
             }
 
@@ -256,10 +258,6 @@
             var totalGained = $scope.totalPips;
 
             var pipsTarget = $scope.getPipsTarget();
-
-            if ($scope.pipsTarget !== null) {
-                $scope.pipsTarget = 0;
-            }
 
             var pipsLeft = new Decimal(pipsTarget).minus(totalGained);
             pipsLeft = parseFloat(pipsLeft);
