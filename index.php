@@ -243,7 +243,7 @@ $app = App::get();
                             </li>
 
                             <li ng-repeat="pageNum in [].constructor(lastPageNum) track by $index" class="page-item" ng-class="currentPage == ($index + 1) ? 'active' : ''">
-                                <button class="page-link" ng-click="setPage($index + 1)">{{ $index + 1 }}</button>
+                                <button class="page-link" ng-disabled="currentPage == ($index + 1)" ng-click="setPage($index + 1)">{{ $index + 1 }}</button>
                             </li>
 
                             <li class="page-item">
