@@ -1,4 +1,4 @@
-;(function(angular, jQuery, Decimal) {
+;(function(angular, jQuery, Decimal, tradingTracker) {
     "use strict";
 
     var app = angular.module("TradingTrackerApp", []);
@@ -66,7 +66,7 @@
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            tt.stickyFooter.expandSection();
+            tradingTracker.stickyFooter.expandSection();
             $scope.update();
         };
 
@@ -358,4 +358,4 @@
         $scope.tradeTypes = ["Sell", "Buy"];
     });
 
-}(angular, jQuery, Decimal));
+}(angular, jQuery, Decimal, tradingTracker));
