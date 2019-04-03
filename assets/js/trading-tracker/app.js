@@ -39,12 +39,12 @@
             $scope.currentPage = newPageNum;
         };
 
-        $scope.setSortBy = function($sortBy) {
-            if ($sortBy === $scope.sortBy) {
+        $scope.setSortBy = function(sortBy) {
+            if (sortBy === $scope.sortBy) {
                 $scope.isSortReverse = !$scope.isSortReverse;
             }
             else {
-                $scope.sortBy = $sortBy;
+                $scope.sortBy = sortBy;
             }
 
             $scope.setPage(1);
@@ -54,13 +54,10 @@
             var trades = JSON.parse(localStorage.getItem("tradingtrackertrades"));
 
             if (trades) {
-                trades = $scope.sortTrades(trades);
-            }
-            else {
-                trades = [];
+                return $scope.sortTrades(trades);
             }
 
-            return trades;
+            return [];
         };
 
         $scope.newTrade = function() {
@@ -69,7 +66,7 @@
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            window.tt.stickyFooter.expandSection();
+            tt.stickyFooter.expandSection();
             $scope.update();
         };
 
@@ -107,19 +104,20 @@
         };
 
         $scope.dateFilter = function(trade) {
-            if ($scope.dateFilterInput === "" || !$scope.dateFilterInput) {
+            var dateFilterValue = $scope.dateFilterInput;
+            if (dateFilterValue === "" || !dateFilterValue) {
                 return true;
             }
             else {
                 var tradeDate = new Date(trade.date);
                 tradeDate.setHours(0, 0, 0, 0);
 
-                if ($scope.dateFilterInput === "This Week" || $scope.dateFilterInput === "This Month" || $scope.dateFilterInput === "This Year") {
+                if (dateFilterValue === "This Week" || dateFilterValue === "This Month" || dateFilterValue === "This Year") {
                     var firstDay = new Date();
                     firstDay.setHours(0, 0, 0, 0);
                     var lastDay = new Date(firstDay);
 
-                    if ($scope.dateFilterInput === "This Week") {
+                    if (dateFilterValue === "This Week") {
                         // Store mapping of how many days to take away from today to get beginning of the week
                         var mapping = {
                             0: 6,
@@ -135,7 +133,7 @@
                         lastDay = new Date(firstDay);
                         lastDay.setDate(firstDay.getDate() + 6);
                     }
-                    else if ($scope.dateFilterInput === "This Month") {
+                    else if (dateFilterValue === "This Month") {
                         // Get beginning of the current month
                         firstDay.setDate(1);
 
@@ -143,7 +141,7 @@
                         lastDay.setMonth(lastDay.getMonth() + 1);
                         lastDay.setDate(lastDay.getDate() - 1);
                     }
-                    else if ($scope.dateFilterInput === "This Year") {
+                    else if (dateFilterValue === "This Year") {
                         // Get beginning of the first month of the year
                         firstDay.setDate(1);
                         firstDay.setMonth(1);
@@ -158,15 +156,15 @@
 
                 var matchDate = new Date();
                 matchDate.setHours(0, 0, 0, 0);
-                if ($scope.dateFilterInput === "Today") {
+                if (dateFilterValue === "Today") {
                     // NOP
                 }
-                else if ($scope.dateFilterInput === "Yesterday") {
+                else if (dateFilterValue === "Yesterday") {
                     matchDate.setDate(matchDate.getDate() - 1);
                 }
                 // This leaves an actual date option left
                 else {
-                    matchDate = new Date($scope.dateFilterInput);
+                    matchDate = new Date(dateFilterValue);
                     matchDate.setHours(0, 0, 0, 0);
                 }
 
@@ -180,12 +178,10 @@
         };
 
         $scope.getFilteredTrades = function() {
-            var trades = $filter("filter")($scope.trades, $scope.searchFilters);
-            trades = $filter("filter")(trades, $scope.dateFilter);
-            trades = $scope.sortTrades(trades);
-
-            $scope.filteredTrades = trades;
-            return trades;
+            var filteredTrades = $filter("filter")($scope.trades, $scope.searchFilters);
+            filteredTrades = $filter("filter")(filteredTrades, $scope.dateFilter);
+            var sortedTrades = $scope.sortTrades(filteredTrades);
+            return sortedTrades;
         };
 
         $scope.getTotalPips = function() {
@@ -198,8 +194,6 @@
             }
 
             pips = parseFloat(pips);
-
-            $scope.totalPips = pips;
 
             return pips;
         };
