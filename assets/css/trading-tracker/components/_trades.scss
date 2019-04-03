@@ -65,8 +65,12 @@
 .counters__pips-won,
 .counters__pips-remaining,
 .counters__win-loss {
-    transition: background-color 0.3s ease-in;
+    border-radius: 50%;
+    padding: 15px 0;
+    font-weight: 700;
     background: #cdcdcd;
+    transition: background-color 0.3s ease-in, font-color 0.3s ease-in;
+    width: auto;
 }
 
 .beyond-target,

@@ -128,19 +128,19 @@ $app = App::get();
                             <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters()" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="counters__pips-won">Pips Won:</label>
-                        <div class="form-group col-3 col-md-1">
-                            <input ng-value="totalPips" readonly class="form-control counters__pips-won" id="counters__pips-won" />
+                        <label class="label form-group col-4 col-md-2" for="counters__pips-won">Pips Won:</label>
+                        <div class="form-group col-2 col-md-1">
+                            <input ng-value="totalPips" readonly class="form-control counters__pips-won" id="counters__pips-won" size="5" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="counters__pips-remaining">Pips Left:</label>
-                        <div class="form-group col-3 col-md-1">
-                            <input ng-value="pipsRemaining" readonly class="form-control counters__pips-remaining" id="counters__pips-remaining" />
+                        <label class="label form-group col-4 col-md-2" for="counters__pips-remaining">Pips Left:</label>
+                        <div class="form-group col-2 col-md-1">
+                            <input ng-value="pipsRemaining" readonly class="form-control counters__pips-remaining" id="counters__pips-remaining" size="5" />
                         </div>
 
-                        <label class="label form-group col-3 col-md-2" for="counters__win-loss">Win Ratio:</label>
-                        <div class="form-group col-3 col-md-1">
-                            <input ng-value="winToLoss" readonly class="form-control counters__win-loss" id="counters__win-loss" />
+                        <label class="label form-group col-4 col-md-2" for="counters__win-loss">Win Ratio:</label>
+                        <div class="form-group col-2 col-md-1">
+                            <input ng-value="winToLoss" readonly class="form-control counters__win-loss" id="counters__win-loss" size="5" />
                         </div>
                     </div>
 
