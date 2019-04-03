@@ -47,7 +47,7 @@
                 $scope.sortBy = $sortBy;
             }
 
-            $scope.setPage(0);
+            $scope.setPage(1);
         };
 
         $scope.getTrades = function() {
@@ -308,22 +308,15 @@
             return options;
         };
 
-        $scope.getPages = function() {
-            var total = $scope.filteredTrades.length;
-            var last = Math.ceil(total / $scope.limitTo);
-            var pages = [];
-
-            for (var i = 0; i < last; i++) {
-                pages.push(i);
-            }
-
-            return pages;
+        $scope.getLastPageNum = function() {
+            var totalTrades = $scope.filteredTrades.length;
+            return Math.ceil(totalTrades / $scope.limitTo);
         };
 
         $scope.update = function() {
             $scope.filteredTrades = $scope.getFilteredTrades();
 
-            $scope.pages = $scope.getPages();
+            $scope.lastPageNum = $scope.getLastPageNum();
 
             $scope.totalPips = $scope.getTotalPips();
             $scope.pipsRemaining = $scope.getPipsRemaining();
@@ -345,14 +338,14 @@
 
         $scope.limitToOptions = [10, 30, 50, 100];
         $scope.limitTo = 30;
-        $scope.currentPage = 0;
+        $scope.currentPage = 1;
 
         $scope.selectedTrade = {isOld: false};
 
         $scope.trades = $scope.getTrades();
         $scope.filteredTrades = $scope.getFilteredTrades();
 
-        $scope.pages = $scope.getPages();
+        $scope.lastPageNum = $scope.getLastPageNum();
 
         $scope.pipsTarget = 0;
         $scope.totalPips = $scope.getTotalPips();

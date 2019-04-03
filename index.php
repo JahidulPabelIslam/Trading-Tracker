@@ -147,12 +147,12 @@ $app = App::get();
                     <div class="row filters">
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__pair-name">Pair:</label>
-                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(0); update()" />
+                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); update()" />
                         </div>
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__date">Date:</label>
-                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(0); update();">
+                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); update();">
                                 <option value="" selected>Select Date</option>
                                 <option ng-repeat="dateFilterOption in dateFilterOptions" value="{{ dateFilterOption }}">
                                     {{ dateFilterOption | date: "dd/MM/yyyy" }}
@@ -162,7 +162,7 @@ $app = App::get();
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__trade-type">Trade Type:</label>
-                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(0); update();">
+                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); update();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">
                                     {{ tradeType }}
@@ -172,7 +172,7 @@ $app = App::get();
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__items-limit">Per Page:</label>
-                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(0); update();">
+                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(1); update();">
                             </select>
                         </div>
                     </div>
@@ -205,7 +205,7 @@ $app = App::get();
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trade in filteredTrades | limitTo : limitTo : (currentPage * limitTo) track by $index " class="trades__trade">
+                                <tr ng-repeat="trade in filteredTrades | limitTo : limitTo : ((currentPage - 1) * limitTo) track by $index " class="trades__trade">
                                     <td data-title="Pair">{{ trade.name }}</td>
                                     <td data-title="Date">{{ trade.date | date: "dd/MM/yyyy" }}</td>
                                     <td data-title="Type">{{ trade.type }}</td>
@@ -228,30 +228,30 @@ $app = App::get();
 
                     <nav aria-label="Trades list navigation" class="pagination-container">
                         <p class="trades__counters">
-                            Showing <span class="trades-counters__value">{{ limitTo * currentPage + 1 }}</span>
-                            - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo - 1)) ? limitTo * (currentPage + 1) : filteredTrades.length }}</span>
+                            Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
+                            - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
                             of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
                         </p>
 
                         <ul class="pagination">
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="currentPage < 1" ng-click="setPage(0)">First</button>
+                                <button class="page-link" ng-disabled="currentPage == 1" ng-click="setPage(1)">First</button>
                             </li>
 
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="currentPage < 1" ng-click="setPage(currentPage - 1)">Previous</button>
+                                <button class="page-link" ng-disabled="currentPage == 1" ng-click="setPage(currentPage - 1)">Previous</button>
                             </li>
 
-                            <li ng-repeat="pageNum in pages" class="page-item" ng-class="currentPage == pageNum ? 'active' : ''">
-                                <button class="page-link" ng-click="setPage(pageNum)">{{ pageNum + 1 }}</button>
-                            </li>
-
-                            <li class="page-item">
-                                <button class="page-link" ng-disabled="currentPage == pages[pages.length - 1]" ng-click="setPage(currentPage + 1)">Next</button>
+                            <li ng-repeat="pageNum in [].constructor(lastPageNum) track by $index" class="page-item" ng-class="currentPage == ($index + 1) ? 'active' : ''">
+                                <button class="page-link" ng-click="setPage($index + 1)">{{ $index + 1 }}</button>
                             </li>
 
                             <li class="page-item">
-                                <button class="page-link" ng-disabled="currentPage == pages[pages.length - 1]" ng-click="setPage(pages[pages.length - 1])">Last</button>
+                                <button class="page-link" ng-disabled="currentPage == lastPageNum" ng-click="setPage(currentPage + 1)">Next</button>
+                            </li>
+
+                            <li class="page-item">
+                                <button class="page-link" ng-disabled="currentPage == lastPageNum" ng-click="setPage(lastPageNum)">Last</button>
                             </li>
                         </ul>
                     </nav>
