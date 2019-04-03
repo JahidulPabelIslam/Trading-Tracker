@@ -88,7 +88,6 @@ $app = App::get();
         <?php
         if ($isDebug) {
             ?>
-            <link href="<?php $app->addVersion("/assets/css/third-party/bootstrap.min.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
             <link href="<?php $app->addVersion("/assets/css/trading-tracker/style.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
             <?php
         }

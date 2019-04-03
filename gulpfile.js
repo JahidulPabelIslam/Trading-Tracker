@@ -41,7 +41,6 @@ defaultTasks.push("scripts");
 // Minify Stylesheets
 const stylesheets = {
     main: [
-        "assets/css/third-party/bootstrap.min.css",
         "assets/css/trading-tracker/style.css",
     ],
 };

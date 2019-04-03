@@ -27,7 +27,11 @@
     opacity: 0.8;
 }
 
-.page-link:not(disabled):hover {
+.page-item.active .page-link:disabled {
+    opacity: 1;
+}
+
+.page-link:not(:disabled):hover {
     color: #1e1e1e;
     background: #e9ecef;
     border-color: #dee2e6;

@@ -1,5 +1,8 @@
+.navbar {
+    box-shadow: 0 0 10px 0 $gray-800;
+}
+
 .navbar-brand {
-    padding: 0;
     opacity: 0.95;
     transition: opacity 0.3s ease-out;
 }

@@ -29,10 +29,11 @@
 
 .btn--view-trade {
     padding: 2px 6px;
+    @include button-variant($blue, $blue);
 }
 
 .btn--delete-trade {
-    padding: 0 6px;
+    padding: 0 8px 2px;
     font-weight: 700;
     border-radius: 50%;
     float: right;
@@ -66,7 +67,7 @@
 .counters__pips-remaining,
 .counters__win-loss {
     border-radius: 50%;
-    padding: 15px 0;
+    padding: 26px 0;
     font-weight: 700;
     background: #cdcdcd;
     transition: background-color 0.3s ease-in, font-color 0.3s ease-in;
@@ -91,7 +92,7 @@
 }
 
 .above-target.above-target {
-    background: #b5c82f;
+    background: #54a754;
 }
 
 .on-target.on-target {
@@ -131,11 +132,6 @@
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
-}
-
-.form-group label {
-    margin-bottom: 0;
-    padding-left: 0;
 }
 
 @media only screen and (max-width: $tablet-width) {
