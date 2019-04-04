@@ -7184,7 +7184,8 @@ a {
   font-weight: 700;
   background: #cdcdcd;
   transition: background-color 0.3s ease-in, font-color 0.3s ease-in;
-  width: auto; }
+  width: auto;
+  border: none; }
 
 .beyond-target,
 .beyond-target:focus,
