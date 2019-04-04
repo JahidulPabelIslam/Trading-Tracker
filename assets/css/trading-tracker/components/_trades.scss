@@ -29,26 +29,51 @@
 
 .btn--view-trade {
     padding: 2px 6px;
+    @include button-variant($blue, $blue);
 }
 
 .btn--delete-trade {
-    padding: 0 6px;
+    padding: 0 8px 2px;
     font-weight: 700;
     border-radius: 50%;
     float: right;
 }
 
-.sort-by, .order-by {
+.sort-by,
+.order-by {
     cursor: pointer;
 }
 
-.pips-count label {
-    font-weight: 700;
-}
-
-.pips-count {
+.counters {
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+}
+
+.counters label {
+    font-weight: 700;
+    text-align: right;
+    padding-right: 0;
+}
+
+.counters .form-group {
+    padding: 0 2px;
+}
+
+.counters .form-control {
+    text-align: center;
+}
+
+.counters__pips-won,
+.counters__pips-remaining,
+.counters__win-loss {
+    border-radius: 50%;
+    padding: 26px 0;
+    font-weight: 700;
+    background: #cdcdcd;
+    transition: background-color 0.3s ease-in, font-color 0.3s ease-in;
+    width: auto;
+    border: none;
 }
 
 .beyond-target,
@@ -65,42 +90,36 @@
 }
 
 .beyond-target.beyond-target {
-    background: #54a754;
+    background: darken($green, 15);
 }
 
 .above-target.above-target {
-    background: #b5c82f;
+    background: $green;
 }
 
 .on-target.on-target {
-    background: gray;
+    background: $blue;
 }
 
 .close-to-target.close-to-target {
-    background: #fffc00;
+    background: $yellow;
 }
-
 .close-to-target,
 .close-to-target:focus {
-    color: black;
+    color: $body-color;
 }
 
 .off-target.off-target {
-    background: #e1a02f;
+    background: $orange;
 }
 
 .way-off-target.way-off-target {
-    background: #e52525;
+    background: $red;
 }
 
 .filters label {
     margin-bottom: 0;
     font-weight: 700;
-}
-
-.pips-count label {
-    text-align: right;
-    padding-right: 0;
 }
 
 .no-trades.no-trades {
@@ -114,11 +133,6 @@
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
-}
-
-.form-group label {
-    margin-bottom: 0;
-    padding-left: 0;
 }
 
 @media only screen and (max-width: $tablet-width) {
@@ -138,11 +152,10 @@
 
     .table--trades td:before {
         content: attr(data-title) ": ";
-        margin-right: 8px;
         font-weight: bold;
     }
 
-    .table--trades td.no-title:before,
+    .table--trades .no-title:before,
     .table--trades .no-trades:before {
         content: none;
     }

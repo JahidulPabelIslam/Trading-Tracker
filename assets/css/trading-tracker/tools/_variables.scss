@@ -1,4 +1,32 @@
 $primary-colour: #ffd700;
 
-$desktop-width: 1200px;
 $tablet-width: 768px;
+$desktop-width: 1200px;
+
+// Variables to override Bootstraps default variables
+
+$primary: $primary-colour;
+
+$blue: #0253b3;
+$green: #54a754;
+$red: #e52525;
+$orange: #ff7e00;
+$yellow: #ffeb3b;
+
+$body-color: #333333;
+
+$link-color: #404040;
+
+$font-family-base: 'PT Sans', sans-serif;
+
+$input-padding-y: 0.25rem;
+$input-padding-x: 0.375rem;
+$input-color: #455a64;
+$input-placeholder-color: #cdcdcd;
+
+$navbar-brand-padding-y: 0;
+
+$container-max-widths: (
+    md: $tablet-width,
+    xl: $desktop-width
+) !default;

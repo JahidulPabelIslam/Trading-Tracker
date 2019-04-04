@@ -1,5 +1,5 @@
-;window.tt = window.tt || {};
-window.tt.stickyFooter = (function(jQuery) {
+;window.tradingTracker = window.tradingTracker || {};
+window.tradingTracker.stickyFooter = (function(jQuery) {
 
     "use strict";
 
@@ -11,7 +11,7 @@ window.tt.stickyFooter = (function(jQuery) {
         mainContent.height("auto");
 
         // Calculates the default height of the content
-        var defaultHeight = jQuery(".navbar").outerHeight(true) + mainContent.outerHeight(true) + jQuery(".footer").outerHeight(true);
+        var defaultHeight = mainContent.outerHeight(true) + jQuery(".footer").outerHeight(true);
 
         var windowHeight = jQuery(window).height();
 
@@ -29,4 +29,4 @@ window.tt.stickyFooter = (function(jQuery) {
         expandSection: expandSection,
     };
 
-})(jQuery);
+}(jQuery));
