@@ -146,12 +146,12 @@ $app = App::get();
                     <div class="row filters">
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__pair-name">Pair:</label>
-                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); update()" />
+                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); getAndUpdateValues()" />
                         </div>
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__date">Date:</label>
-                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); update();">
+                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Date</option>
                                 <option ng-repeat="dateFilterOption in dateFilterOptions" value="{{ dateFilterOption }}">
                                     {{ dateFilterOption | date: "dd/MM/yyyy" }}
@@ -161,7 +161,7 @@ $app = App::get();
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__trade-type">Trade Type:</label>
-                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); update();">
+                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">
                                     {{ tradeType }}
@@ -171,7 +171,7 @@ $app = App::get();
 
                         <div class="form-group col-6 col-md-3">
                             <label class="label" for="filters__items-limit">Per Page:</label>
-                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(1); update();">
+                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(1); getAndUpdateValues();">
                             </select>
                         </div>
                     </div>

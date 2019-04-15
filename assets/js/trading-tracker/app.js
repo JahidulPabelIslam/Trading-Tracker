@@ -61,13 +61,13 @@
         };
 
         $scope.newTrade = function() {
-            $scope.selectedTrade = {new: false};
+            $scope.selectedTrade = {};
         };
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
             tradingTracker.stickyFooter.expandSection();
-            $scope.update();
+            $scope.getAndUpdateValues();
         };
 
         $scope.saveTrade = function() {
@@ -307,7 +307,7 @@
             return Math.ceil(totalTrades / $scope.limitTo);
         };
 
-        $scope.update = function() {
+        $scope.getAndUpdateValues = function() {
             $scope.filteredTrades = $scope.getFilteredTrades();
 
             $scope.lastPageNum = $scope.getLastPageNum();
@@ -327,6 +327,15 @@
             $scope.updatePipsCounterColours();
         };
 
+        $scope.pipsTarget = 0;
+
+        $scope.tradeTypes = ["Sell", "Buy"];
+
+        $scope.searchFilters = {
+            name: "",
+            type: "",
+        };
+
         $scope.sortBy = "date";
         $scope.isSortReverse = true;
 
@@ -334,28 +343,14 @@
         $scope.limitTo = 30;
         $scope.currentPage = 1;
 
-        $scope.selectedTrade = {isOld: false};
-
         $scope.trades = $scope.getTrades();
-        $scope.filteredTrades = $scope.getFilteredTrades();
-
-        $scope.lastPageNum = $scope.getLastPageNum();
-
-        $scope.pipsTarget = 0;
-        $scope.totalPips = $scope.getTotalPips();
-        $scope.pipsRemaining = $scope.getPipsRemaining();
-        $scope.updatePipsCounterColours();
-
-        $scope.winToLoss = $scope.getWinToLoss();
 
         $scope.dateFilterOptions = $scope.getDateOptions();
         $scope.dateFilterInput = "";
 
-        $scope.searchFilters = {
-            name: "",
-            type: "",
-        };
-        $scope.tradeTypes = ["Sell", "Buy"];
+        $scope.getAndUpdateValues();
+
+        $scope.selectedTrade = {};
     });
 
 }(angular, jQuery, Decimal, tradingTracker));
