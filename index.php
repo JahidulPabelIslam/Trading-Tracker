@@ -231,7 +231,7 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <nav aria-label="Trades list navigation" class="pagination-container">
+                    <nav aria-label="Trades list navigation" class="pagination-container" ng-if="lastPageNum > 1">
                         <p class="trades__counters">
                             Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
                             - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
