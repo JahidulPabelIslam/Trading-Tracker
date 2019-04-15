@@ -127,19 +127,25 @@ $app = App::get();
                             <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters()" />
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__pips-won">Pips Won:</label>
+                        <p class="label form-group col-4 col-md-2">Pips Won:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="totalPips" readonly class="form-control counters__pips-won" id="counters__pips-won" size="5" />
+                            <div class="counters__pips-won" id="counters__pips-won">
+                                {{ totalPips }}
+                            </div>
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__pips-remaining">Pips Left:</label>
+                        <p class="label form-group col-4 col-md-2">Pips Left:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="pipsRemaining" readonly class="form-control counters__pips-remaining" id="counters__pips-remaining" size="5" />
+                            <div class="counters__pips-remaining" id="counters__pips-remaining">
+                                {{ pipsRemaining }}
+                            </div>
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__win-loss">Win Ratio:</label>
+                        <p class="label form-group col-4 col-md-2">Win Ratio:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="winToLoss" readonly class="form-control counters__win-loss" id="counters__win-loss" size="5" />
+                            <div class="counters__win-loss" id="counters__win-loss">
+                                {{ winToLoss }}
+                            </div>
                         </div>
                     </div>
 

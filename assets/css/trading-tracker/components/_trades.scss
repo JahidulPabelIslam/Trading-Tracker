@@ -67,13 +67,14 @@
 .counters__pips-won,
 .counters__pips-remaining,
 .counters__win-loss {
+    width: auto;
+    border: none;
     border-radius: 50%;
-    padding: 26px 0;
+    padding: 17px 0;
+    text-align: center;
     font-weight: 700;
     background: #cdcdcd;
     transition: background-color 0.3s ease-in, font-color 0.3s ease-in;
-    width: auto;
-    border: none;
 }
 
 .beyond-target,
