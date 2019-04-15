@@ -274,7 +274,7 @@ $app = App::get();
                     }
                     date_default_timezone_set("Europe/London");
                     ?>
-                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> <?php echo date("Y"); ?></p>
+                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> 2010 - <?php echo date("Y"); ?></p>
                     <?php date_default_timezone_set($origTimeZone); ?>
                 </div>
             </footer>
