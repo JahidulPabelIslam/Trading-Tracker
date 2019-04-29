@@ -341,34 +341,38 @@
             $scope.updatePipsCounterColours();
         };
 
+        $scope.init = function() {
+            $scope.pipsTarget = 0;
+
+            $scope.tradeTypes = ["Sell", "Buy"];
+
+            $scope.searchFilters = {
+                name: "",
+                type: "",
+            };
+
+            $scope.sortBy = "date";
+            $scope.isSortReverse = true;
+
+            $scope.limitToOptions = [10, 30, 50, 100];
+            $scope.limitTo = 30;
+            $scope.currentPage = 1;
+
+            $scope.trades = $scope.getTrades();
+
+            $scope.dateFilterOptions = $scope.getDateOptions();
+            $scope.dateFilterInput = "";
+
+            $scope.getAndUpdateValues();
+
+            $scope.selectedTrade = {};
+        };
+
         jQuery(window).on("load", function() {
             tradingTracker.stickyFooter = new StickyFooter(".main-content");
         });
 
-        $scope.pipsTarget = 0;
-
-        $scope.tradeTypes = ["Sell", "Buy"];
-
-        $scope.searchFilters = {
-            name: "",
-            type: "",
-        };
-
-        $scope.sortBy = "date";
-        $scope.isSortReverse = true;
-
-        $scope.limitToOptions = [10, 30, 50, 100];
-        $scope.limitTo = 30;
-        $scope.currentPage = 1;
-
-        $scope.trades = $scope.getTrades();
-
-        $scope.dateFilterOptions = $scope.getDateOptions();
-        $scope.dateFilterInput = "";
-
-        $scope.getAndUpdateValues();
-
-        $scope.selectedTrade = {};
+        $scope.init();
     });
 
 }(angular, jQuery, Decimal, StickyFooter));
