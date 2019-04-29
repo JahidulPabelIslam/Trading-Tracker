@@ -7029,7 +7029,8 @@ a {
   padding-left: 0; }
 
 .label {
-  font-family: 'Roboto Slab', serif; }
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700; }
 
 .form-control--inline {
   display: inline-block;
@@ -7172,7 +7173,6 @@ a {
   margin: 0 auto; }
 
 .counters .label {
-  font-weight: 700;
   text-align: right;
   padding-right: 0; }
 
