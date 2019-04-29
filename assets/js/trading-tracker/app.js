@@ -1,11 +1,23 @@
 ;(function(angular, jQuery, Decimal, StickyFooter) {
+
     "use strict";
+
+    window.tradingTracker = window.tradingTracker || {};
 
     var app = angular.module("TradingTrackerApp", []);
 
     app.controller("ctrl", function($scope, $filter) {
 
         var fn = {
+
+            resetFooter: function () {
+                if (tradingTracker && tradingTracker.stickyFooter) {
+                    // Slight delay so Angular updates UI
+                    setTimeout(function() {
+                        tradingTracker.stickyFooter.repositionFooter();
+                    }, 1);
+                }
+            },
 
             addColourClassByPercentage: function(percentage, selectors) {
                 var classesToAdd = "";
@@ -37,6 +49,7 @@
 
         $scope.setPage = function(newPageNum) {
             $scope.currentPage = newPageNum;
+            fn.resetFooter();
         };
 
         $scope.setSortBy = function(sortBy) {
@@ -66,7 +79,6 @@
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            tradingTracker.stickyFooter.repositionFooter();
             $scope.getAndUpdateValues();
         };
 
@@ -320,12 +332,18 @@
             $scope.dateFilterOptions = $scope.getDateOptions();
 
             $scope.winToLoss = $scope.getWinToLoss();
+
+            fn.resetFooter();
         };
 
         $scope.updateCounters = function() {
             $scope.pipsRemaining = $scope.getPipsRemaining();
             $scope.updatePipsCounterColours();
         };
+
+        jQuery(window).on("load", function() {
+            tradingTracker.stickyFooter = new StickyFooter(".main-content");
+        });
 
         $scope.pipsTarget = 0;
 
@@ -351,9 +369,6 @@
         $scope.getAndUpdateValues();
 
         $scope.selectedTrade = {};
-
-        window.tradingTracker = window.tradingTracker || {};
-        tradingTracker.stickyFooter = new StickyFooter(".main-content");
     });
 
 }(angular, jQuery, Decimal, StickyFooter));
