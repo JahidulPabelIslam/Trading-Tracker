@@ -1,5 +1,8 @@
-;(function(angular, jQuery, Decimal, tradingTracker) {
+;(function(angular, jQuery, Decimal, StickyFooter) {
+
     "use strict";
+
+    window.tradingTracker = window.tradingTracker || {};
 
     var app = angular.module("TradingTrackerApp", []);
 
@@ -7,8 +10,17 @@
 
         var fn = {
 
+            resetFooter: function() {
+                if (tradingTracker && tradingTracker.stickyFooter) {
+                    // Slight delay so Angular updates UI
+                    setTimeout(function() {
+                        tradingTracker.stickyFooter.repositionFooter();
+                    }, 1);
+                }
+            },
+
             addColourClassByPercentage: function(percentage, selectors) {
-                var classesToAdd = "";
+                var classesToAdd = "way-off-target";
                 if (percentage > 150) {
                     classesToAdd = "beyond-target";
                 }
@@ -24,9 +36,6 @@
                 else if (percentage > 50) {
                     classesToAdd = "off-target";
                 }
-                else {
-                    classesToAdd = "way-off-target";
-                }
 
                 var classesToRemove = "way-off-target off-target close-to-target on-target above-target beyond-target";
 
@@ -37,6 +46,7 @@
 
         $scope.setPage = function(newPageNum) {
             $scope.currentPage = newPageNum;
+            fn.resetFooter();
         };
 
         $scope.setSortBy = function(sortBy) {
@@ -61,13 +71,12 @@
         };
 
         $scope.newTrade = function() {
-            $scope.selectedTrade = {new: false};
+            $scope.selectedTrade = {};
         };
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            tradingTracker.stickyFooter.expandSection();
-            $scope.update();
+            $scope.getAndUpdateValues();
         };
 
         $scope.saveTrade = function() {
@@ -242,10 +251,7 @@
 
         $scope.updatePipsCounterColours = function() {
             var percentage = new Decimal($scope.totalPips).dividedBy($scope.getPipsTarget()).times(100);
-            fn.addColourClassByPercentage(
-                percentage,
-                ".counters__pips-won, .counters__pips-remaining"
-            );
+            fn.addColourClassByPercentage(percentage, ".counters__pips-won, .counters__pips-remaining");
         };
 
         $scope.getPipsRemaining = function() {
@@ -278,7 +284,7 @@
 
             wins = new Decimal(wins);
 
-            var winPercentage = (wins.dividedBy(numOfTrades)).times(100);
+            var winPercentage = wins.dividedBy(numOfTrades).times(100);
             winPercentage = winPercentage.toFixed(2);
 
             fn.addColourClassByPercentage(winPercentage, ".counters__win-loss");
@@ -307,7 +313,7 @@
             return Math.ceil(totalTrades / $scope.limitTo);
         };
 
-        $scope.update = function() {
+        $scope.getAndUpdateValues = function() {
             $scope.filteredTrades = $scope.getFilteredTrades();
 
             $scope.lastPageNum = $scope.getLastPageNum();
@@ -320,6 +326,8 @@
             $scope.dateFilterOptions = $scope.getDateOptions();
 
             $scope.winToLoss = $scope.getWinToLoss();
+
+            fn.resetFooter();
         };
 
         $scope.updateCounters = function() {
@@ -327,35 +335,38 @@
             $scope.updatePipsCounterColours();
         };
 
-        $scope.sortBy = "date";
-        $scope.isSortReverse = true;
+        $scope.init = function() {
+            $scope.pipsTarget = 0;
 
-        $scope.limitToOptions = [10, 30, 50, 100];
-        $scope.limitTo = 30;
-        $scope.currentPage = 1;
+            $scope.tradeTypes = ["Sell", "Buy"];
 
-        $scope.selectedTrade = {isOld: false};
+            $scope.searchFilters = {
+                name: "",
+                type: "",
+            };
 
-        $scope.trades = $scope.getTrades();
-        $scope.filteredTrades = $scope.getFilteredTrades();
+            $scope.sortBy = "date";
+            $scope.isSortReverse = true;
 
-        $scope.lastPageNum = $scope.getLastPageNum();
+            $scope.limitToOptions = [10, 30, 50, 100];
+            $scope.limitTo = 30;
+            $scope.currentPage = 1;
 
-        $scope.pipsTarget = 0;
-        $scope.totalPips = $scope.getTotalPips();
-        $scope.pipsRemaining = $scope.getPipsRemaining();
-        $scope.updatePipsCounterColours();
+            $scope.trades = $scope.getTrades();
 
-        $scope.winToLoss = $scope.getWinToLoss();
+            $scope.dateFilterOptions = $scope.getDateOptions();
+            $scope.dateFilterInput = "";
 
-        $scope.dateFilterOptions = $scope.getDateOptions();
-        $scope.dateFilterInput = "";
+            $scope.getAndUpdateValues();
 
-        $scope.searchFilters = {
-            name: "",
-            type: "",
+            $scope.selectedTrade = {};
         };
-        $scope.tradeTypes = ["Sell", "Buy"];
+
+        jQuery(window).on("load", function() {
+            tradingTracker.stickyFooter = new StickyFooter(".main-content");
+        });
+
+        $scope.init();
     });
 
-}(angular, jQuery, Decimal, tradingTracker));
+})(angular, jQuery, Decimal, StickyFooter);

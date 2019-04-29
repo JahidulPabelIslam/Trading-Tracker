@@ -4,5 +4,11 @@
 }
 
 .label {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
+    font-weight: 700;
+}
+
+.form-control--inline {
+    display: inline-block;
+    width: auto;
 }

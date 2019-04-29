@@ -127,31 +127,37 @@ $app = App::get();
                             <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters()" />
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__pips-won">Pips Won:</label>
+                        <p class="label form-group col-4 col-md-2">Pips Won:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="totalPips" readonly class="form-control counters__pips-won" id="counters__pips-won" size="5" />
+                            <div class="counters__pips-won" id="counters__pips-won">
+                                {{ totalPips }}
+                            </div>
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__pips-remaining">Pips Left:</label>
+                        <p class="label form-group col-4 col-md-2">Pips Left:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="pipsRemaining" readonly class="form-control counters__pips-remaining" id="counters__pips-remaining" size="5" />
+                            <div class="counters__pips-remaining" id="counters__pips-remaining">
+                                {{ pipsRemaining }}
+                            </div>
                         </div>
 
-                        <label class="label form-group col-4 col-md-2" for="counters__win-loss">Win Ratio:</label>
+                        <p class="label form-group col-4 col-md-2">Win Ratio:</p>
                         <div class="form-group col-2 col-md-1">
-                            <input ng-value="winToLoss" readonly class="form-control counters__win-loss" id="counters__win-loss" size="5" />
+                            <div class="counters__win-loss" id="counters__win-loss">
+                                {{ winToLoss }}
+                            </div>
                         </div>
                     </div>
 
                     <div class="row filters">
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6 col-md-4">
                             <label class="label" for="filters__pair-name">Pair:</label>
-                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); update()" />
+                            <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); getAndUpdateValues()" />
                         </div>
 
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6  col-md-4">
                             <label class="label" for="filters__date">Date:</label>
-                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); update();">
+                            <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Date</option>
                                 <option ng-repeat="dateFilterOption in dateFilterOptions" value="{{ dateFilterOption }}">
                                     {{ dateFilterOption | date: "dd/MM/yyyy" }}
@@ -159,19 +165,13 @@ $app = App::get();
                             </select>
                         </div>
 
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6 col-md-4">
                             <label class="label" for="filters__trade-type">Trade Type:</label>
-                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); update();">
+                            <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">
                                     {{ tradeType }}
                                 </option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-6 col-md-3">
-                            <label class="label" for="filters__items-limit">Per Page:</label>
-                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(1); update();">
                             </select>
                         </div>
                     </div>
@@ -225,7 +225,13 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <nav aria-label="Trades list navigation" class="pagination-container">
+                    <div class="pagination-container" ng-if="lastPageNum > 0">
+                        <div class="form-group" ng-if="trades.length > 0">
+                            <label class="label" for="filters__items-limit">Per Page:</label>
+                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control form-control--inline" ng-change="setPage(1); getAndUpdateValues();">
+                            </select>
+                        </div>
+
                         <p class="trades__counters">
                             Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
                             - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
@@ -253,7 +259,7 @@ $app = App::get();
                                 <button class="page-link" ng-disabled="currentPage == lastPageNum" ng-click="setPage(lastPageNum)">Last</button>
                             </li>
                         </ul>
-                    </nav>
+                    </div>
                 </div>
             </main>
 
@@ -268,7 +274,7 @@ $app = App::get();
                     }
                     date_default_timezone_set("Europe/London");
                     ?>
-                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> <?php echo date("Y"); ?></p>
+                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> 2010 - <?php echo date("Y"); ?></p>
                     <?php date_default_timezone_set($origTimeZone); ?>
                 </div>
             </footer>
@@ -347,7 +353,6 @@ $app = App::get();
             <script src="<?php $app->addVersion("/assets/js/third-party/angular.min.js"); ?>" type="application/javascript"></script>
             <script src="<?php $app->addVersion("/assets/js/third-party/decimal.min.js"); ?>" type="application/javascript"></script>
             <script src="<?php $app->addVersion("/assets/js/third-party/bootstrap.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/trading-tracker/sticky-footer.js"); ?>" type="application/javascript"></script>
             <?php
         }
         else {
@@ -357,6 +362,8 @@ $app = App::get();
             <?php
         }
         ?>
+
+        <script src="https://cdn.jsdelivr.net/gh/jahidulpabelislam/StickyFooter.js@1.0.0/src/sticky-footer.min.js" type="application/javascript"></script>
 
         <script src="<?php $app->addVersion("/assets/js/trading-tracker/app.js"); ?>" type="application/javascript"></script>
     </body>
