@@ -66,7 +66,7 @@
 
         $scope.saveTrades = function() {
             localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
-            tradingTracker.stickyFooter.expandSection();
+            tradingTracker.stickyFooter.repositionFooter();
             $scope.getAndUpdateValues();
         };
 
@@ -351,6 +351,9 @@
         $scope.getAndUpdateValues();
 
         $scope.selectedTrade = {};
+
+        window.tradingTracker = window.tradingTracker || {};
+        tradingTracker.stickyFooter = new StickyFooter(".main-content");
     });
 
-}(angular, jQuery, Decimal, tradingTracker));
+}(angular, jQuery, Decimal, StickyFooter));

@@ -20,7 +20,6 @@ const scripts = {
         "assets/js/third-party/angular.min.js",
         "assets/js/third-party/decimal.min.js",
         "assets/js/third-party/bootstrap.min.js",
-        "assets/js/trading-tracker/sticky-footer.js",
     ],
 };
 

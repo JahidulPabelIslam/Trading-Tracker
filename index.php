@@ -353,7 +353,6 @@ $app = App::get();
             <script src="<?php $app->addVersion("/assets/js/third-party/angular.min.js"); ?>" type="application/javascript"></script>
             <script src="<?php $app->addVersion("/assets/js/third-party/decimal.min.js"); ?>" type="application/javascript"></script>
             <script src="<?php $app->addVersion("/assets/js/third-party/bootstrap.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/trading-tracker/sticky-footer.js"); ?>" type="application/javascript"></script>
             <?php
         }
         else {
@@ -363,6 +362,8 @@ $app = App::get();
             <?php
         }
         ?>
+
+        <script src="https://cdn.jsdelivr.net/gh/jahidulpabelislam/StickyFooter.js@1.0.0/src/sticky-footer.min.js" type="application/javascript"></script>
 
         <script src="<?php $app->addVersion("/assets/js/trading-tracker/app.js"); ?>" type="application/javascript"></script>
     </body>
