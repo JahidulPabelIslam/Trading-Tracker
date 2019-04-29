@@ -225,7 +225,7 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <div class="pagination-container" ng-if="lastPageNum > 1">
+                    <div class="pagination-container" ng-if="lastPageNum > 0">
                         <p class="trades__counters">
                             Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
                             - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
