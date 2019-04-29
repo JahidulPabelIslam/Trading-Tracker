@@ -1,4 +1,4 @@
-;(function(angular, jQuery, Decimal, tradingTracker) {
+;(function(angular, jQuery, Decimal, StickyFooter) {
     "use strict";
 
     var app = angular.module("TradingTrackerApp", []);
