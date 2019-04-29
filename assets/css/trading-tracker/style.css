@@ -7185,7 +7185,8 @@ a {
 .counters__pips-won,
 .counters__pips-remaining,
 .counters__win-loss {
-  width: auto;
+  width: 56px;
+  height: 56px;
   border: none;
   border-radius: 50%;
   padding: 17px 0;
