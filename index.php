@@ -226,17 +226,17 @@ $app = App::get();
                     </div>
 
                     <div class="pagination-container" ng-if="lastPageNum > 0">
-                        <p class="trades__counters">
-                            Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
-                            - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
-                            of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
-                        </p>
-
                         <div class="form-group" ng-if="trades.length > 0">
                             <label class="label" for="filters__items-limit">Per Page:</label>
                             <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control form-control--inline" ng-change="setPage(1); getAndUpdateValues();">
                             </select>
                         </div>
+
+                        <p class="trades__counters">
+                            Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
+                            - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
+                            of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
+                        </p>
 
                         <ul class="pagination">
                             <li class="page-item">
