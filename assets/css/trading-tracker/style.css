@@ -7171,7 +7171,7 @@ a {
   justify-content: center;
   margin: 0 auto; }
 
-.counters label {
+.counters .label {
   font-weight: 700;
   text-align: right;
   padding-right: 0; }
