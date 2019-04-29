@@ -10,7 +10,7 @@
 
         var fn = {
 
-            resetFooter: function () {
+            resetFooter: function() {
                 if (tradingTracker && tradingTracker.stickyFooter) {
                     // Slight delay so Angular updates UI
                     setTimeout(function() {
@@ -20,7 +20,7 @@
             },
 
             addColourClassByPercentage: function(percentage, selectors) {
-                var classesToAdd = "";
+                var classesToAdd = "way-off-target";
                 if (percentage > 150) {
                     classesToAdd = "beyond-target";
                 }
@@ -35,9 +35,6 @@
                 }
                 else if (percentage > 50) {
                     classesToAdd = "off-target";
-                }
-                else {
-                    classesToAdd = "way-off-target";
                 }
 
                 var classesToRemove = "way-off-target off-target close-to-target on-target above-target beyond-target";
@@ -254,10 +251,7 @@
 
         $scope.updatePipsCounterColours = function() {
             var percentage = new Decimal($scope.totalPips).dividedBy($scope.getPipsTarget()).times(100);
-            fn.addColourClassByPercentage(
-                percentage,
-                ".counters__pips-won, .counters__pips-remaining"
-            );
+            fn.addColourClassByPercentage(percentage, ".counters__pips-won, .counters__pips-remaining");
         };
 
         $scope.getPipsRemaining = function() {
@@ -290,7 +284,7 @@
 
             wins = new Decimal(wins);
 
-            var winPercentage = (wins.dividedBy(numOfTrades)).times(100);
+            var winPercentage = wins.dividedBy(numOfTrades).times(100);
             winPercentage = winPercentage.toFixed(2);
 
             fn.addColourClassByPercentage(winPercentage, ".counters__win-loss");
@@ -375,4 +369,4 @@
         $scope.init();
     });
 
-}(angular, jQuery, Decimal, StickyFooter));
+})(angular, jQuery, Decimal, StickyFooter);

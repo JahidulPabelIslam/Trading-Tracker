@@ -3,7 +3,9 @@ $primary-colour: #ffd700;
 $tablet-width: 768px;
 $desktop-width: 1200px;
 
-// Variables to override Bootstraps default variables
+/*
+ * Variables to override Bootstraps default variables
+ */
 
 $primary: $primary-colour;
 
@@ -17,7 +19,7 @@ $body-color: #333333;
 
 $link-color: #404040;
 
-$font-family-base: 'PT Sans', sans-serif;
+$font-family-base: "PT Sans", sans-serif;
 
 $input-padding-y: 0.25rem;
 $input-padding-x: 0.375rem;

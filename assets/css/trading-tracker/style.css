@@ -1,3 +1,6 @@
+/*
+ * Variables to override Bootstraps default variables
+ */
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -7029,7 +7032,7 @@ a {
   padding-left: 0; }
 
 .label {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-weight: 700; }
 
 .form-control--inline {
