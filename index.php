@@ -150,12 +150,12 @@ $app = App::get();
                     </div>
 
                     <div class="row filters">
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6 col-md-4">
                             <label class="label" for="filters__pair-name">Pair:</label>
                             <input ng-model="searchFilters.name" type="text" placeholder="Enter Pair Name (EURUSD)" class="form-control" id="filters__pair-name" ng-change="setPage(1); getAndUpdateValues()" />
                         </div>
 
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6  col-md-4">
                             <label class="label" for="filters__date">Date:</label>
                             <select class="form-control" ng-model="dateFilterInput" id="filters__date" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Date</option>
@@ -165,19 +165,13 @@ $app = App::get();
                             </select>
                         </div>
 
-                        <div class="form-group col-6 col-md-3">
+                        <div class="form-group col-12 col-sm-6 col-md-4">
                             <label class="label" for="filters__trade-type">Trade Type:</label>
                             <select class="form-control" ng-model="searchFilters.type" id="filters__trade-type" ng-change="setPage(1); getAndUpdateValues();">
                                 <option value="" selected>Select Trade Type</option>
                                 <option ng-repeat="tradeType in tradeTypes" value="{{ tradeType }}">
                                     {{ tradeType }}
                                 </option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-6 col-md-3">
-                            <label class="label" for="filters__items-limit">Per Page:</label>
-                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control" ng-change="setPage(1); getAndUpdateValues();">
                             </select>
                         </div>
                     </div>
@@ -231,12 +225,18 @@ $app = App::get();
                         </table>
                     </div>
 
-                    <nav aria-label="Trades list navigation" class="pagination-container" ng-if="lastPageNum > 1">
+                    <div class="pagination-container" ng-if="lastPageNum > 1">
                         <p class="trades__counters">
                             Showing <span class="trades-counters__value">{{ (currentPage - 1) * limitTo + 1 }}</span>
                             - <span class="trades-counters__value">{{ (currentPage < (filteredTrades.length / limitTo)) ? limitTo * currentPage : filteredTrades.length }}</span>
                             of <span class="trades-counters__value">{{ filteredTrades.length }}</span> trades
                         </p>
+
+                        <div class="form-group" ng-if="trades.length > 0">
+                            <label class="label" for="filters__items-limit">Per Page:</label>
+                            <select ng-model="limitTo" ng-options="limitToOption for limitToOption in limitToOptions" id="filters__items-limit" class="form-control form-control--inline" ng-change="setPage(1); getAndUpdateValues();">
+                            </select>
+                        </div>
 
                         <ul class="pagination">
                             <li class="page-item">
@@ -259,7 +259,7 @@ $app = App::get();
                                 <button class="page-link" ng-disabled="currentPage == lastPageNum" ng-click="setPage(lastPageNum)">Last</button>
                             </li>
                         </ul>
-                    </nav>
+                    </div>
                 </div>
             </main>
 

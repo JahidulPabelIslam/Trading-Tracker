@@ -7031,6 +7031,10 @@ a {
 .label {
   font-family: 'Roboto Slab', serif; }
 
+.form-control--inline {
+  display: inline-block;
+  width: auto; }
+
 .navbar {
   box-shadow: 0 0 10px 0 #343a40; }
 
