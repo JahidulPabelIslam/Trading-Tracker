@@ -27,6 +27,7 @@ $input-placeholder-color: #cdcdcd;
 $navbar-brand-padding-y: 0;
 
 $container-max-widths: (
-    md: $tablet-width,
-    xl: $desktop-width
+    sm: $tablet-width,
+    md: 992px,
+    lg: $desktop-width,
 ) !default;
