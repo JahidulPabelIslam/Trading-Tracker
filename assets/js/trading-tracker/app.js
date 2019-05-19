@@ -58,6 +58,7 @@
             }
 
             $scope.setPage(1);
+            $scope.getAndUpdateValues();
         };
 
         $scope.getTrades = function() {
