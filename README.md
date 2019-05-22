@@ -1,5 +1,6 @@
 # Trading Tracker
 
+[![CodeFactor](https://www.codefactor.io/repository/github/jahidulpabelislam/trading-tracker/badge?style=flat-square)](https://www.codefactor.io/repository/github/jahidulpabelislam/trading-tracker/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/570f7ca4dce147628cce7b4d79618c74)](https://www.codacy.com/app/jahidulpabelislam/trading-tracker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jahidulpabelislam/trading-tracker&amp;utm_campaign=Badge_Grade)
 
 In my spare time I was partaking in ForEx trading as a small hobby, and during this time I quickly realised that there isn't a nice way to keep track of what trades I had executed.
