@@ -1,22 +1,20 @@
 {
     "name": "trading-tracker",
     "version": "1.0.0",
-    "description": "Online tracking tool for the Forex market",
     "private": true,
+    "description": "Online tracking tool for the Forex market",
+    "homepage": "https://github.com/jahidulpabelislam/trading-tracker#readme",
+    "bugs": {
+        "url": "https://github.com/jahidulpabelislam/trading-tracker/issues"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jahidulpabelislam/trading-tracker.git"
     },
-    "author": "Jahidul Pabel Islam <me@jahidulpabelislam.com>",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/jahidulpabelislam/trading-tracker/issues"
-    },
-    "homepage": "https://github.com/jahidulpabelislam/trading-tracker#readme",
+    "author": "Jahidul Pabel Islam <me@jahidulpabelislam.com>",
     "dependencies": {
-        "fs": "0.0.1-security"
-    },
-    "devDependencies": {
+        "fs": "0.0.1-security",
         "gulp": "^4.0.0",
         "gulp-autoprefixer": "^6.0.0",
         "gulp-clean-css": "^4.0.0",
