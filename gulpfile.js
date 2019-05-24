@@ -55,7 +55,7 @@ stylesheetNames.forEach(function(key) {
                    .pipe(concat(key + ".min.css"))
                    .pipe(
                        autoprefixer({
-                           browsers: ["> 0.2%", "ie 8-11"],
+                           browsers: ["> 0.1%", "ie 8-11"],
                            remove: false,
                        })
                    )
