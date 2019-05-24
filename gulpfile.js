@@ -15,16 +15,16 @@ let defaultTasks = [];
 // Concatenate & Minify JS
 const scripts = {
     main: [
-        "assets/js/third-party/jquery-3.2.1.min.js",
-        "assets/js/third-party/popper.min.js",
-        "assets/js/third-party/angular.min.js",
-        "assets/js/third-party/decimal.min.js",
-        "assets/js/third-party/bootstrap.min.js",
+        "./assets/js/third-party/jquery-3.2.1.min.js",
+        "./assets/js/third-party/popper.min.js",
+        "./assets/js/third-party/angular.min.js",
+        "./assets/js/third-party/decimal.min.js",
+        "./assets/js/third-party/bootstrap.min.js",
     ],
 };
+const scriptNames = Object.keys(scripts);
 
 let scriptsTasks = [];
-const scriptNames = Object.keys(scripts);
 scriptNames.forEach(function(key) {
     const scriptTask = "scripts-" + key;
     scriptsTasks.push(scriptTask);
@@ -32,7 +32,7 @@ scriptNames.forEach(function(key) {
         return gulp.src(scripts[key])
                    .pipe(concat(key + ".min.js"))
                    .pipe(uglify())
-                   .pipe(gulp.dest("assets/js/"));
+                   .pipe(gulp.dest("./assets/js/"));
     });
 });
 gulp.task("scripts", gulp.parallel(scriptsTasks));
@@ -41,12 +41,12 @@ defaultTasks.push("scripts");
 // Minify Stylesheets
 const stylesheets = {
     main: [
-        "assets/css/trading-tracker/style.css",
+        "./assets/css/trading-tracker/style.css",
     ],
 };
+const stylesheetNames = Object.keys(stylesheets);
 
 let stylesheetTasks = [];
-const stylesheetNames = Object.keys(stylesheets);
 stylesheetNames.forEach(function(key) {
     const stylesheetTask = "styles-" + key;
     stylesheetTasks.push(stylesheetTask);
@@ -64,20 +64,20 @@ stylesheetNames.forEach(function(key) {
                            compatibility: "ie8",
                        })
                    )
-                   .pipe(gulp.dest("assets/css/"));
+                   .pipe(gulp.dest("./assets/css/"));
     });
 });
 gulp.task("styles", gulp.parallel(stylesheetTasks));
 defaultTasks.push("styles");
 
 gulp.task("sass", function() {
-    return gulp.src("assets/css/trading-tracker/style.scss")
+    return gulp.src("./assets/css/trading-tracker/style.scss")
                .pipe(sass().on("error", sass.logError))
-               .pipe(gulp.dest("assets/css/trading-tracker"));
+               .pipe(gulp.dest("./assets/css/trading-tracker/"));
 });
 // Watch Files For Changes
 gulp.task("watch", function() {
-    gulp.watch("assets/css/trading-tracker/**/*.scss", gulp.parallel(["sass"]));
+    gulp.watch("./assets/css/trading-tracker/**/*.scss", gulp.parallel(["sass"]));
 });
 
 const errorCallback = function(err) {
@@ -102,7 +102,7 @@ const runCommand = function(command, callback) {
 defaultTasks.push("store-version");
 gulp.task("store-version", function() {
     const githubBaseUrl = "https://github.com/jahidulpabelislam/trading-tracker/";
-    const fileName = "assets/version.txt";
+    const fileName = "./assets/version.txt";
     let versionText = "";
 
     // Try to get current branch name
