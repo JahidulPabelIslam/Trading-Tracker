@@ -267,15 +267,16 @@ $app = App::get();
                 <div class="container">
                     <?php
                     $version = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/assets/version.txt');
-
-                    $origTimeZone = date_default_timezone_get();
                     if (!empty($version)) {
                         echo "<p>" . $version . "</p>";
                     }
+
+                    $origTimeZone = date_default_timezone_get();
                     date_default_timezone_set("Europe/London");
+                    $currentYear = date("Y");
+                    date_default_timezone_set($origTimeZone);
                     ?>
-                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> 2010 - <?php echo date("Y"); ?></p>
-                    <?php date_default_timezone_set($origTimeZone); ?>
+                    <p>&copy; <a href="https://jahidulpabelislam.com/">Jahidul Pabel Islam</a> 2010 - <?php echo $currentYear; ?></p>
                 </div>
             </footer>
 
