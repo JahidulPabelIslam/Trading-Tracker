@@ -53,11 +53,6 @@ RewriteRule ^(.*)$ %{REQUEST_URI}/ [R=301,L]
     deny from all
 </Files>
 
-<Files robots.txt>
-    order allow,deny
-    deny from all
-</Files>
-
 <IfModule mod_headers.c>
     # Cache specified file types for 31 days
     <FilesMatch "\.(ico|jpg|jpeg|png|gif|css|svg|js)$">
