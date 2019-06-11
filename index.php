@@ -103,7 +103,7 @@ $app = App::get();
     </head>
 
     <body ng-app="TradingTrackerApp">
-        <div ng-controller="ctrl">
+        <div ng-controller="ctrl" class="content-wrapper">
             <nav class="navbar navbar-dark bg-dark fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">

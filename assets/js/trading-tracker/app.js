@@ -365,6 +365,14 @@
 
         jQuery(window).on("load", function() {
             tradingTracker.stickyFooter = new StickyFooter(".main-content");
+
+            /*
+             * Slight hack to remove 000webhost ad from DOM.
+             * We know its the only other 'div' elem as a child of 'body'
+             * other than our main div ('class=content-wrapper')
+             * So we target this with this knowledge and remove
+             */
+            jQuery("body > div:not(.content-wrapper)").remove();
         });
 
         $scope.init();
