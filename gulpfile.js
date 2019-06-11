@@ -101,7 +101,7 @@ const runCommand = function(command, callback) {
 
 defaultTasks.push("store-version");
 gulp.task("store-version", function() {
-    const githubBaseUrl = "https://github.com/jahidulpabelislam/trading-tracker/";
+    const githubBaseUrl = "https://github.com/jahidulpabelislam/trading-tracker";
     const fileName = "./assets/version.txt";
     let versionText = "";
 
@@ -113,7 +113,7 @@ gulp.task("store-version", function() {
          * Else it is one of dev branches so display branch name
          */
         if (branchName && branchName !== "master") {
-            versionText = `<a href="${githubBaseUrl}tree/${branchName}/" target="_blank">${branchName}</a>`;
+            versionText = `<a href="${githubBaseUrl}/tree/${branchName}/" target="_blank">${branchName}</a>`;
             fs.writeFile(fileName, versionText, errorCallback);
             return;
         }
@@ -122,11 +122,11 @@ gulp.task("store-version", function() {
         return runCommand("git describe --abbrev=0 --tags", function(tagName) {
             // If found store in text file
             if (tagName) {
-                versionText = `<a href="${githubBaseUrl}releases/tag/${tagName}/" target="_blank">${tagName}</a>`;
+                versionText = `<a href="${githubBaseUrl}/releases/tag/${tagName}/" target="_blank">${tagName}</a>`;
             }
             // Else drop back to branch name if exists else remove version value from file
             else if (branchName) {
-                versionText = `<a href="${githubBaseUrl}tree/${branchName}/" target="_blank">${branchName}</a>`;
+                versionText = `<a href="${githubBaseUrl}/tree/${branchName}/" target="_blank">${branchName}</a>`;
             }
 
             fs.writeFile(fileName, versionText, errorCallback);
