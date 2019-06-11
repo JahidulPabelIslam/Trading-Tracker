@@ -106,16 +106,14 @@ gulp.task("store-version", function() {
     let versionText = "";
 
     // Try to get current branch name
-    return runCommand("git branch | grep \\* | cut -d ' ' -f2", function(branchName) {
+    return runCommand("git branch | grep \\\\* | cut --complement -d ' ' -f1", function(branchName) {
         /*
-         * If name found store in text file
-         * If current branch if master we used use tags (As most likely this is in production environment)
-         * Else it is one of dev branches so display branch name
+         * We only use branch name as the 'version' if current branch is a dev branch (i.e. not master and not a detached tag state)
+         * Else if production, find and get the current running tag to use as the current 'version'
          */
-        if (branchName && branchName !== "master") {
+        if (branchName && branchName !== "master" && !branchName.startsWith("(HEAD detached at v")) {
             versionText = `<a href="${githubBaseUrl}/tree/${branchName}/" target="_blank">${branchName}</a>`;
-            fs.writeFile(fileName, versionText, errorCallback);
-            return;
+            return fs.writeFile(fileName, versionText, errorCallback);
         }
 
         // Try and get the latest tag on current branch
