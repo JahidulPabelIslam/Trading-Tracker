@@ -8,6 +8,10 @@
 
     app.controller("ctrl", function($scope, $filter) {
 
+        var global = {
+            tradesStoreKey: "tradingtrackertrades",
+        };
+
         var fn = {
 
             resetFooter: function() {
@@ -17,6 +21,14 @@
                         tradingTracker.stickyFooter.repositionFooter();
                     }, 1);
                 }
+            },
+
+            getFromLocalStorage: function(key) {
+                return JSON.parse(localStorage.getItem(key));
+            },
+
+            saveToLocalStorage: function(key, data) {
+                localStorage.setItem(key, JSON.stringify(data));
             },
 
             addColourClassByPercentage: function(percentage, selectors) {
@@ -62,7 +74,7 @@
         };
 
         $scope.getTrades = function() {
-            var trades = JSON.parse(localStorage.getItem("tradingtrackertrades"));
+            var trades = fn.getFromLocalStorage(global.tradesStoreKey);
 
             if (trades) {
                 return $scope.sortTrades(trades);
@@ -76,7 +88,7 @@
         };
 
         $scope.saveTrades = function() {
-            localStorage.setItem("tradingtrackertrades", JSON.stringify($scope.trades));
+            fn.saveToLocalStorage(global.tradesStoreKey, $scope.trades);
             $scope.getAndUpdateValues();
         };
 
@@ -366,7 +378,7 @@
         jQuery(window).on("load", function() {
             tradingTracker.stickyFooter = new StickyFooter(".main-content");
 
-            /*
+            /**
              * Slight hack to remove 000webhost ad from DOM.
              * We know its the only other 'div' elem as a child of 'body'
              * other than our main div ('class=content-wrapper')
