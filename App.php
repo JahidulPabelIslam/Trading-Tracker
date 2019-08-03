@@ -8,14 +8,14 @@ class App {
 
     const DEFAULT_ASSET_VERSION = "1";
 
-    private static $instance = null;
+    private static $instance;
 
     private $liveURL = "";
     private $localURL = "";
     private $requestRelativeURL = "";
 
     public static function get() {
-        if (self::$instance === null) {
+        if (!self::$instance) {
             self::$instance = new self();
         }
 
@@ -65,7 +65,7 @@ class App {
         return $this->localURL;
     }
 
-    public function addVersion($src, $ver = false) {
+    public static function addVersion($src, $ver = false) {
         if (!$ver) {
             $root = rtrim($_SERVER["DOCUMENT_ROOT"], "/");
             $file = $root . "/" . ltrim($src, "/");
@@ -79,7 +79,7 @@ class App {
         echo "{$src}?v={$ver}";
     }
 
-    public function isDebug() {
+    public static function isDebug() {
         $isDebug = isset($_GET["debug"]) && !($_GET["debug"] === "false" || $_GET["debug"] === "0");
 
         return $isDebug;

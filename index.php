@@ -10,7 +10,7 @@ $app = App::get();
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <?php
-        $isDebug = $app->isDebug();
+        $isDebug = $app::isDebug();
 
         $appName = App::APP_NAME;
         $pageTitle = "{$appName} - Online Tracking Tool for the Forex Market";
@@ -45,7 +45,7 @@ $app = App::get();
         <meta property="og:description" content="<?php echo $pageDesc; ?>" />
         <meta property="og:url" content="<?php echo $localURL; ?>" />
 
-        <meta property="og:image" content="<?php $app->addVersion("/assets/images/og-home-image.jpg"); ?>" />
+        <meta property="og:image" content="<?php $app::addVersion("/assets/images/og-home-image.jpg"); ?>" />
         <meta property="og:image:width" content="1145" />
         <meta property="og:image:height" content="599" />
 
@@ -60,27 +60,27 @@ $app = App::get();
         }
         ?>
 
-        <link rel="apple-touch-icon" sizes="57x57" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-57x57.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="60x60" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-60x60.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-72x72.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="76x76" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-76x76.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-114x114.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="120x120" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-120x120.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="144x144" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-144x144.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="152x152" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-152x152.png"); ?>" />
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php $app->addVersion("/assets/favicons/apple-touch-icon-180x180.png"); ?>" />
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php $app->addVersion("/assets/favicons/favicon-32x32.png"); ?>" />
-        <link rel="icon" type="image/png" sizes="194x194" href="<?php $app->addVersion("/assets/favicons/favicon-194x194.png"); ?>" />
-        <link rel="icon" type="image/png" sizes="192x192" href="<?php $app->addVersion("/assets/favicons/android-chrome-192x192.png"); ?>" />
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php $app->addVersion("/assets/favicons/favicon-16x16.png"); ?>" />
-        <link rel="manifest" href="<?php $app->addVersion("/assets/favicons/site.webmanifest"); ?>" />
-        <link rel="mask-icon" href="<?php $app->addVersion("/assets/favicons/safari-pinned-tab.svg"); ?>" color="#ffd700" />
-        <link rel="shortcut icon" href="<?php $app->addVersion("favicon.ico"); ?>" />
+        <link rel="apple-touch-icon" sizes="57x57" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-57x57.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="60x60" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-60x60.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-72x72.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="76x76" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-76x76.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="114x114" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-114x114.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="120x120" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-120x120.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="144x144" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-144x144.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="152x152" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-152x152.png"); ?>" />
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php $app::addVersion("/assets/favicons/apple-touch-icon-180x180.png"); ?>" />
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php $app::addVersion("/assets/favicons/favicon-32x32.png"); ?>" />
+        <link rel="icon" type="image/png" sizes="194x194" href="<?php $app::addVersion("/assets/favicons/favicon-194x194.png"); ?>" />
+        <link rel="icon" type="image/png" sizes="192x192" href="<?php $app::addVersion("/assets/favicons/android-chrome-192x192.png"); ?>" />
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php $app::addVersion("/assets/favicons/favicon-16x16.png"); ?>" />
+        <link rel="manifest" href="<?php $app::addVersion("/assets/favicons/site.webmanifest"); ?>" />
+        <link rel="mask-icon" href="<?php $app::addVersion("/assets/favicons/safari-pinned-tab.svg"); ?>" color="#ffd700" />
+        <link rel="shortcut icon" href="<?php $app::addVersion("/favicon.ico"); ?>" />
         <meta name="apple-mobile-web-app-title" content="<?php echo $appName; ?>" />
         <meta name="application-name" content="<?php echo $appName; ?>" />
         <meta name="msapplication-TileColor" content="#ffd700" />
-        <meta name="msapplication-TileImage" content="<?php $app->addVersion("/assets/favicons/mstile-144x144.png"); ?>" />
-        <meta name="msapplication-config" content="<?php $app->addVersion("/assets/favicons/browserconfig.xml"); ?>" />
+        <meta name="msapplication-TileImage" content="<?php $app::addVersion("/assets/favicons/mstile-144x144.png"); ?>" />
+        <meta name="msapplication-config" content="<?php $app::addVersion("/assets/favicons/browserconfig.xml"); ?>" />
         <meta name="theme-color" content="#343a40" />
 
         <link href="https://fonts.googleapis.com/css?family=PT+Sans|Roboto+Slab" rel="stylesheet">
@@ -88,13 +88,13 @@ $app = App::get();
         <?php
         if ($isDebug) {
             ?>
-            <link href="<?php $app->addVersion("/assets/css/trading-tracker/style.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
+            <link href="<?php $app::addVersion("/assets/css/trading-tracker/style.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
             <?php
         }
         else {
             ?>
             <!-- Complied CSS File of all CSS Files -->
-            <link href="<?php $app->addVersion("assets/css/main.min.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
+            <link href="<?php $app::addVersion("/assets/css/main.min.css"); ?>" rel="stylesheet" title="style" media="all" type="text/css" />
             <?php
         }
         ?>
@@ -107,8 +107,8 @@ $app = App::get();
             <nav class="navbar navbar-dark bg-dark fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="<?php $app->addVersion("/assets/images/logo.png"); ?>" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
-                        <img src="<?php $app->addVersion("/assets/images/app-name.png"); ?>" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
+                        <img src="<?php $app::addVersion("/assets/images/logo.png"); ?>" alt="<?php echo $appName; ?> Logo" class="navbar__logo" />
+                        <img src="<?php $app::addVersion("/assets/images/app-name.png"); ?>" alt="<?php echo $appName; ?> text" class="navbar__app-name" />
                     </a>
 
                     <div>
@@ -349,23 +349,23 @@ $app = App::get();
         <?php
         if ($isDebug) {
             ?>
-            <script src="<?php $app->addVersion("/assets/js/third-party/jquery-3.2.1.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/third-party/popper.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/third-party/angular.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/third-party/decimal.min.js"); ?>" type="application/javascript"></script>
-            <script src="<?php $app->addVersion("/assets/js/third-party/bootstrap.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/third-party/jquery-3.2.1.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/third-party/popper.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/third-party/angular.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/third-party/decimal.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/third-party/bootstrap.min.js"); ?>" type="application/javascript"></script>
             <?php
         }
         else {
             ?>
             <!-- Complied JavaScript File of all JavaScript Files -->
-            <script src="<?php $app->addVersion("/assets/js/main.min.js"); ?>" type="application/javascript"></script>
+            <script src="<?php $app::addVersion("/assets/js/main.min.js"); ?>" type="application/javascript"></script>
             <?php
         }
         ?>
 
         <script src="https://cdn.jsdelivr.net/gh/jahidulpabelislam/sticky-footer.js@1.1.2/src/sticky-footer.min.js" type="application/javascript"></script>
 
-        <script src="<?php $app->addVersion("/assets/js/trading-tracker/app.js"); ?>" type="application/javascript"></script>
+        <script src="<?php $app::addVersion("/assets/js/trading-tracker/app.js"); ?>" type="application/javascript"></script>
     </body>
 </html>
