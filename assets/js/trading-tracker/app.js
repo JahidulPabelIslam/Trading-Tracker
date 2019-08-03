@@ -68,7 +68,6 @@
                     "Sell": {},
                 };
             }
-
         };
 
         $scope.setPage = function(newPageNum) {
@@ -142,14 +141,19 @@
 
         $scope.dateFilter = function(trade) {
             var dateFilterValue = $scope.dateFilterInput;
-            if (dateFilterValue === "" || !dateFilterValue) {
+            if (!dateFilterValue || dateFilterValue === "") {
                 return true;
             }
             else {
                 var tradeDate = new Date(trade.date);
                 tradeDate.setHours(0, 0, 0, 0);
+                var tradeDateTime = tradeDate.getTime();
 
-                if (dateFilterValue === "This Week" || dateFilterValue === "This Month" || dateFilterValue === "This Year") {
+                if (
+                    dateFilterValue === "This Week" ||
+                    dateFilterValue === "This Month" ||
+                    dateFilterValue === "This Year"
+                ) {
                     var firstDay = new Date();
                     firstDay.setHours(0, 0, 0, 0);
                     var lastDay = new Date(firstDay);
@@ -188,7 +192,10 @@
                         lastDay.setDate(31);
                     }
 
-                    return (tradeDate.getTime() >= firstDay.getTime()) && (tradeDate.getTime() <= lastDay.getTime());
+                    return (
+                        (tradeDateTime >= firstDay.getTime()) &&
+                        (tradeDateTime <= lastDay.getTime())
+                    );
                 }
 
                 var matchDate = new Date();
@@ -205,7 +212,7 @@
                     matchDate.setHours(0, 0, 0, 0);
                 }
 
-                return matchDate.getTime() === tradeDate.getTime();
+                return matchDate.getTime() === tradeDateTime;
             }
         };
 
@@ -217,7 +224,9 @@
         $scope.getFilteredTrades = function() {
             var filteredTrades = $filter("filter")($scope.trades, $scope.searchFilters);
             filteredTrades = $filter("filter")(filteredTrades, $scope.dateFilter);
+
             var sortedTrades = $scope.sortTrades(filteredTrades);
+
             return sortedTrades;
         };
 
@@ -236,16 +245,15 @@
         };
 
         $scope.calculatePips = function() {
-            var entryprice = $scope.selectedTrade.entryprice = parseFloat($scope.selectedTrade.entryprice);
-
-            var exitprice = $scope.selectedTrade.exitprice = parseFloat($scope.selectedTrade.exitprice);
+            var entryPrice = $scope.selectedTrade.entryprice = parseFloat($scope.selectedTrade.entryprice);
+            var exitPrice = $scope.selectedTrade.exitprice = parseFloat($scope.selectedTrade.exitprice);
 
             var pips = 0;
             if ($scope.selectedTrade.type === "Buy") {
-                pips = new Decimal(exitprice).minus(entryprice);
+                pips = new Decimal(exitPrice).minus(entryPrice);
             }
             else {
-                pips = new Decimal(entryprice).minus(exitprice);
+                pips = new Decimal(entryPrice).minus(exitPrice);
             }
 
             var name = $scope.selectedTrade.name.toLowerCase();
