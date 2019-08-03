@@ -124,7 +124,7 @@ $app = App::get();
                     <div class="row counters">
                         <label class="label form-group col-3 col-md-2" for="counters__pips-target">Pips Target:</label>
                         <div class="form-group col-3 col-md-1">
-                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters()" />
+                            <input ng-model="pipsTarget" type="number" min="0.00" step="any" placeholder="60" class="form-control counters__pips-target" id="counters__pips-target" ng-change="updateCounters(); savePipsTarget();" />
                         </div>
 
                         <p class="label form-group col-4 col-md-2">Pips Won:</p>

@@ -10,6 +10,7 @@
 
         var global = {
             tradesStoreKey: "tradingtrackertrades",
+            targetsStoreKey: "tradingtrackertargets",
         };
 
         var fn = {
@@ -53,6 +54,20 @@
 
                 jQuery(selectors).removeClass(classesToRemove).addClass(classesToAdd);
             },
+
+            getPipTargets: function() {
+                var targets = fn.getFromLocalStorage(global.targetsStoreKey);
+
+                if (targets) {
+                    return targets;
+                }
+
+                return {
+                    "": {},
+                    "Buy": {},
+                    "Sell": {},
+                };
+            }
 
         };
 
@@ -262,6 +277,37 @@
             return pipsTarget;
         };
 
+        $scope.getPipsTargetForFilter = function() {
+            if (
+                $scope.pipsTargets &&
+                $scope.pipsTargets[$scope.searchFilters.type] &&
+                $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput] &&
+                $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput][$scope.searchFilters.name]
+            ) {
+                return $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput][$scope.searchFilters.name];
+            }
+
+            return 0;
+        };
+
+        $scope.savePipsTarget = function() {
+            if (!$scope.pipsTargets[$scope.searchFilters.type]) {
+                $scope.pipsTargets[$scope.searchFilters.type] = {};
+            }
+
+            if (!$scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput]) {
+                $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput] = {};
+            }
+
+            if (!$scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput]) {
+                $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput] = {};
+            }
+
+            $scope.pipsTargets[$scope.searchFilters.type][$scope.dateFilterInput][$scope.searchFilters.name] = $scope.getPipsTarget();
+
+            fn.saveToLocalStorage(global.targetsStoreKey, $scope.pipsTargets);
+        };
+
         $scope.updatePipsCounterColours = function() {
             var percentage = new Decimal($scope.totalPips).dividedBy($scope.getPipsTarget()).times(100);
             fn.addColourClassByPercentage(percentage, ".counters__pips-won, .counters__pips-remaining");
@@ -327,6 +373,8 @@
         };
 
         $scope.getAndUpdateValues = function() {
+            $scope.pipsTarget = $scope.getPipsTargetForFilter();
+
             $scope.filteredTrades = $scope.getFilteredTrades();
 
             $scope.lastPageNum = $scope.getLastPageNum();
@@ -349,6 +397,7 @@
         };
 
         $scope.init = function() {
+            $scope.pipsTargets = fn.getPipTargets();
             $scope.pipsTarget = 0;
 
             $scope.tradeTypes = ["Sell", "Buy"];
